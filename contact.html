@@ -1,1318 +1,1228 @@
 <!DOCTYPE html>
-<html lang="kr" class="kr">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="format-detection" content="telephone=no, address=no, email=no">
-    <meta name="robots" content="index, follow">
-    <title>NUA STUDIO - Contact</title>
-    <meta name="author" content="NUA STUDIO">
-    <meta name="description" content="NUA STUDIO와 함께 실시간 자막 솔루션을 시작하세요. 문의 및 상담 환영합니다.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문의하기 - 누아속기사무소</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #2563EB;
+      --max-width: 1200px;
+    }
     
-    <!-- Font imports -->
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,700,700italic" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
     
-    <style>
-        /* Reset CSS */
-        html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed, 
-        figure, figcaption, footer, header, hgroup, 
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-            display: block;
-        }
-        body {
-            line-height: 1; 
-            font-family: 'Pretendard';
-        }
-        ol, ul {
-            list-style: none;
-        }
-        a {text-decoration:none; color: inherit;}
-        img {max-width: 100%; height: auto; vertical-align: top;}
-
-        /* Scroll styles */
-        html::-webkit-scrollbar {width: 8px;}
-        html::-webkit-scrollbar-thumb {background-color: #2f3542; border-radius: 10px;}
-
-        /* Variables */
-        :root {
-            --primary-color: #9333ea;
-            --secondary-color: #ec4899;
-            --gradient: linear-gradient(131deg, var(--primary-color), var(--secondary-color));
-            --white: #ffffff;
-            --black: #000000;
-            --gray: #666666;
-            --neon-blue: #00f0ff;
-            --neon-purple: #a259ff;
-            --kakao-yellow: #FEE500;
-        }
-
-        /* General styles */
-        .wrap {margin: 0 auto; width: 95%;}
-        .wrap[max='1708'] {max-width: 1708px;}
-        .wrap[max='1440'] {max-width: 1440px;}
-        .wrap[max='1920'] {max-width: 1920px;}
-
-        /* Header styles - Updated to match about.html */
-        .header {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            background: transparent; 
-            z-index: 100; 
-            padding-top: 32px;
-            transition: filter 0.3s ease;
-        }
-        .header .wrap {display: flex; align-items: center; justify-content: space-between;}
-        .header .logo {width: 122px; flex-shrink: 0; position: relative; z-index: 101;}
-        .header .logo img {width: 100%;}
-        .header .menu {font-size: 24px; display: flex; align-items: center;}
-        .header .menu ul {display: flex; align-items: center; gap: calc(120/24*1em);}
-        .header .menu li {
-            font-size: inherit; 
-            font-weight: 700; 
-            letter-spacing: 0.025em; 
-            font-family: 'Ubuntu'; 
-            color: #000; 
-            position: relative; 
-            transition: .4s;
-        }
-        .header .menu li a {position: relative; z-index: 1; padding: 5px;}
-        .header .menu li.menu-join a {
-            background: linear-gradient(var(--white), var(--white)) padding-box,
-                        linear-gradient(90deg, var(--neon-blue), var(--neon-purple)) border-box;
-            border: 1px solid transparent;
-            padding: 8px 20px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        .header .menu li.menu-join:hover a {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
-        }
-        .header .menu li::before {
-            content: ''; 
-            z-index: -1; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            display: block; 
-            width: 0%; 
-            height: 100%; 
-            background: #00f0ff; 
-            transition: .4s;
-        }
-        .header .menu li:not(.menu-join):hover::before {width: 100%;}
-        .header .lang {
-            margin-left: calc(80/20*1em); 
-            position: relative; 
-            font-size: 20px; 
-            font-family: 'Ubuntu'; 
-            font-weight: 500; 
-            letter-spacing: -0.025em; 
-            color: #fff;
-        }
-        .header .lang_current {
-            display: flex; 
-            align-items: center; 
-            gap: calc(10/20*1em); 
-            color: #fff; 
-            background: #363638; 
-            padding: calc(8/20*1em) calc(10/20*1em); 
-            border-radius: calc(10/20*1em); 
-            cursor: pointer;
-        }
-        .header .lang_list_wrap {
-            display: none; 
-            width: 100%; 
-            position: absolute; 
-            top: 100%; 
-            left: 0;
-        }
-        .header .lang_list {
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: calc(3/20*1em); 
-            padding: calc(5/20*1em) 0; 
-            box-sizing: border-box; 
-            border-radius: calc(10/20*1em);
-        }
-        .header .lang_list a {
-            display: block; 
-            width: 100%; 
-            font-size: calc(16/20*1em); 
-            padding: calc(8/16*1em) calc(10/16*1em); 
-            box-sizing: border-box; 
-            background: #000; 
-            color: #fff; 
-            text-align: center; 
-            border-radius: calc(10/20*1em); 
-            transition: .4s;
-        }
-        .header .hamburger {
-            display: none; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            width: 25px; 
-            height: 20px; 
-            gap: 5px; 
-            position: relative; 
-            z-index: 101;
-        }
-        .header .hamburger span {
-            display: block; 
-            width: 100%; 
-            height: 2px; 
-            background: #000; 
-            transition: .4s;
-        }
-        .header.HmActive .hamburger span {position: absolute; top: 50%; margin-top: -1px;}
-        .header.HmActive .hamburger span:first-child {transform: rotate(45deg);}
-        .header.HmActive .hamburger span:nth-child(2) {opacity: 0;}
-        .header.HmActive .hamburger span:last-child {transform: rotate(-45deg);}
-
-        /* Quick Contact Buttons - Same as about.html */
-        .quick-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .quick-contact.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .quick-contact .btn-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quick-contact .btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quick-contact .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit;
-            filter: brightness(1.2);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .quick-contact .btn:hover::before {
-            opacity: 1;
-        }
-
-        .quick-contact .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .quick-contact .btn i,
-        .quick-contact .btn svg {
-            font-size: 24px;
-            width: 24px;
-            height: 24px;
-            color: #fff;
-            z-index: 1;
-            position: relative;
-        }
-
-        /* KakaoTalk Button */
-        .quick-contact .btn-kakao {
-            background: linear-gradient(135deg, #FEE500, #FFD700);
-        }
-
-        .quick-contact .btn-kakao svg {
-            width: 24px;
-            height: 24px;
-            fill: #381E1F;
-        }
-
-        /* Phone Button */
-        .quick-contact .btn-phone {
-            background: var(--gradient);
-        }
-
-        /* Tooltip */
-        .quick-contact .tooltip {
-            position: absolute;
-            right: calc(100% + 10px);
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.85);
-            color: #fff;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            font-family: 'Pretendard';
-            font-weight: 500;
-        }
-
-        .quick-contact .tooltip::after {
-            content: '';
-            position: absolute;
-            right: -4px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 4px 0 4px 4px;
-            border-color: transparent transparent transparent rgba(0, 0, 0, 0.85);
-        }
-
-        .quick-contact .btn-wrapper:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(-50%) translateX(-5px);
-        }
-
-        /* Pulse Animation */
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
-            }
-        }
-
-        .quick-contact .btn-phone {
-            animation: pulse 2s infinite;
-        }
-
-        /* Sub page SV section */
-        .sub .sv {
-            position: relative; 
-            width: 100%; 
-            font-size: clamp(190px, 229/1920*100vw, 229px); 
-            padding-bottom: calc(100/229*1em); 
-            overflow: hidden;
-        }
-        .sub .sv svg {display: none;}
-        .sub .sv .title {
-            opacity: 0; 
-            position: relative; 
-            z-index: 1; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-        }
-        .sub .sv .title h1 {
-            position: relative; 
-            display: inline-block; 
-            box-sizing: border-box; 
-            margin-top: calc(250/229*1em); 
-            margin-bottom: calc(80/229*1em); 
-            font-family: "Poppins"; 
-            font-weight: bold; 
-            letter-spacing: 0.015em;
-        }
-        .sub .sv .title h1 span {
-            -webkit-text-stroke: 2px #00f0ff;
-        }
-        .sub .sv .title h1 span.front {
-            position: relative; 
-            z-index: 1;
-        }
-        .sub .sv .title h1 span.back {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            transform: translateX(calc(25/229*1em));
-        }
-        .sub .sv .title h1 span em {
-            display: inline-block; 
-            transform: translateX(calc(-5/229*1em));
-        }
-        .sub .sv .title h1 span.back em {
-            background-color: #000; 
-            background-clip: text; 
-            -webkit-background-clip: text; 
-            color: transparent; 
-            background-image: linear-gradient(90deg, #00f0ff, #a259ff);
-        }
-        .sub .sv .title p {
-            line-height: calc(25/17*1em); 
-            font-family: 'Poppins'; 
-            color: #000; 
-            font-size: 17px; 
-            letter-spacing: 0.02em;
-        }
-        .sub .sv .title b {
-            line-height: calc(25/24*1em); 
-            font-family: 'Poppins'; 
-            color: #000; 
-            font-size: 24px; 
-            font-weight: 600; 
-            letter-spacing: 0.02em; 
-            margin-top: calc(5/24*1em);
-        }
-        .sub .sv .objWrap {
-            opacity: 0; 
-            filter: url(#sv_gooey); 
-            position: absolute; 
-            left: 50%; 
-            top: 0; 
-            transform: translateX(-50%); 
-            width: 1920px; 
-            height: 100%;
-        }
-        .sub .sv .objWrap .obj {
-            position: absolute; 
-            border-radius: 50%; 
-            background: linear-gradient(135deg, #00f0ff, #a259ff); 
-            transform: translateY(-5px);
-            opacity: 0.3;
-        }
-        .sub .sv .objWrap .obj:nth-child(1) {
-            width: 90px; 
-            height: 90px; 
-            bottom: 15%; 
-            left: 115px; 
-            animation: sv_arrow 2.8s ease-in-out infinite;
-        }
-        .sub .sv .objWrap .obj:nth-child(2) {
-            width: 174px; 
-            height: 174px; 
-            top: 20%; 
-            left: 300px; 
-            animation: sv_arrow 3s ease-in-out infinite;
-        }
-        .sub .sv .objWrap .obj:nth-child(3) {
-            width: 50px; 
-            height: 50px; 
-            top: 55%; 
-            left: 43%; 
-            animation: sv_arrow 3.2s ease-in-out infinite;
-        }
-        .sub .sv .objWrap .obj:nth-child(4) {
-            width: 80px; 
-            height: 80px; 
-            top: 30%; 
-            right: 310px; 
-            animation: sv_arrow 2.9s ease-in-out infinite;
-        }
-        .sub .sv .objWrap .obj:nth-child(5) {
-            width: 170px; 
-            height: 170px; 
-            top: 50%; 
-            right: 100px; 
-            animation: sv_arrow 3.1s ease-in-out infinite;
-        }
-        .sub .sv .sv_scroll {
-            opacity: 0; 
-            display: block; 
-            position: absolute; 
-            right: calc(175/1920*100vw); 
-            bottom: calc(120/229*1em); 
-            z-index: 1;
-        }
-        .sub .sv .sv_scroll .roll {
-            display: block; 
-            animation: sv_roll 8s linear infinite;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #00f0ff, #a259ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.3;
-        }
-        .sub .sv .sv_scroll span {
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 28px;
-        }
-        .sub .sv .sv_scroll span i {
-            transform: translateY(-5px); 
-            animation: sv_arrow 3s ease-in-out infinite;
-        }
-
-        @keyframes sv_roll {
-            0% {transform: rotate(0deg);}
-            100% {transform: rotate(360deg);}
-        }
-        @keyframes sv_arrow {
-            0% {transform: translateY(-5px);}
-            50% {transform: translateY(5px);}
-            100% {transform: translateY(-5px);}
-        }
-
-        /* Contact content */
-        .contact .flx {
-            display: flex; 
-            align-items: flex-start; 
-            justify-content: space-between; 
-            padding: 100px calc(55/1440*100%) 160px; 
-            box-sizing: border-box;
-        }
-        .contact .flx .txt {
-            display: flex; 
-            flex-direction: column; 
-            width: calc(530/64*1em); 
-            font-size: 64px;
-        }
-        .contact .flx .txt > span {
-            font-size: 18px; 
-            font-weight: 500; 
-            color: #000; 
-            letter-spacing: -0.01em; 
-            font-family: "Poppins";
-        }
-        .contact .flx .txt > p {
-            padding-top: calc(30/64*1em); 
-            padding-bottom: calc(70/64*1em); 
-            font-size: inherit; 
-            font-weight: 700; 
-            line-height: calc(75/64*1em); 
-            color: #aeaeb1; 
-            letter-spacing: -0.025em; 
-            font-family: "Pretendard";
-        }
-        .contact .flx .txt > p b {
-            color: #000; 
-            font-size: 0.8em;
-        }
-        .contact .flx .txt .info {
-            display: flex; 
-            flex-direction: column;
-        }
-        .contact .flx .txt .info .flx_p {
-            display: flex; 
-            align-items: flex-start; 
-            font-size: 17px; 
-            line-height: calc(30/17*1em); 
-            font-family: 'Poppins'; 
-            letter-spacing: -0.02em; 
-            color: #000;
-        }
-        .contact .flx .txt .info .flx_p + .flx_p {
-            padding-top: calc(10/17*1em);
-        }
-        .contact .flx .txt .info .flx_p small {
-            font-size: calc(20/17*1em); 
-            color: #000; 
-            margin-right: calc(10/20*1em);
-        }
-        .contact .flx .txt .info .flx_p p {
-            line-height: calc(28/17*1em);
-        }
-
-        /* Form styles */
-        .contact .flx .form {
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-end;
-        }
-        .contact .flx .form dl + dl {
-            margin-top: calc(45/18*1em);
-        }
-        .contact .flx .form dl dt {
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            font-size: 22px; 
-            padding-left: calc(7/22*1em);
-        }
-        .contact .flx .form dl dt small {
-            font-size: 14px; 
-            font-weight: 500; 
-            font-family: "Poppins"; 
-            letter-spacing: -0.01em; 
-            color: #a5a4a4;
-        }
-        .contact .flx .form dl dt span {
-            font-size: inherit; 
-            font-weight: 700; 
-            font-family: "Pretendard"; 
-            letter-spacing: -0.025em; 
-            color: #000; 
-            padding-top: calc(10/22*1em);
-        }
-        .contact .flx .form dl dd {
-            width: 595px; 
-            display: block;
-        }
-        .contact .flx .form dl dd input,
-        .contact .flx .form dl dd select {
-            width: 100%; 
-            padding: calc(15/18*1em) calc(20/18*1em); 
-            margin-top: calc(20/18*1em); 
-            font-size: 18px; 
-            font-weight: 500; 
-            font-family: "Pretendard"; 
-            letter-spacing: -0.025em; 
-            color: #000; 
-            border: 1px solid #313131; 
-            border-radius: calc(12/18*1em); 
-            box-sizing: border-box;
-            background: #fff;
-        }
-        .contact .flx .form dl dd input::placeholder {
-            color: #b1b1b1;
-        }
-        .contact .flx .form dl dd textarea {
-            resize: none; 
-            width: 100%; 
-            height: calc(260/18*1em); 
-            padding: calc(15/18*1em) calc(20/18*1em); 
-            margin-top: calc(20/18*1em); 
-            font-size: 18px; 
-            font-weight: 500; 
-            font-family: "Pretendard"; 
-            letter-spacing: -0.025em; 
-            color: #000; 
-            border: 1px solid #313131; 
-            border-radius: calc(12/18*1em); 
-            box-sizing: border-box;
-        }
-        .contact .flx .form dl dd textarea::placeholder {
-            color: #b1b1b1;
-        }
-
-        /* Button wrap */
-        .contact .flx .form .btnWrap {
-            display: flex; 
-            align-items: flex-start; 
-            justify-content: space-between; 
-            width: 100%; 
-            margin-top: 25px;
-        }
-
-        /* Checkbox */
-        .contact .flx .form .checkWrap {
-            display: flex; 
-            align-items: center; 
-            cursor: pointer; 
-            font-size: 18px; 
-            padding-top: calc(25/18*1em);
-        }
-        .contact .flx .form .checkWrap input[type="checkbox"] {
-            display: none;
-        }
-        .contact .flx .form .checkWrap label {
-            display: flex; 
-            align-items: center; 
-            cursor: pointer;
-        }
-        .contact .flx .form .checkWrap label .checkBox {
-            font-size: inherit; 
-            width: 24px; 
-            height: 24px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #000; 
-            border-radius: 4px; 
-            margin-right: 5px;
-        }
-        .contact .flx .form .checkWrap label .checkBox i {
-            font-size: inherit; 
-            color: #000; 
-            transition: .4s;
-        }
-        .contact .flx .form .checkWrap label .checkBox i.xi-check-circle {
-            display: none; 
-            color: #000;
-        }
-        .contact .flx .form .checkWrap input[type="checkbox"]:checked + label .checkBox i.xi-check-circle {
-            display: block;
-        }
-        .contact .flx .form .checkWrap input[type="checkbox"]:checked + label .checkBox i.xi-check-circle-o {
-            display: none;
-        }
-        .contact .flx .form .checkWrap .lbl {
-            display: flex; 
-            align-items: center;
-        }
-        .contact .flx .form .checkWrap .lbl p {
-            font-size: inherit; 
-            font-weight: 500; 
-            font-size: 16px; 
-            line-height: 1em; 
-            color: #000; 
-            margin-right: 8px;
-        }
-        .contact .flx .form .checkWrap .lbl small {
-            font-size: inherit; 
-            font-weight: 500; 
-            font-size: 14px; 
-            line-height: 1em; 
-            color: #000; 
-            border: 1px solid #000; 
-            padding: calc(5/14*1em) calc(10/14*1em); 
-            cursor: pointer;
-        }
-
-        /* Rolling button */
-        .contact .flx .form .btnWrap .btn {
-            width: calc(137/14*1em); 
-            height: calc(137/14*1em); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 14px; 
-            font-weight: 300; 
-            font-family: "Poppins"; 
-            letter-spacing: -0.01em; 
-            cursor: pointer; 
-            background: transparent; 
-            border: none; 
-            outline: none; 
-            position: relative;
-        }
-        .contact .flx .form .btnWrap .btn .rollingBtn {
-            width: 100%; 
-            height: 100%; 
-            position: absolute; 
-            left: 0; 
-            top: 0;
-        }
-        .contact .flx .form .btnWrap .btn .rollingBtn .rollTxt {
-            width: 100%; 
-            height: 100%;
-            background: linear-gradient(135deg, #00f0ff, #a259ff);
-            border-radius: 50%;
-            animation: roll 6s linear infinite;
-        }
-        .contact .flx .form .btnWrap .btn .rollingBtn > img {
-            position: absolute; 
-            left: 50%; 
-            top: 50%; 
-            transform: translate(-50%, -50%); 
-            width: calc(66/14*1em); 
-            height: calc(66/14*1em);
-            font-size: 3em;
-        }
-        .contact .flx .form .btnWrap .btn small {
-            position: absolute; 
-            right: 90%; 
-            top: 0; 
-            font-size: inherit; 
-            background: #000; 
-            color: #fff; 
-            padding: calc(4/14*1em) calc(16/14*1em); 
-            border-radius: calc(30/14*1em);
-        }
-        .contact .flx .form .btnWrap .btn small::after {
-            content: ''; 
-            position: absolute; 
-            left: 0; 
-            top: 100%; 
-            width: calc(20/14*1em); 
-            height: calc(16/14*1em); 
-            background: #000; 
-            transform: rotate(-148deg) translate(-200%, 230%); 
-            z-index: -1; 
-            clip-path: polygon(0 0, 50% 50%, 100% 0);
-        }
-        @keyframes roll {
-            0% {transform: rotate(0deg);}
-            100% {transform: rotate(-360deg);}
-        }
-
-        /* Footer - Updated to match about.html */
-        .footer {background: #000; padding: 80px 0 40px; position: relative;}
-        .footer .toTop {
-            position: absolute; 
-            top: 0; 
-            left: 50%; 
-            transform: translate(-50%, -40%); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 90px; 
-            height: 90px; 
-            border-radius: 50%; 
-            background: #000; 
-            z-index: 10; 
-            cursor: pointer;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 2px solid #00f0ff;
-        }
-        .footer .toTop:hover {
-            transform: translate(-50%, -45%);
-            background: #00f0ff;
-        }
-        .footer .toTop::after {
-            content: '↑';
-            color: #00f0ff;
-            font-size: 32px;
-            font-weight: bold;
-            line-height: 1;
-            transition: color 0.3s ease;
-        }
-        .footer .toTop:hover::after {
-            color: #000;
-        }
-        .footer .wrap {display: flex; flex-direction: column; align-items: center;}
-        .footer .logo {padding-bottom: 50px;}
-        .footer .logo img {width: 180px;}
-        .footer .info {
-            padding-bottom: calc(45/22*1em); 
-            text-align: center; 
-            word-break: keep-all; 
-            font-size: 22px; 
-            font-weight: 500; 
-            letter-spacing: 0.02em; 
-            font-family: 'Pretendard'; 
-            color: #fff; 
-            line-height: calc(34/22*1em);
-        }
-        .footer .copy {
-            text-align: center; 
-            font-size: 18px; 
-            letter-spacing: 0.02em; 
-            font-family: 'Pretendard'; 
-            color: #666;
-        }
-
-        /* Responsive */
-        @media screen and (max-width: 1440px) {
-            .contact .flx .txt {font-size: 54px;}
-        }
-        @media screen and (max-width: 1280px) {
-            .contact .flx .txt {font-size: 44px;}
-            .contact .flx .txt .info .flx_p {font-size: 16px;}
-            .contact .flx .form dl + dl {margin-top: calc(25/18*1em);}
-            .contact .flx .form dl dt {font-size: 18px;}
-            .contact .flx .form dl dt small {font-size: 12px;}
-            .contact .flx .form dl dd {width: 400px;}
-            .contact .flx .form dl dd input,
-            .contact .flx .form dl dd select {font-size: 16px; margin-top: calc(10/16*1em);}
-            .contact .flx .form dl dd textarea {font-size: 16px; height: calc(200/18*1em);}
-            .contact .flx .form .btnWrap {align-items: flex-end; flex-direction: column; gap: 50px;}
-            .contact .flx .form .checkWrap {padding-top: 0;}
-        }
-        @media screen and (max-width: 820px) {
-            .header .menu {
-                box-sizing: border-box; 
-                display: none; 
-                opacity: 0; 
-                position: fixed; 
-                left: 0; 
-                top: 0; 
-                width: 100vw; 
-                height: 100vh; 
-                transform: translateX(100%); 
-                background: #000; 
-                z-index: 100; 
-                padding-top: 100px; 
-                transition: .4s allow-discrete;
-            }
-            .header.HmActive .menu {
-                display: block; 
-                opacity: 1; 
-                transform: translateX(0%);
-            }
-            .header .menu ul {
-                flex-direction: column; 
-                align-items: center; 
-                gap: 0px;
-            }
-            .header .menu li {
-                font-size: 20px; 
-                border-top: 1px solid #333; 
-                width: 100%;
-                color: #fff;
-            }
-            .header .menu li.menu-join {
-                border: none;
-                margin: 20px 2.5%;
-                width: auto;
-            }
-            .header .menu li.menu-join a {
-                background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-                color: #fff;
-                padding: 12px 24px;
-                border-radius: 25px;
-                display: inline-block;
-                width: auto;
-            }
-            .header .menu li a {
-                padding: 10px 2.5%; 
-                display: block; 
-                box-sizing: border-box; 
-                width: 100%;
-            }
-            .header .hamburger {display: flex;}
-            .header .lang {
-                position: absolute; 
-                bottom: 0; 
-                left: 0; 
-                margin-left: calc(30/16*1em); 
-                margin-bottom: calc(30/16*1em); 
-                font-size: 16px;
-            }
-            .header .lang .lang_list_wrap {
-                top: auto; 
-                bottom: 100%;
-            }
-            .contact .flx {flex-direction: column; gap: 50px; padding: 50px calc(55/1440*100%) 100px;}
-            .contact .flx .txt {font-size: clamp(38px, 38/500*100vw, 54px);}
-            .contact .flx .form {width: 100%;}
-            .contact .flx .form dl {width: 100%;}
-            .contact .flx .form dl dd {width: 100%;}
-            .quick-contact {
-                bottom: 20px;
-                right: 20px;
-            }
-            .quick-contact .btn {
-                width: 50px;
-                height: 50px;
-            }
-            .quick-contact .btn i,
-            .quick-contact .btn svg {
-                font-size: 20px;
-                width: 20px;
-                height: 20px;
-            }
-        }
-    </style>
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 1.5rem 3rem;
+    }
+    
+    .header-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      font-family: 'Noto Serif KR', serif;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -1px;
+      position: relative;
+      margin-left: 2rem;
+      display: inline-block;
+    }
+    
+    .logo-text,
+    .logo-hover {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .logo-text {
+      display: inline-block;
+    }
+    
+    .logo-hover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      font-weight: 900;
+      letter-spacing: 4px;
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-text {
+      opacity: 0;
+      transform: scale(1.2);
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-hover {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      filter: blur(0);
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 3rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    
+    .nav-link {
+      pointer-events: all;
+      color: #000;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 4px;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .special-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0.7rem 1.3rem;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      background: #fff;
+      min-height: 60px;
+      isolation: isolate;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .special-menu::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 8px;
+      padding: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(37, 99, 235, 0.25) 50%,
+        rgba(96, 165, 250, 0.35) 53%,
+        rgba(37, 99, 235, 0.25) 56%,
+        transparent 60%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: borderShine 4s linear infinite;
+    }
+    
+    @keyframes borderShine {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    
+    .special-menu::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        rgba(37, 99, 235, 0.03) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .special-menu:hover {
+      transform: translateY(-2px);
+      background: rgba(37, 99, 235, 0.04);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .special-menu:hover::before {
+      animation: borderShine 2s linear infinite;
+    }
+    
+    .special-menu:hover::after {
+      opacity: 1;
+    }
+    
+    .special-menu:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 4px;
+    }
+    
+    .special-menu-content {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #ef4444;
+      border-radius: 50%;
+      position: relative;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    .live-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse-ring 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+    
+    @keyframes pulse-ring {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    .special-menu-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .special-menu-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #000;
+      font-family: 'Noto Serif KR', serif;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    
+    .special-menu-subtitle {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      letter-spacing: 0.3px;
+      line-height: 1.3;
+    }
+    
+    .fixed-nav-black {
+      position: fixed;
+      right: 0;
+      top: 90px;
+      z-index: 1001;
+      width: 60px;
+      height: 220px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      color: #fff;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .fixed-nav-black.is-collapsed {
+      height: 60px;
+      font-size: 0;
+    }
+    
+    .fixed-nav-black.is-collapsed::before {
+      content: '📞';
+      font-size: 1.3rem;
+      writing-mode: horizontal-tb;
+    }
+    
+    .fixed-nav-yellow {
+      position: fixed;
+      right: 0;
+      top: 310px;
+      z-index: 1001;
+      width: 60px;
+      height: 60px;
+      background: #FEE500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.5rem;
+      transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .fixed-nav-yellow:hover {
+      background: #FDD835;
+    }
+    
+    .fixed-nav-yellow.is-collapsed {
+      top: 150px;
+    }
+    
+    .page-header {
+      padding: 120px 3rem 40px;
+      background: #fafafa;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .page-header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+    
+    .page-subtitle {
+      font-size: 1rem;
+      color: #666;
+    }
+    
+    .contact-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 60px 3rem 120px;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      margin-bottom: 5rem;
+    }
+    
+    .contact-info {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+    }
+    
+    .contact-info-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-info-heading {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+      line-height: 1.3;
+    }
+    
+    .contact-info-text {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    
+    .contact-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+    
+    .contact-detail-content {
+      flex: 1;
+    }
+    
+    .contact-detail-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #999;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .contact-detail-value {
+      font-size: 1rem;
+      color: #000;
+      font-weight: 500;
+    }
+    
+    .contact-detail-value a {
+      color: #000;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-detail-value a:hover {
+      color: var(--primary-color);
+    }
+    
+    .contact-form-section {
+      background: #fff;
+      padding: 3rem;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    
+    .form-group {
+      margin-bottom: 2rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #999;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-title {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 0.8rem;
+      font-family: 'Noto Serif KR', serif;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #000;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      transition: all 0.3s;
+      background: #fafafa;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: #999;
+    }
+    
+    .form-textarea {
+      min-height: 180px;
+      resize: vertical;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    
+    .form-select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      padding-right: 3rem;
+    }
+    
+    .form-checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: #fafafa;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 2rem;
+    }
+    
+    .form-checkbox-wrapper:hover {
+      background: #f0f0f0;
+    }
+    
+    .form-checkbox {
+      display: none;
+    }
+    
+    .checkbox-icon {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    
+    .checkbox-icon::after {
+      content: '✓';
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s;
+    }
+    
+    .form-checkbox:checked + .checkbox-icon {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .form-checkbox:checked + .checkbox-icon::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .checkbox-label {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+      flex: 1;
+    }
+    
+    .checkbox-label a {
+      color: var(--primary-color);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    
+    .form-submit {
+      width: 100%;
+      padding: 1.2rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .form-submit:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .form-submit::after {
+      content: '→';
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+    
+    .form-submit:hover::after {
+      transform: translateX(4px);
+    }
+    
+    .quick-methods {
+      background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+      padding: 3rem;
+      border-radius: 16px;
+      margin-top: 3rem;
+    }
+    
+    .quick-methods-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+    
+    .quick-methods-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    
+    .quick-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .quick-method-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(0,0,0,0.05);
+      text-decoration: none;
+      display: block;
+    }
+    
+    .quick-method-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    
+    .quick-method-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-color);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.8rem;
+    }
+    
+    .quick-method-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #000;
+      font-family: 'Noto Serif KR', serif;
+    }
+    
+    .quick-method-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .footer {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 4rem 3rem 2rem;
+    }
+    
+    .footer-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: 'Noto Serif KR', serif;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    
+    .footer-text {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #666;
+      font-size: 0.85rem;
+    }
+    
+    .footer-bottom p {
+      margin: 0.3rem 0;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: var(--primary-color);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .btn-primary:hover {
+      background: #1d4ed8;
+      gap: 0.8rem;
+    }
+    
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid #fff;
+      transition: all 0.3s;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .btn-secondary:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem 1.5rem;
+      }
+      
+      .logo {
+        font-size: 1.4rem;
+        margin-left: 0;
+      }
+      
+      .nav-menu {
+        display: none;
+      }
+      
+      .special-menu {
+        padding: 0.5rem 0.9rem;
+        min-height: 50px;
+      }
+      
+      .special-menu-content {
+        gap: 0.4rem;
+      }
+      
+      .live-dot {
+        width: 5px;
+        height: 5px;
+      }
+      
+      .special-menu-title {
+        font-size: 0.9rem;
+      }
+      
+      .special-menu-subtitle {
+        font-size: 0.6rem;
+      }
+      
+      .page-header {
+        padding: 100px 1.5rem 30px;
+      }
+      
+      .contact-content {
+        padding: 40px 1.5rem 80px;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .contact-info {
+        position: static;
+      }
+      
+      .contact-form-section {
+        padding: 2rem 1.5rem;
+      }
+      
+      .quick-methods {
+        padding: 2rem 1.5rem;
+      }
+      
+      .quick-methods-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .fixed-nav-black,
+      .fixed-nav-yellow {
+        display: none;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header - Updated to match about.html -->
-    <header class="header">
-        <div class="wrap" max="1708">
-            <div class="logo">
-                <a href="index.html">
-                    <svg viewBox="0 0 122 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 25C0 11.193 11.193 0 25 0h72c13.807 0 25 11.193 25 25s-11.193 25-25 25H25C11.193 50 0 38.807 0 25z" fill="#000"/>
-                        <text x="61" y="32" text-anchor="middle" fill="white" font-family="Poppins" font-size="20" font-weight="700">NUA</text>
-                    </svg>
-                </a>
+  <div class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-text">누아속기사무소</span>
+        <span class="logo-hover">NUA</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="about.html" class="nav-link">소개</a>
+        <a href="service.html" class="nav-link">서비스</a>
+        <a href="price.html" class="nav-link">요금안내</a>
+        <a href="contact.html" class="nav-link">문의</a>
+      </nav>
+      <a href="http://nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
+        <div class="special-menu-content">
+          <div class="live-indicator">
+            <span class="live-dot"></span>
+          </div>
+          <div class="special-menu-text">
+            <span class="special-menu-title">누아스튜디오</span>
+            <span class="special-menu-subtitle">실시간 속기 솔루션</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <a href="tel:02-3489-4433" class="fixed-nav-black" aria-label="전화 상담">빠른접수</a>
+  <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">문의하기<span style="color: var(--primary-color);">.</span></h1>
+      <p class="page-subtitle">24시간 내 답변 · 친절한 상담 · 정확한 견적</p>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <div class="contact-info-title">Contact Us</div>
+        <h2 class="contact-info-heading">언제든지<br>문의해주세요</h2>
+        <p class="contact-info-text">샘플 파일을 함께 보내주시면 24시간 내 정확한 견적을 안내드립니다. 긴급한 경우 전화 상담을 이용해주세요.</p>
+        
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Email</div>
+              <div class="contact-detail-value">
+                <a href="mailto:nuasteno@gmail.com">nuasteno@gmail.com</a>
+              </div>
             </div>
-            <div class="menu">
-                <ul>
-                    <li class="menu-join"><a href="join.html">채널 참가</a></li>
-                    <li><a href="about.html">소개</a></li>
-                    <li><a href="price.html">요금</a></li>
-                    <li><a href="contact.html">접수</a></li>
-                </ul>
-                <div class="lang">
-                    <div class="lang_current">
-                        <i class="xi-globus"></i>
-                        <span>KR</span>
-                        <i class="xi-angle-down"></i>
-                    </div>
-                    <div class="lang_list_wrap">
-                        <div class="lang_list">
-                            <a href="javascript:void(0)" onclick="alert('준비중입니다.')">EN</a>
-                            <a href="javascript:void(0)" onclick="alert('준비중입니다.')">JP</a>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          
+          <div class="contact-detail-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Phone</div>
+              <div class="contact-detail-value">
+                <a href="tel:02-3489-4433">T. 02-3489-4433</a><br>
+                <a href="tel:010-3489-4433">M. 010-3489-4433</a>
+              </div>
             </div>
-
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+          </div>
+          
+          <div class="contact-detail-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Location</div>
+              <div class="contact-detail-value">
+                서울 금천구 가산디지털2로 173, 719호<br>
+                (에이스비즈포레)
+              </div>
             </div>
+          </div>
+          
+          <div class="contact-detail-item">
+            <div class="contact-icon">⏰</div>
+            <div class="contact-detail-content">
+              <div class="contact-detail-label">Business Hours</div>
+              <div class="contact-detail-value">
+                평일 09:00 - 18:00<br>
+                (긴급 문의는 24시간 가능)
+              </div>
+            </div>
+          </div>
         </div>
-    </header>
+      </div>
 
-    <!-- Quick Contact Buttons - New addition -->
-    <aside class="quick-contact">
-        <div class="btn-wrapper">
-            <div class="tooltip">카톡 상담</div>
-            <a href="https://pf.kakao.com/_xjxeXxj" target="_blank" class="btn btn-kakao">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.707 4.8 4.27 6.054-.188.702-.682 2.545-.78 2.94-.123.49.18.483.376.351.155-.103 2.466-1.675 3.464-2.353.541.08 1.1.123 1.67.123 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/>
-                </svg>
-            </a>
-        </div>
-        <div class="btn-wrapper">
-            <div class="tooltip">전화 상담</div>
-            <a href="tel:010-1234-5678" class="btn btn-phone">
-                <svg viewBox="0 0 24 24" fill="white">
-                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                </svg>
-            </a>
-        </div>
-    </aside>
+      <!-- Contact Form -->
+      <div class="contact-form-section">
+        <form id="contactForm">
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <span class="form-title">회사/기관명</span>
+            <input type="text" class="form-input" name="company" placeholder="회사 또는 기관명을 입력해주세요">
+          </div>
 
-    <div id="smooth-wrapper">
-        <div id="smooth-content">
-            <main class="sub contact">
-                <!-- SV Section -->
-                <div class="sv">
-                    <svg>
-                        <filter id="sv_gooey">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="25" />
-                            <feColorMatrix values="
-                                        1 0 0 0 0
-                                        0 1 0 0 0
-                                        0 0 1 0 0
-                                        0 0 0 90 -25" />
-                        </filter>
-                    </svg>
-                    <div class="title">
-                        <h1>
-                            <span class="front">C<em>O</em>NT<em>A</em>CT</span>
-                            <span class="back">C<em>O</em>NT<em>A</em>CT</span>
-                        </h1>
+          <div class="form-group">
+            <label class="form-label">Service Type</label>
+            <span class="form-title">서비스 유형</span>
+            <select class="form-select" name="service_type">
+              <option value="">선택해주세요</option>
+              <option value="transcription">녹취록 작성</option>
+              <option value="minutes">회의록 작성</option>
+              <option value="onsite">현장 출장 속기</option>
+              <option value="subtitle">영상 자막</option>
+              <option value="foreign">외국어 녹취</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
 
-                        <p>REAL-TIME CAPTION SOLUTION</p>
-                        <b>NUA STUDIO</b>
-                    </div>
-                    
-                    <div class="objWrap">
-                        <div class="obj"></div>
-                        <div class="obj"></div>
-                        <div class="obj"></div>
-                        <div class="obj"></div>
-                        <div class="obj"></div>
-                    </div>
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <span class="form-title">담당자 성함</span>
+            <input type="text" class="form-input" name="name" placeholder="성함을 입력해주세요" required>
+          </div>
 
-                    <div class="sv_scroll">
-                        <div class="roll"></div>
-                        <span>
-                            <i class="xi-long-arrow-down"></i>
-                        </span>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <span class="form-title">연락처</span>
+            <input type="tel" class="form-input" name="phone" placeholder="010-0000-0000" required>
+          </div>
 
-                <!-- Contact Form Section -->
-                <div class="wrap" max="1440">
-                    <div class="flx">
-                        <div class="txt">
-                            <span>Contact</span>
-                            <p>
-                                CAPTION with us! <br>
-                                <b>누아에 문의하기</b>
-                            </p>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <span class="form-title">이메일</span>
+            <input type="email" class="form-input" name="email" placeholder="your@email.com" required>
+          </div>
 
-                            <div class="info">
-                                <div class="flx_p">
-                                    <small><i class="xi-mail-o"></i></small>
-                                    <p>nuastudio@gmail.com</p>
-                                </div>
-                                <div class="flx_p">
-                                    <small><i class="xi-maker"></i></small>
-                                    <p>서울시 금천구 가산디지털2로 173</p>
-                                </div>
-                            </div>
-                        </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <span class="form-title">문의 내용</span>
+            <textarea class="form-textarea" name="message" placeholder="녹음 분량, 납기일, 예산, 특이사항 등을 자유롭게 작성해주세요." required></textarea>
+          </div>
 
-                        <form name="inquiryform" id="inquiryform" method="post">	
-                            <div class="form">
-                                <dl>
-                                    <dt>
-                                        <small>Company/Organization</small>
-                                        <span>회사/기관명</span>
-                                    </dt>
-                                    <dd>
-                                        <input type="text" name="company" id="company" maxlength="50" placeholder="회사/기관명을 입력해주세요." >
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <small>Project Type</small>
-                                        <span>프로젝트 유형</span>
-                                    </dt>
-                                    <dd>
-                                        <select name="project_type" id="project_type">
-                                            <option value="">선택해주세요</option>
-                                            <option value="conference">컨퍼런스/세미나</option>
-                                            <option value="broadcast">방송/라이브</option>
-                                            <option value="performance">공연/문화행사</option>
-                                            <option value="education">교육/강연</option>
-                                            <option value="corporate">기업 행사</option>
-                                            <option value="other">기타</option>
-                                        </select>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <small>Name</small>
-                                        <span>담당자 성함/직책</span>
-                                    </dt>
-                                    <dd>
-                                        <input type="text" name="name" id="name" maxlength="30" placeholder="담당자 성함/직책을 입력해주세요.">
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <small>Number</small>
-                                        <span>연락처</span>
-                                    </dt>
-                                    <dd>
-                                        <input type="text" name="phone" id="phone" maxlength="13" placeholder="연락처를 입력해주세요.">
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <small>E-mail</small>
-                                        <span>이메일 주소</span>
-                                    </dt>
-                                    <dd>
-                                        <input type="text" name="email" id="email" placeholder="이메일 주소를 입력해주세요.">
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>
-                                        <small>Feel free to Ask!</small>
-                                        <span>문의사항</span>
-                                    </dt>
-                                    <dd>
-                                        <textarea name="content" id="content" placeholder="프로젝트 규모, 일정, 예산 등 자유롭게 작성해주세요."></textarea>
-                                    </dd>
-                                </dl>
+          <label class="form-checkbox-wrapper">
+            <input type="checkbox" class="form-checkbox" name="privacy" required>
+            <span class="checkbox-icon"></span>
+            <span class="checkbox-label">
+              <a href="#" onclick="alert('개인정보처리방침 전문'); return false;">개인정보 수집 및 이용</a>에 동의합니다
+            </span>
+          </label>
 
-                                <div class="btnWrap">
-                                    <div class="checkWrap">
-                                        <input type="checkbox" id="privacyCheck" name="agree1" value="Y">
-                                        <label for="privacyCheck">
-                                            <div class="checkBox">
-                                                <i class="xi-check-circle"></i>
-                                                <i class="xi-check-circle-o"></i>
-                                            </div>
-                                            <div class="lbl">
-                                                <p>개인정보 수집 및 이용에 대한 안내</p>
-                                                <small>전문보기</small>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <button class="btn btn_send" type="button" id="regBtn">
-                                        <div class="rollingBtn">
-                                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' font-size='50'%3E😊%3C/text%3E%3C/svg%3E" alt="">
-                                            <div class="rollTxt"></div>
-                                        </div>
-                                        <small>Contact</small>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Footer - Updated to match about.html -->
-            <footer class="footer">
-                <div class="toTop"></div>
-                <div class="wrap" max="1920">
-                    <div class="logo">
-                        <svg viewBox="0 0 122 50" fill="none" xmlns="http://www.w3.org/2000/svg" width="180">
-                            <path d="M0 25C0 11.193 11.193 0 25 0h72c13.807 0 25 11.193 25 25s-11.193 25-25 25H25C11.193 50 0 38.807 0 25z" fill="#fff"/>
-                            <text x="61" y="32" text-anchor="middle" fill="black" font-family="Poppins" font-size="20" font-weight="700">NUA</text>
-                        </svg>
-                    </div>
-                    
-                    <div class="info">
-                        <p>nuastudio@gmail.com</p>
-                        <p>서울시 금천구 가산디지털2로 173</p>
-                    </div>
-                    <div class="copy">
-                        <p>Copyright©2025 NUA STUDIO. All rights reserved.</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
+          <button type="submit" class="form-submit">문의 보내기</button>
+        </form>
+      </div>
     </div>
 
-    <script>
-        // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    <!-- Quick Contact Methods -->
+    <div class="quick-methods">
+      <h3 class="quick-methods-title">빠른 상담 방법</h3>
+      <p class="quick-methods-subtitle">급하신가요? 실시간 상담을 이용해보세요</p>
+      
+      <div class="quick-methods-grid">
+        <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="quick-method-card">
+          <div class="quick-method-icon">💬</div>
+          <h4 class="quick-method-title">카카오톡</h4>
+          <p class="quick-method-desc">실시간 채팅 상담<br>평일 09:00-18:00</p>
+        </a>
+        
+        <a href="tel:02-3489-4433" class="quick-method-card">
+          <div class="quick-method-icon">📞</div>
+          <h4 class="quick-method-title">전화 상담</h4>
+          <p class="quick-method-desc">02-3489-4433<br>긴급 문의 24시간 가능</p>
+        </a>
+        
+        <a href="mailto:nuasteno@gmail.com" class="quick-method-card">
+          <div class="quick-method-icon">✉️</div>
+          <h4 class="quick-method-title">이메일</h4>
+          <p class="quick-method-desc">nuasteno@gmail.com<br>24시간 내 답변</p>
+        </a>
+      </div>
+    </div>
+  </div>
 
-        // Header interactions
-        $('.header .hamburger').on('click', function() {
-            $('.header').toggleClass('HmActive');
-        });
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">누아속기사무소</div>
+      <p class="footer-text">정확하고 신속한 전문 속기 서비스</p>
+      <div class="cta-buttons">
+        <a href="mailto:nuasteno@gmail.com" class="btn-primary">이메일 문의</a>
+        <a href="tel:02-3489-4433" class="btn-secondary">전화 상담</a>
+      </div>
+      <div class="footer-bottom">
+        <p>T. 02-3489-4433 | M. 010-3489-4433</p>
+        <p>nuasteno@gmail.com</p>
+        <p style="margin-top: 1rem;">© 2025 누아속기사무소. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
 
-        $('.header .lang_current').on('click', function() {
-            $('.lang .lang_list_wrap').slideToggle(200);
-        });
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-        // Footer to top
-        $('.footer .toTop').on('click', function() {
-            gsap.to(window, {
-                scrollTo: 0,
-                duration: 1,
-                ease: 'power1.inOut'
-            });
-        });
+    // Page Header Animation
+    gsap.from('.page-title', {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      ease: 'power3.out'
+    });
 
-        // Title animation
-        gsap.to('.sub .sv .title', {
-            opacity: 1,
-            duration: 1.2,
-            delay: 0.5,
-            ease: 'power2.out'
-        });
+    gsap.from('.page-subtitle', {
+      opacity: 0,
+      y: 15,
+      duration: 0.6,
+      delay: 0.1,
+      ease: 'power3.out'
+    });
 
-        // Objects animation
-        gsap.to('.sub .sv .objWrap', {
-            opacity: 1,
-            duration: 1,
-            delay: 0.8,
-            ease: 'power2.out'
-        });
+    // Contact Grid Animation
+    gsap.from('.contact-info', {
+      opacity: 0,
+      x: -30,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: '.contact-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
 
-        // Scroll icon animation
-        gsap.to('.sub .sv .sv_scroll', {
-            opacity: 1,
-            duration: 1,
-            delay: 1,
-            ease: 'power2.out'
-        });
+    gsap.from('.contact-form-section', {
+      opacity: 0,
+      x: 30,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: '.contact-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
 
-        // Quick Contact Buttons - Show on scroll
-        const quickContact = document.querySelector('.quick-contact');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight * 0.3) {
-                quickContact.classList.add('visible');
-            } else {
-                quickContact.classList.remove('visible');
-            }
-        });
+    // Quick Methods Animation
+    const quickMethodCards = document.querySelectorAll('.quick-method-card');
+    quickMethodCards.forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.quick-methods',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
+    });
 
-        // Checkbox functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkWrap = document.querySelector('.checkWrap');
-            const checkbox = document.getElementById('privacyCheck');
+    // Fixed Nav Scroll Behavior
+    const fixedNavBlack = document.querySelector('.fixed-nav-black');
+    const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
+    
+    if (fixedNavBlack && fixedNavYellow) {
+      ScrollTrigger.create({
+        start: 'top+=150 top',
+        end: 'max',
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            fixedNavBlack.classList.add('is-collapsed');
+            fixedNavYellow.classList.add('is-collapsed');
+          } else {
+            fixedNavBlack.classList.remove('is-collapsed');
+            fixedNavYellow.classList.remove('is-collapsed');
+          }
+        }
+      });
+    }
 
-            if (checkWrap && checkbox) {
-                checkWrap.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'SMALL') {
-                        checkbox.checked = !checkbox.checked;
-                    }
-                });
+    // Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Validation
+      if (!data.name.trim()) {
+        alert('성함을 입력해주세요');
+        return;
+      }
+      
+      if (!data.phone.trim()) {
+        alert('연락처를 입력해주세요');
+        return;
+      }
+      
+      if (!data.email.trim()) {
+        alert('이메일을 입력해주세요');
+        return;
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        alert('올바른 이메일 형식을 입력해주세요');
+        return;
+      }
+      
+      if (!data.message.trim()) {
+        alert('문의 내용을 입력해주세요');
+        return;
+      }
+      
+      if (!data.privacy) {
+        alert('개인정보 수집 및 이용에 동의해주세요');
+        return;
+      }
+      
+      // Success
+      alert('문의가 접수되었습니다.\n24시간 내에 연락드리겠습니다.');
+      this.reset();
+    });
 
-                document.querySelector('.checkWrap .lbl small')?.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    alert('개인정보처리방침 전문을 보여줍니다.');
-                });
-            }
-        });
-
-        // Form submission
-        $('#inquiryform #regBtn').on('click', function() {
-            // Validation
-            if (!$('#inquiryform #company').val().trim()) {
-                alert('회사/기관명을 입력해주세요');
-                return false;
-            }
-            
-            if (!$('#inquiryform #name').val().trim()) {
-                alert('담당자 성함을 입력해주세요');
-                return false;
-            }
-
-            if (!$('#inquiryform #phone').val().trim()) {
-                alert('연락처를 입력해주세요');
-                return false;
-            }
-            
-            if ($('#inquiryform #phone').val().length < 9) {
-                alert('연락처는 10자리 이상 입력해주세요');
-                return false;
-            }
-            
-            if (!$('#inquiryform #email').val().trim()) {
-                alert('이메일을 입력해주세요');
-                return false;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test($("#inquiryform #email").val())) {
-                alert("이메일 형식에 맞게 입력해주세요");
-                return false;
-            }
-            
-            if (!$('#inquiryform #content').val().trim()) {
-                alert('문의사항을 입력해주세요');
-                return false;
-            }
-
-            if ($('#inquiryform input:checkbox[name=agree1]:checked').val() != "Y") {
-                alert("개인정보처리방침에 동의해주세요");
-                return false;
-            }
-            
-            // Success (실제로는 서버 전송)
-            alert('문의가 접수되었습니다.');
-            document.inquiryform.reset();
-        });
-    </script>
-
+    // Checkbox wrapper click
+    document.querySelectorAll('.form-checkbox-wrapper').forEach(wrapper => {
+      wrapper.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A') {
+          const checkbox = this.querySelector('.form-checkbox');
+          checkbox.checked = !checkbox.checked;
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
