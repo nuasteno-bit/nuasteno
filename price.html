@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요금안내 - 누아속기사무소</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #0f172a;
+      --secondary: #1e293b;
+      --accent: #2563eb;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --bg-white: #ffffff;
+      --bg-gray: #f8fafc;
+      --border: #e2e8f0;
+    }
+    
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    .header {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .header-notice {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+    
+    .header-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 0.75rem;
+    }
+    
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    
+    .logo-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .nav {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+    
+    .nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text-primary);
+    }
+    
+    .header-contact {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .header-phone {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .header-cta {
+      padding: 0.75rem 1.75rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    
+    .header-cta:hover {
+      background: var(--secondary);
+    }
+    
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(to bottom, var(--bg-white) 0%, var(--bg-gray) 100%);
+      text-align: center;
+    }
+    
+    .page-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .page-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .pricing-content {
+      padding: 4rem 2rem;
+    }
+    
+    .pricing-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .pricing-table {
+      background: var(--bg-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+    
+    .table-header {
+      background: var(--primary);
+      color: white;
+      padding: 1.5rem 2rem;
+    }
+    
+    .table-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .table-subtitle {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+    
+    .pricing-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .pricing-table th {
+      background: var(--bg-gray);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .pricing-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    
+    .pricing-table tr:hover {
+      background: var(--bg-gray);
+    }
+    
+    .price-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .notice-box {
+      padding: 2rem;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+    }
+    
+    .notice-title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .notice-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .info-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .info-box {
+      padding: 2rem;
+      background: var(--bg-gray);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    
+    .info-box-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .info-box-content {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    
+    footer {
+      background: var(--secondary);
+      color: white;
+      padding: 3rem 2rem 1.5rem;
+      margin-top: 4rem;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-brand h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-brand p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .footer-section h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    
+    .footer-section a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .info-boxes { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; text-align: center; }
+      .pricing-table table { font-size: 0.85rem; }
+      .pricing-table th, .pricing-table td { padding: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-notice">
+      법원 제출용 녹취록 · 공증 가능 문서 · 철저한 비밀유지 보장
+    </div>
+    <div class="header-main">
+      <a href="stenomain.html" class="logo">
+        <div class="logo-mark">누</div>
+        <div class="logo-text">누아속기사무소</div>
+      </a>
+      
+      <nav class="nav">
+        <a href="services.html">서비스</a>
+        <a href="price.html" class="active">요금안내</a>
+        <a href="contact.html">문의하기</a>
+      </nav>
+      
+      <div class="header-contact">
+        <a href="tel:02-3489-4433" class="header-phone">02-3489-4433</a>
+        <a href="contact.html" class="header-cta">상담 신청</a>
+      </div>
+    </div>
+  </header>
+  
+  <section class="page-header">
+    <h1 class="page-title">요금 안내</h1>
+    <p class="page-subtitle">
+      투명하고 합리적인 요금 체계<br>
+      모든 요금은 부가세 별도입니다
+    </p>
+  </section>
+  
+  <section class="pricing-content">
+    <div class="pricing-container">
+      
+      <div class="pricing-table">
+        <div class="table-header">
+          <h3 class="table-title">녹취록 작성</h3>
+          <p class="table-subtitle">법원 제출용 · 증거자료용 녹취록</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>녹음 분량</th>
+              <th>통화 녹음</th>
+              <th>현장 녹음</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>5분 이내</td>
+              <td class="price-highlight">40,000원</td>
+              <td class="price-highlight">60,000원</td>
+            </tr>
+            <tr>
+              <td>10분 이내</td>
+              <td class="price-highlight">60,000원</td>
+              <td class="price-highlight">80,000원</td>
+            </tr>
+            <tr>
+              <td>20분 이내</td>
+              <td class="price-highlight">100,000원</td>
+              <td class="price-highlight">120,000원</td>
+            </tr>
+            <tr>
+              <td>30분 이내</td>
+              <td class="price-highlight">120,000원</td>
+              <td class="price-highlight">140,000원</td>
+            </tr>
+            <tr>
+              <td>40분 이내</td>
+              <td class="price-highlight">140,000원</td>
+              <td class="price-highlight">160,000원</td>
+            </tr>
+            <tr>
+              <td>50분 이내</td>
+              <td class="price-highlight">160,000원</td>
+              <td class="price-highlight">180,000원</td>
+            </tr>
+            <tr>
+              <td>60분 이내</td>
+              <td class="price-highlight">180,000원</td>
+              <td class="price-highlight">200,000원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="pricing-table">
+        <div class="table-header">
+          <h3 class="table-title">출장 속기</h3>
+          <p class="table-subtitle">현장 출장 속기 서비스 (서울 기준, 지방은 출장비 별도)</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>종류</th>
+              <th>시간</th>
+              <th>요금</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>포럼·세미나 및 간담회</td>
+              <td>60분</td>
+              <td class="price-highlight">200,000원</td>
+            </tr>
+            <tr>
+              <td>조합 및 주주이회</td>
+              <td>60분</td>
+              <td class="price-highlight">200,000원</td>
+            </tr>
+            <tr>
+              <td>온라인 회의</td>
+              <td>60분</td>
+              <td class="price-highlight">200,000원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="pricing-table">
+        <div class="table-header">
+          <h3 class="table-title">현장 자막</h3>
+          <p class="table-subtitle">실시간 자막 서비스</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>종류</th>
+              <th>시간</th>
+              <th>요금</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>컨퍼런스·포럼·세미나 등</td>
+              <td>60분</td>
+              <td class="price-highlight">150,000원 (속기사 1인)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="info-boxes">
+        <div class="info-box">
+          <h4 class="info-box-title">요금에 포함된 사항</h4>
+          <div class="info-box-content">
+            · 화자 구분 표시<br>
+            · 법원 제출용 표준 양식<br>
+            · 타임스탬프 표시<br>
+            · 불명확 구간 표시<br>
+            · HWP, DOCX, PDF 형식 제공
+          </div>
+        </div>
+        
+        <div class="info-box">
+          <h4 class="info-box-title">별도 문의 사항</h4>
+          <div class="info-box-content">
+            · 영상 자막 제작<br>
+            · 회의록 작성<br>
+            · 60분 초과 녹취<br>
+            · 전문 용어 다수 포함<br>
+            · 긴급 작업 (당일 납품)
+          </div>
+        </div>
+      </div>
+      
+      <div class="notice-box">
+        <h4 class="notice-title">요금 안내</h4>
+        <div class="notice-text">
+          · 모든 요금은 부가세(VAT) 10% 별도입니다<br>
+          · 표준 납기는 2-3일이며, 긴급 작업 시 추가 요금이 발생합니다<br>
+          · 음질 불량, 전문 용어 다수 포함 시 추가 요금이 발생할 수 있습니다<br>
+          · 출장의 경우 당사 소재지(서울) 기준으로 출장비가 청구될 수 있습니다<br>
+          · 정확한 견적은 샘플 파일 확인 후 안내드립니다<br><br>
+          <strong>견적 문의:</strong> 02-3489-4433 | nuasteno@gmail.com | 카카오톡 @누아속기사무소
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>누아속기사무소</h3>
+        <p>
+          법원 녹취 전문<br>
+          한글속기 1급 (14-G1-RT0015)<br>
+          서초법원 인근 | 비밀유지협약
+        </p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>서비스</h4>
+        <ul>
+          <li><a href="services.html">법원 녹취</a></li>
+          <li><a href="services.html">회의록</a></li>
+          <li><a href="services.html">현장속기</a></li>
+          <li><a href="services.html">영상자막</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>연락처</h4>
+        <ul>
+          <li>전화: 02-3489-4433</li>
+          <li>이메일: nuasteno@gmail.com</li>
+          <li>카카오톡: @누아속기사무소</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>사업자 정보</h4>
+        <ul>
+          <li>사업자: 186-24-02138</li>
+          <li>주소: 서울 금천구</li>
+          <li>가산디지털2로 173, 719호</li>
+          <li>(에이스비즈포레)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2025 누아속기사무소. 본 서비스는 녹취(문서화) 서비스이며 법률 자문은 제공하지 않습니다.
+    </div>
+  </footer>
+</body>
+</html>
