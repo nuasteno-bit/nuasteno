@@ -4,184 +4,427 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>요금안내 - 누아속기사무소</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
+    :root {
+      --primary-color: #2563EB;
+      --max-width: 1200px;
+    }
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     
-    :root {
-      --primary: #0f172a;
-      --secondary: #1e293b;
-      --accent: #2563eb;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --bg-white: #ffffff;
-      --bg-gray: #f8fafc;
-      --border: #e2e8f0;
-    }
-    
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      color: var(--text-primary);
+      background: #fff;
+      color: #000;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     
     .header {
-      background: var(--bg-white);
-      border-bottom: 1px solid var(--border);
       position: fixed;
       top: 0;
       width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
       z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 1.5rem 3rem;
     }
     
-    .header-notice {
-      background: var(--primary);
-      color: white;
-      padding: 0.5rem;
-      text-align: center;
-      font-size: 0.875rem;
-    }
-    
-    .header-main {
-      max-width: 1200px;
+    .header-container {
+      max-width: 1800px;
       margin: 0 auto;
-      padding: 1.25rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 2rem;
     }
     
     .logo {
-      display: flex;
-      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      font-family: 'Noto Serif KR', serif;
+      color: #000;
       text-decoration: none;
-      gap: 0.75rem;
+      letter-spacing: -1px;
+      position: relative;
+      margin-left: 2rem;
+      display: inline-block;
     }
     
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      background: var(--primary);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-family: 'Noto Serif KR', serif;
-      font-weight: 700;
-      font-size: 1.25rem;
+    .logo-text,
+    .logo-hover {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
     
     .logo-text {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
+      display: inline-block;
     }
     
-    .nav {
+    .logo-hover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      font-weight: 900;
+      letter-spacing: 4px;
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-text {
+      opacity: 0;
+      transform: scale(1.2);
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-hover {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      filter: blur(0);
+    }
+    
+    .nav-menu {
       display: flex;
       gap: 3rem;
-      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
     }
     
-    .nav a {
-      color: var(--text-secondary);
+    .nav-link {
+      pointer-events: all;
+      color: #000;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+      font-size: 1.05rem;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
     }
     
-    .nav a:hover,
-    .nav a.active {
-      color: var(--text-primary);
+    .nav-link:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 4px;
     }
     
-    .header-contact {
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .special-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0.7rem 1.3rem;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      background: #fff;
+      min-height: 60px;
+      isolation: isolate;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+    
+    .special-menu::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 8px;
+      padding: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(37, 99, 235, 0.25) 50%,
+        rgba(96, 165, 250, 0.35) 53%,
+        rgba(37, 99, 235, 0.25) 56%,
+        transparent 60%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: borderShine 4s linear infinite;
+    }
+    
+    @keyframes borderShine {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    
+    .special-menu::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        rgba(37, 99, 235, 0.03) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .special-menu:hover {
+      transform: translateY(-2px);
+      background: rgba(37, 99, 235, 0.04);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .special-menu:hover::before {
+      animation: borderShine 2s linear infinite;
+    }
+    
+    .special-menu:hover::after {
+      opacity: 1;
+    }
+    
+    .special-menu:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 4px;
+    }
+    
+    .special-menu-content {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 1;
     }
     
-    .header-phone {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #ef4444;
+      border-radius: 50%;
+      position: relative;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    .live-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse-ring 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+    
+    @keyframes pulse-ring {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    .special-menu-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .special-menu-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #000;
+      font-family: 'Noto Serif KR', serif;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    
+    .special-menu-subtitle {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      letter-spacing: 0.3px;
+      line-height: 1.3;
+    }
+    
+    .fixed-nav-black {
+      position: fixed;
+      right: 0;
+      top: 90px;
+      z-index: 1001;
+      width: 60px;
+      height: 220px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      color: #fff;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s;
+      cursor: pointer;
       text-decoration: none;
-      font-weight: 500;
     }
     
-    .header-cta {
-      padding: 0.75rem 1.75rem;
-      background: var(--primary);
-      color: white;
+    .fixed-nav-black.is-collapsed {
+      height: 60px;
+      font-size: 0;
+    }
+    
+    .fixed-nav-black.is-collapsed::before {
+      content: '📞';
+      font-size: 1.3rem;
+      writing-mode: horizontal-tb;
+    }
+    
+    .fixed-nav-yellow {
+      position: fixed;
+      right: 0;
+      top: 310px;
+      z-index: 1001;
+      width: 60px;
+      height: 60px;
+      background: #FEE500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.5rem;
+      transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
       text-decoration: none;
-      border-radius: 4px;
-      font-weight: 500;
-      transition: background 0.2s;
     }
     
-    .header-cta:hover {
-      background: var(--secondary);
+    .fixed-nav-yellow:hover {
+      background: #FDD835;
+    }
+    
+    .fixed-nav-yellow.is-collapsed {
+      top: 150px;
     }
     
     .page-header {
-      padding: 8rem 2rem 3rem;
-      background: linear-gradient(to bottom, var(--bg-white) 0%, var(--bg-gray) 100%);
-      text-align: center;
+      padding: 120px 3rem 40px;
+      background: #fafafa;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .page-header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
     
     .page-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
     }
     
     .page-subtitle {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1rem;
+      color: #666;
     }
     
     .pricing-content {
-      padding: 4rem 2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 60px 3rem 120px;
     }
     
-    .pricing-container {
-      max-width: 1000px;
-      margin: 0 auto;
+    .pricing-section {
+      margin-bottom: 5rem;
+    }
+    
+    .section-header {
+      margin-bottom: 2rem;
+    }
+    
+    .section-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--primary-color);
+      border: 1.5px solid var(--primary-color);
+      padding: 0.3rem 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      letter-spacing: -1px;
+    }
+    
+    .section-description {
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.7;
     }
     
     .pricing-table {
-      background: var(--bg-white);
-      border-radius: 8px;
+      background: #fff;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      margin-bottom: 3rem;
-    }
-    
-    .table-header {
-      background: var(--primary);
-      color: white;
-      padding: 1.5rem 2rem;
-    }
-    
-    .table-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    
-    .table-subtitle {
-      font-size: 0.875rem;
-      opacity: 0.9;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .pricing-table table {
@@ -189,185 +432,390 @@
       border-collapse: collapse;
     }
     
+    .pricing-table thead {
+      background: #fafafa;
+    }
+    
     .pricing-table th {
-      background: var(--bg-gray);
-      padding: 1rem;
+      padding: 1.2rem 1.5rem;
       text-align: left;
-      font-weight: 500;
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #000;
+      border-bottom: 2px solid rgba(0,0,0,0.08);
     }
     
     .pricing-table td {
-      padding: 1rem;
-      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
       font-size: 0.95rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: #444;
     }
     
-    .pricing-table tr:hover {
-      background: var(--bg-gray);
+    .pricing-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .pricing-table tbody tr {
+      transition: background 0.2s;
+    }
+    
+    .pricing-table tbody tr:hover {
+      background: #fafafa;
     }
     
     .price-highlight {
-      color: var(--accent);
-      font-weight: 600;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.05rem;
+      font-family: 'Noto Serif KR', serif;
     }
     
-    .notice-box {
-      padding: 2rem;
-      background: #fef3c7;
-      border-left: 4px solid #f59e0b;
-      border-radius: 8px;
-      margin-bottom: 3rem;
-    }
-    
-    .notice-title {
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    
-    .notice-text {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    
-    .info-boxes {
+    .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      margin-bottom: 3rem;
+      margin-top: 3rem;
     }
     
-    .info-box {
+    .info-card {
+      background: #fff;
       padding: 2rem;
-      background: var(--bg-gray);
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    
+    .info-card-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
       border-radius: 8px;
-      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
     }
     
-    .info-box-title {
+    .info-card-title {
+      font-size: 1.2rem;
       font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .info-box-content {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-    
-    footer {
-      background: var(--secondary);
-      color: white;
-      padding: 3rem 2rem 1.5rem;
-      margin-top: 4rem;
-    }
-    
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-    
-    .footer-brand h3 {
+      margin-bottom: 0.8rem;
       font-family: 'Noto Serif KR', serif;
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
     }
     
-    .footer-brand p {
-      opacity: 0.8;
+    .info-card-content {
       font-size: 0.95rem;
-      line-height: 1.6;
+      color: #666;
+      line-height: 1.8;
     }
     
-    .footer-section h4 {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-    
-    .footer-section ul {
+    .info-card-content ul {
       list-style: none;
     }
     
-    .footer-section li {
-      margin-bottom: 0.75rem;
+    .info-card-content li {
+      padding: 0.4rem 0;
+      padding-left: 1rem;
+      position: relative;
     }
     
-    .footer-section a {
-      color: rgba(255, 255, 255, 0.8);
+    .info-card-content li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.9rem;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 50%;
+    }
+    
+    .notice-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-left: 4px solid #f59e0b;
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-top: 4rem;
+    }
+    
+    .notice-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-family: 'Noto Serif KR', serif;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .notice-title::before {
+      content: '⚠️';
+      font-size: 1.3rem;
+    }
+    
+    .notice-content {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    
+    .notice-content strong {
+      color: #000;
+      font-weight: 700;
+    }
+    
+    .cta-section {
+      background: #000;
+      color: #fff;
+      padding: 4rem 3rem;
+      text-align: center;
+      margin-top: 5rem;
+      border-radius: 16px;
+    }
+    
+    .cta-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.05rem;
+      color: #999;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: var(--primary-color);
+      color: #fff;
       text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.2s;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
     }
     
-    .footer-section a:hover {
-      color: white;
+    .btn-primary:hover {
+      background: #1d4ed8;
+      gap: 0.8rem;
+    }
+    
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid #fff;
+      transition: all 0.3s;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .btn-secondary:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+    .footer {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 4rem 3rem 2rem;
+    }
+    
+    .footer-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: 'Noto Serif KR', serif;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    
+    .footer-text {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
     }
     
     .footer-bottom {
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      font-size: 0.875rem;
-      opacity: 0.7;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #666;
+      font-size: 0.85rem;
+    }
+    
+    .footer-bottom p {
+      margin: 0.3rem 0;
     }
     
     @media (max-width: 768px) {
-      .nav { display: none; }
-      .info-boxes { grid-template-columns: 1fr; }
-      .footer-container { grid-template-columns: 1fr; text-align: center; }
-      .pricing-table table { font-size: 0.85rem; }
-      .pricing-table th, .pricing-table td { padding: 0.75rem; }
+      .header {
+        padding: 1rem 1.5rem;
+      }
+      
+      .logo {
+        font-size: 1.4rem;
+        margin-left: 0;
+      }
+      
+      .nav-menu {
+        display: none;
+      }
+      
+      .special-menu {
+        padding: 0.5rem 0.9rem;
+        min-height: 50px;
+      }
+      
+      .special-menu-content {
+        gap: 0.4rem;
+      }
+      
+      .live-dot {
+        width: 5px;
+        height: 5px;
+      }
+      
+      .special-menu-title {
+        font-size: 0.9rem;
+      }
+      
+      .special-menu-subtitle {
+        font-size: 0.6rem;
+      }
+      
+      .page-header {
+        padding: 100px 1.5rem 30px;
+      }
+      
+      .pricing-content {
+        padding: 40px 1.5rem 80px;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .pricing-table {
+        overflow-x: auto;
+      }
+      
+      .pricing-table table {
+        min-width: 500px;
+      }
+      
+      .pricing-table th,
+      .pricing-table td {
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
+      
+      .fixed-nav-black,
+      .fixed-nav-yellow {
+        display: none;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .cta-section {
+        padding: 3rem 1.5rem;
+        margin-top: 4rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="header-notice">
-      법원 제출용 녹취록 · 공증 가능 문서 · 철저한 비밀유지 보장
-    </div>
-    <div class="header-main">
-      <a href="stenomain.html" class="logo">
-        <div class="logo-mark">누</div>
-        <div class="logo-text">누아속기사무소</div>
+  <div class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-text">누아속기사무소</span>
+        <span class="logo-hover">NUA</span>
       </a>
-      
-      <nav class="nav">
-        <a href="services.html">서비스</a>
-        <a href="price.html" class="active">요금안내</a>
-        <a href="contact.html">문의하기</a>
+      <nav class="nav-menu">
+        <a href="about.html" class="nav-link">소개</a>
+        <a href="service.html" class="nav-link">서비스</a>
+        <a href="price.html" class="nav-link">요금안내</a>
+        <a href="contact.html" class="nav-link">문의</a>
       </nav>
-      
-      <div class="header-contact">
-        <a href="tel:02-3489-4433" class="header-phone">02-3489-4433</a>
-        <a href="contact.html" class="header-cta">상담 신청</a>
-      </div>
-    </div>
-  </header>
-  
-  <section class="page-header">
-    <h1 class="page-title">요금 안내</h1>
-    <p class="page-subtitle">
-      투명하고 합리적인 요금 체계<br>
-      모든 요금은 부가세 별도입니다
-    </p>
-  </section>
-  
-  <section class="pricing-content">
-    <div class="pricing-container">
-      
-      <div class="pricing-table">
-        <div class="table-header">
-          <h3 class="table-title">녹취록 작성</h3>
-          <p class="table-subtitle">법원 제출용 · 증거자료용 녹취록</p>
+      <a href="http://nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
+        <div class="special-menu-content">
+          <div class="live-indicator">
+            <span class="live-dot"></span>
+          </div>
+          <div class="special-menu-text">
+            <span class="special-menu-title">누아스튜디오</span>
+            <span class="special-menu-subtitle">실시간 속기 솔루션</span>
+          </div>
         </div>
+      </a>
+    </div>
+  </div>
+
+  <a href="tel:02-3489-4433" class="fixed-nav-black" aria-label="전화 상담">빠른접수</a>
+  <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1 class="page-title">요금 안내<span style="color: var(--primary-color);">.</span></h1>
+      <p class="page-subtitle">투명하고 합리적인 가격 정책 · 모든 요금은 부가세 별도</p>
+    </div>
+  </div>
+
+  <div class="pricing-content">
+    <!-- 녹취록 작성 -->
+    <div class="pricing-section">
+      <div class="section-header">
+        <span class="section-badge">Primary</span>
+        <h3 class="section-title">녹취록 작성</h3>
+        <p class="section-description">법원 제출용 · 증거자료용 녹취록</p>
+      </div>
+
+      <div class="pricing-table">
         <table>
           <thead>
             <tr>
@@ -379,48 +827,53 @@
           <tbody>
             <tr>
               <td>5분 이내</td>
-              <td class="price-highlight">40,000원</td>
-              <td class="price-highlight">60,000원</td>
+              <td><span class="price-highlight">40,000원</span></td>
+              <td><span class="price-highlight">60,000원</span></td>
             </tr>
             <tr>
               <td>10분 이내</td>
-              <td class="price-highlight">60,000원</td>
-              <td class="price-highlight">80,000원</td>
+              <td><span class="price-highlight">60,000원</span></td>
+              <td><span class="price-highlight">80,000원</span></td>
             </tr>
             <tr>
               <td>20분 이내</td>
-              <td class="price-highlight">100,000원</td>
-              <td class="price-highlight">120,000원</td>
+              <td><span class="price-highlight">100,000원</span></td>
+              <td><span class="price-highlight">120,000원</span></td>
             </tr>
             <tr>
               <td>30분 이내</td>
-              <td class="price-highlight">120,000원</td>
-              <td class="price-highlight">140,000원</td>
+              <td><span class="price-highlight">120,000원</span></td>
+              <td><span class="price-highlight">140,000원</span></td>
             </tr>
             <tr>
               <td>40분 이내</td>
-              <td class="price-highlight">140,000원</td>
-              <td class="price-highlight">160,000원</td>
+              <td><span class="price-highlight">140,000원</span></td>
+              <td><span class="price-highlight">160,000원</span></td>
             </tr>
             <tr>
               <td>50분 이내</td>
-              <td class="price-highlight">160,000원</td>
-              <td class="price-highlight">180,000원</td>
+              <td><span class="price-highlight">160,000원</span></td>
+              <td><span class="price-highlight">180,000원</span></td>
             </tr>
             <tr>
               <td>60분 이내</td>
-              <td class="price-highlight">180,000원</td>
-              <td class="price-highlight">200,000원</td>
+              <td><span class="price-highlight">180,000원</span></td>
+              <td><span class="price-highlight">200,000원</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      
+    </div>
+
+    <!-- 출장 속기 -->
+    <div class="pricing-section">
+      <div class="section-header">
+        <span class="section-badge">On-site</span>
+        <h3 class="section-title">출장 속기</h3>
+        <p class="section-description">현장 출장 속기 서비스 (서울 기준, 지방은 출장비 별도)</p>
+      </div>
+
       <div class="pricing-table">
-        <div class="table-header">
-          <h3 class="table-title">출장 속기</h3>
-          <p class="table-subtitle">현장 출장 속기 서비스 (서울 기준, 지방은 출장비 별도)</p>
-        </div>
         <table>
           <thead>
             <tr>
@@ -433,27 +886,32 @@
             <tr>
               <td>포럼·세미나 및 간담회</td>
               <td>60분</td>
-              <td class="price-highlight">200,000원</td>
+              <td><span class="price-highlight">200,000원</span></td>
             </tr>
             <tr>
               <td>조합 및 주주이회</td>
               <td>60분</td>
-              <td class="price-highlight">200,000원</td>
+              <td><span class="price-highlight">200,000원</span></td>
             </tr>
             <tr>
               <td>온라인 회의</td>
               <td>60분</td>
-              <td class="price-highlight">200,000원</td>
+              <td><span class="price-highlight">200,000원</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      
+    </div>
+
+    <!-- 현장 자막 -->
+    <div class="pricing-section">
+      <div class="section-header">
+        <span class="section-badge">Live</span>
+        <h3 class="section-title">현장 자막</h3>
+        <p class="section-description">실시간 자막 서비스</p>
+      </div>
+
       <div class="pricing-table">
-        <div class="table-header">
-          <h3 class="table-title">현장 자막</h3>
-          <p class="table-subtitle">실시간 자막 서비스</p>
-        </div>
         <table>
           <thead>
             <tr>
@@ -466,95 +924,186 @@
             <tr>
               <td>컨퍼런스·포럼·세미나 등</td>
               <td>60분</td>
-              <td class="price-highlight">150,000원 (속기사 1인)</td>
+              <td><span class="price-highlight">150,000원 (속기사 1인)</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      
-      <div class="info-boxes">
-        <div class="info-box">
-          <h4 class="info-box-title">요금에 포함된 사항</h4>
-          <div class="info-box-content">
-            · 화자 구분 표시<br>
-            · 법원 제출용 표준 양식<br>
-            · 타임스탬프 표시<br>
-            · 불명확 구간 표시<br>
-            · HWP, DOCX, PDF 형식 제공
-          </div>
-        </div>
-        
-        <div class="info-box">
-          <h4 class="info-box-title">별도 문의 사항</h4>
-          <div class="info-box-content">
-            · 영상 자막 제작<br>
-            · 회의록 작성<br>
-            · 60분 초과 녹취<br>
-            · 전문 용어 다수 포함<br>
-            · 긴급 작업 (당일 납품)
-          </div>
-        </div>
-      </div>
-      
-      <div class="notice-box">
-        <h4 class="notice-title">요금 안내</h4>
-        <div class="notice-text">
-          · 모든 요금은 부가세(VAT) 10% 별도입니다<br>
-          · 표준 납기는 2-3일이며, 긴급 작업 시 추가 요금이 발생합니다<br>
-          · 음질 불량, 전문 용어 다수 포함 시 추가 요금이 발생할 수 있습니다<br>
-          · 출장의 경우 당사 소재지(서울) 기준으로 출장비가 청구될 수 있습니다<br>
-          · 정확한 견적은 샘플 파일 확인 후 안내드립니다<br><br>
-          <strong>견적 문의:</strong> 02-3489-4433 | nuasteno@gmail.com | 카카오톡 @누아속기사무소
-        </div>
-      </div>
-      
     </div>
-  </section>
-  
-  <footer>
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h3>누아속기사무소</h3>
-        <p>
-          법원 녹취 전문<br>
-          한글속기 1급 (14-G1-RT0015)<br>
-          서초법원 인근 | 비밀유지협약
-        </p>
+
+    <!-- 정보 카드 -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">✓</div>
+        <h4 class="info-card-title">요금에 포함된 사항</h4>
+        <div class="info-card-content">
+          <ul>
+            <li>화자 구분 표시</li>
+            <li>법원 제출용 표준 양식</li>
+            <li>타임스탬프 표시</li>
+            <li>불명확 구간 표시</li>
+            <li>HWP, DOCX, PDF 형식 제공</li>
+          </ul>
+        </div>
       </div>
-      
-      <div class="footer-section">
-        <h4>서비스</h4>
-        <ul>
-          <li><a href="services.html">법원 녹취</a></li>
-          <li><a href="services.html">회의록</a></li>
-          <li><a href="services.html">현장속기</a></li>
-          <li><a href="services.html">영상자막</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>연락처</h4>
-        <ul>
-          <li>전화: 02-3489-4433</li>
-          <li>이메일: nuasteno@gmail.com</li>
-          <li>카카오톡: @누아속기사무소</li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>사업자 정보</h4>
-        <ul>
-          <li>사업자: 186-24-02138</li>
-          <li>주소: 서울 금천구</li>
-          <li>가산디지털2로 173, 719호</li>
-          <li>(에이스비즈포레)</li>
-        </ul>
+
+      <div class="info-card">
+        <div class="info-card-icon">📞</div>
+        <h4 class="info-card-title">별도 문의 사항</h4>
+        <div class="info-card-content">
+          <ul>
+            <li>영상 자막 제작</li>
+            <li>회의록 작성</li>
+            <li>60분 초과 녹취</li>
+            <li>전문 용어 다수 포함</li>
+            <li>긴급 작업 (당일 납품)</li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <!-- 주의사항 -->
+    <div class="notice-box">
+      <div class="notice-title">요금 안내</div>
+      <div class="notice-content">
+        · 모든 요금은 <strong>부가세(VAT) 10% 별도</strong>입니다<br>
+        · 표준 납기는 <strong>2-3일</strong>이며, 긴급 작업 시 추가 요금이 발생합니다<br>
+        · 음질 불량, 전문 용어 다수 포함 시 추가 요금이 발생할 수 있습니다<br>
+        · 출장의 경우 당사 소재지(서울) 기준으로 출장비가 청구될 수 있습니다<br>
+        · 정확한 견적은 샘플 파일 확인 후 안내드립니다<br><br>
+        <strong>견적 문의:</strong> 02-3489-4433 | nuasteno@gmail.com | 카카오톡 @누아속기사무소
+      </div>
+    </div>
+
+    <!-- CTA 섹션 -->
+    <div class="cta-section">
+      <h3 class="cta-title">견적이 필요하신가요?</h3>
+      <p class="cta-subtitle">샘플 파일 전송 시 24시간 내 정확한 견적을 안내드립니다</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn-primary">견적 문의하기 →</a>
+        <a href="mailto:nuasteno@gmail.com" class="btn-secondary">이메일 상담</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">누아속기사무소</div>
+      <p class="footer-text">정확하고 신속한 전문 속기 서비스</p>
+      <div class="cta-buttons" style="justify-content: center; margin-bottom: 3rem;">
+        <a href="mailto:nuasteno@gmail.com" class="btn-primary">이메일 문의</a>
+        <a href="tel:02-3489-4433" class="btn-secondary">전화 상담</a>
+      </div>
+      <div class="footer-bottom">
+        <p>T. 02-3489-4433 | M. 010-3489-4433</p>
+        <p>nuasteno@gmail.com</p>
+        <p style="margin-top: 1rem;">© 2025 누아속기사무소. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Page Header Animation
+    gsap.from('.page-title', {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.page-subtitle', {
+      opacity: 0,
+      y: 15,
+      duration: 0.6,
+      delay: 0.1,
+      ease: 'power3.out'
+    });
+
+    // Pricing Sections Animation
+    const pricingSections = document.querySelectorAll('.pricing-section');
+    pricingSections.forEach((section, i) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
+    });
+
+    // Info Cards Animation
+    const infoCards = document.querySelectorAll('.info-card');
+    infoCards.forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        delay: i * 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
+    });
+
+    // Notice Box Animation
+    gsap.from('.notice-box', {
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.notice-box',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
+
+    // CTA Section Animation
+    gsap.from('.cta-section', {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
+
+    // Fixed Nav Scroll Behavior
+    const fixedNavBlack = document.querySelector('.fixed-nav-black');
+    const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
     
-    <div class="footer-bottom">
-      © 2025 누아속기사무소. 본 서비스는 녹취(문서화) 서비스이며 법률 자문은 제공하지 않습니다.
-    </div>
-  </footer>
+    if (fixedNavBlack && fixedNavYellow) {
+      ScrollTrigger.create({
+        start: 'top+=150 top',
+        end: 'max',
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            fixedNavBlack.classList.add('is-collapsed');
+            fixedNavYellow.classList.add('is-collapsed');
+          } else {
+            fixedNavBlack.classList.remove('is-collapsed');
+            fixedNavYellow.classList.remove('is-collapsed');
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
