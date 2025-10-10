@@ -658,7 +658,8 @@
       background: #fff;
     }
     
-    /* Hero Wave Effect - Bottom Left Corner - UPDATED */
+    /* REPLACE: Hero Waves */
+    /* Hero Wave Effect - Bottom Left Corner */
     .hero-wave-container {
       position: absolute;
       bottom: 0;
@@ -668,84 +669,244 @@
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
+      /* 1/4 원호를 위한 클리핑 - 우상향 */
+      clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0, 0 100%);
     }
-    
+
     .hero-wave {
       position: absolute;
-      bottom: -100%;
-      left: -100%;
-      width: 200%;
-      height: 200%;
-      border: 0.3px solid rgba(37, 99, 235, 0.12);
+      bottom: 0;
+      left: 0;
+      /* 원의 중심을 좌하단 모서리로 설정 */
+      transform: translate(-50%, 50%);
+      width: 100px;
+      height: 100px;
+      border: 0.5px solid;
       border-radius: 50%;
       transform-origin: center;
-      clip-path: polygon(50% 50%, 100% 50%, 100% 0%, 50% 0%);
-      animation: wave-simple 12s linear infinite;
+      will-change: width, height, opacity;
+      animation: wave-expand 16s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* 그룹 패턴: 드르르륵 (5개) - 쉼 - 드르르륵 (5개) - 쉼 - 드르르륵 (5개) */
+    
+    /* 첫 번째 그룹 (0-0.8초) - 시작을 흐리게 */
+    .hero-wave:nth-child(1) { 
+      animation-delay: 0s; 
+      border-color: rgba(37, 99, 235, 0.2); /* 더 흐리게 시작 */
+      border-width: 0.35px;
+    }
+    .hero-wave:nth-child(2) { 
+      animation-delay: 0.15s; 
+      border-color: rgba(59, 130, 246, 0.22);
+      border-width: 0.35px;
+    }
+    .hero-wave:nth-child(3) { 
+      animation-delay: 0.3s; 
+      border-color: rgba(147, 197, 253, 0.25);
+      border-width: 0.4px;
+    }
+    .hero-wave:nth-child(4) { 
+      animation-delay: 0.45s; 
+      border-color: rgba(37, 99, 235, 0.28);
+      border-width: 0.4px;
+    }
+    .hero-wave:nth-child(5) { 
+      animation-delay: 0.6s; 
+      border-color: rgba(59, 130, 246, 0.3);
+      border-width: 0.45px;
     }
     
-    /* Simple wave pattern without floating effect */
-    .hero-wave:nth-child(1) { animation-delay: 0s; border-width: 0.5px; opacity: 0.5; }
-    .hero-wave:nth-child(2) { animation-delay: 0.7s; border-width: 0.45px; opacity: 0.48; }
-    .hero-wave:nth-child(3) { animation-delay: 1.4s; border-width: 0.4px; opacity: 0.46; }
-    .hero-wave:nth-child(4) { animation-delay: 2.1s; border-width: 0.38px; opacity: 0.44; }
-    .hero-wave:nth-child(5) { animation-delay: 2.8s; border-width: 0.36px; opacity: 0.42; }
-    .hero-wave:nth-child(6) { animation-delay: 3.5s; border-width: 0.34px; opacity: 0.4; }
-    .hero-wave:nth-child(7) { animation-delay: 4.2s; border-width: 0.32px; opacity: 0.38; }
-    .hero-wave:nth-child(8) { animation-delay: 4.9s; border-width: 0.3px; opacity: 0.36; }
-    .hero-wave:nth-child(9) { animation-delay: 5.6s; border-width: 0.28px; opacity: 0.34; }
-    .hero-wave:nth-child(10) { animation-delay: 6.3s; border-width: 0.26px; opacity: 0.32; }
-    .hero-wave:nth-child(11) { animation-delay: 7s; border-width: 0.24px; opacity: 0.3; }
-    .hero-wave:nth-child(12) { animation-delay: 7.7s; border-width: 0.22px; opacity: 0.28; }
-    .hero-wave:nth-child(13) { animation-delay: 8.4s; border-width: 0.2px; opacity: 0.26; }
-    .hero-wave:nth-child(14) { animation-delay: 9.1s; border-width: 0.18px; opacity: 0.24; }
-    .hero-wave:nth-child(15) { animation-delay: 9.8s; border-width: 0.16px; opacity: 0.22; }
-    .hero-wave:nth-child(16) { animation-delay: 10.5s; border-width: 0.14px; opacity: 0.2; }
-    .hero-wave:nth-child(17) { animation-delay: 11.2s; border-width: 0.12px; opacity: 0.18; }
-    .hero-wave:nth-child(18) { animation-delay: 11.9s; border-width: 0.1px; opacity: 0.16; }
-    
-    /* Odd waves with stronger color */
-    .hero-wave:nth-child(odd) {
-      border-color: rgba(37, 99, 235, 0.2);
+    /* 휴지기 후 두 번째 그룹 (5.5-6.3초) */
+    .hero-wave:nth-child(6) { 
+      animation-delay: 5.5s; 
+      border-color: rgba(147, 197, 253, 0.25);
+      border-width: 0.35px;
+    }
+    .hero-wave:nth-child(7) { 
+      animation-delay: 5.65s; 
+      border-color: rgba(37, 99, 235, 0.3);
+      border-width: 0.4px;
+    }
+    .hero-wave:nth-child(8) { 
+      animation-delay: 5.8s; 
+      border-color: rgba(59, 130, 246, 0.32);
+      border-width: 0.4px;
+    }
+    .hero-wave:nth-child(9) { 
+      animation-delay: 5.95s; 
+      border-color: rgba(147, 197, 253, 0.35);
+      border-width: 0.45px;
+    }
+    .hero-wave:nth-child(10) { 
+      animation-delay: 6.1s; 
+      border-color: rgba(37, 99, 235, 0.38);
+      border-width: 0.45px;
     }
     
-    /* Even waves with lighter color */
-    .hero-wave:nth-child(even) {
-      border-color: rgba(96, 165, 250, 0.15);
+    /* 휴지기 후 세 번째 그룹 (11-11.8초) */
+    .hero-wave:nth-child(11) { 
+      animation-delay: 11s; 
+      border-color: rgba(59, 130, 246, 0.28);
+      border-width: 0.35px;
     }
-    
-    /* Every 3rd wave with accent color */
-    .hero-wave:nth-child(3n) {
-      border-color: rgba(147, 197, 253, 0.12);
+    .hero-wave:nth-child(12) { 
+      animation-delay: 11.15s; 
+      border-color: rgba(147, 197, 253, 0.3);
+      border-width: 0.4px;
     }
-    
-    @keyframes wave-simple {
+    .hero-wave:nth-child(13) { 
+      animation-delay: 11.3s; 
+      border-color: rgba(37, 99, 235, 0.32);
+      border-width: 0.4px;
+    }
+    .hero-wave:nth-child(14) { 
+      animation-delay: 11.45s; 
+      border-color: rgba(59, 130, 246, 0.35);
+      border-width: 0.45px;
+    }
+    .hero-wave:nth-child(15) { 
+      animation-delay: 11.6s; 
+      border-color: rgba(147, 197, 253, 0.38);
+      border-width: 0.45px;
+    }
+
+    /* Hide extra waves if they exist in HTML */
+    .hero-wave:nth-child(n+16) {
+      display: none;
+    }
+
+    /* Main wave animation - 시작을 더 부드럽게 */
+    @keyframes wave-expand {
       0% {
-        transform: scale(0.5);
+        width: 100px;
+        height: 100px;
         opacity: 0;
       }
-      10% {
-        opacity: 0.5;
+      3% {
+        opacity: 0.3; /* 시작을 흐리게 */
       }
-      90% {
-        opacity: 0.3;
+      8% {
+        opacity: 0.6; /* 서서히 진해짐 */
+      }
+      50% {
+        opacity: 0.2;
       }
       100% {
-        transform: scale(1.3);
+        width: 1800px;
+        height: 1800px;
         opacity: 0;
       }
     }
-    
-    .dark-mode .hero-wave:nth-child(odd) {
-      border-color: rgba(96, 165, 250, 0.3);
+
+    /* Dark mode adjustments */
+    .dark-mode .hero-wave:nth-child(1),
+    .dark-mode .hero-wave:nth-child(4),
+    .dark-mode .hero-wave:nth-child(7) {
+      border-color: rgba(96, 165, 250, 0.45);
     }
-    
-    .dark-mode .hero-wave:nth-child(even) {
-      border-color: rgba(147, 197, 253, 0.25);
+
+    .dark-mode .hero-wave:nth-child(2),
+    .dark-mode .hero-wave:nth-child(5),
+    .dark-mode .hero-wave:nth-child(8) {
+      border-color: rgba(147, 197, 253, 0.4);
     }
-    
-    .dark-mode .hero-wave:nth-child(3n) {
-      border-color: rgba(191, 219, 254, 0.2);
+
+    .dark-mode .hero-wave:nth-child(3),
+    .dark-mode .hero-wave:nth-child(6) {
+      border-color: rgba(191, 219, 254, 0.35);
     }
+
+    /* Tablet responsive (≤1024px) */
+    @media (max-width: 1024px) {
+      .hero-wave {
+        animation-duration: 8s;
+      }
+      
+      .hero-wave:nth-child(1) { border-width: 0.45px; }
+      .hero-wave:nth-child(2) { border-width: 0.4px; }
+      .hero-wave:nth-child(3) { border-width: 0.35px; }
+      .hero-wave:nth-child(4) { border-width: 0.4px; }
+      .hero-wave:nth-child(5) { border-width: 0.35px; }
+      .hero-wave:nth-child(6) { border-width: 0.3px; }
+      .hero-wave:nth-child(7) { border-width: 0.35px; }
+      .hero-wave:nth-child(8) { border-width: 0.3px; }
+      
+      @keyframes wave-expand {
+        0% {
+          width: 80px;
+          height: 80px;
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        60% {
+          opacity: 0.25;
+        }
+        100% {
+          width: 1600px;
+          height: 1600px;
+          opacity: 0;
+        }
+      }
+    }
+
+    /* Mobile responsive (≤768px) */
+    @media (max-width: 768px) {
+      .hero-wave {
+        animation-duration: 7s;
+      }
+      
+      .hero-wave:nth-child(1) { border-width: 0.4px; }
+      .hero-wave:nth-child(2) { border-width: 0.35px; }
+      .hero-wave:nth-child(3) { border-width: 0.3px; }
+      .hero-wave:nth-child(4) { border-width: 0.35px; }
+      .hero-wave:nth-child(5) { border-width: 0.3px; }
+      .hero-wave:nth-child(6) { border-width: 0.25px; }
+      .hero-wave:nth-child(7) { border-width: 0.3px; }
+      .hero-wave:nth-child(8) { border-width: 0.25px; }
+      
+      @keyframes wave-expand {
+        0% {
+          width: 60px;
+          height: 60px;
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 0.2;
+        }
+        100% {
+          width: 1200px;
+          height: 1200px;
+          opacity: 0;
+        }
+      }
+    }
+
+    /* Accessibility: Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-wave {
+        animation: wave-expand-reduced 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      
+      @keyframes wave-expand-reduced {
+        0%, 100% {
+          width: 400px;
+          height: 400px;
+          opacity: 0.15;
+        }
+        50% {
+          width: 600px;
+          height: 600px;
+          opacity: 0.2;
+        }
+      }
+    }
+    /* REPLACE: Hero Waves END */
     
     /* Hero Container - Updated Layout */
     .hero-container {
@@ -766,6 +927,8 @@
       margin-left: 120px;
       padding-top: 40px;
       padding-bottom: 40px;
+      position: relative;
+      z-index: 3;
     }
     
     .hero-badge {
@@ -779,6 +942,9 @@
       letter-spacing: 0.5px;
       margin-bottom: 2.5rem;
       text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9);
     }
     
     .hero-badge::before {
@@ -796,6 +962,8 @@
       font-weight: 800;
       margin-bottom: 2rem;
       letter-spacing: -3px;
+      position: relative;
+      z-index: 2;
     }
     
     .hero-title .line-1,
@@ -848,6 +1016,8 @@
       line-height: 1.9;
       margin-bottom: 3rem;
       max-width: 500px;
+      position: relative;
+      z-index: 2;
     }
     
     .hero-cta {
@@ -861,6 +1031,8 @@
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s;
+      position: relative;
+      z-index: 2;
     }
     
     .hero-cta:hover {
@@ -881,6 +1053,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
     }
 
     /* Desk 3D Layout Styles - Integrated and Scaled */
@@ -907,7 +1080,7 @@
       width: 100%;
       height: 100%;
       position: relative;
-      z-index: 2;
+      z-index: 3;
       margin-top: 60px;
     }
 
@@ -1063,6 +1236,45 @@
       justify-content: center;
       z-index: 1;
     }
+    
+    /* Spotlight effect for active item */
+    .desk-container::before {
+      content: '';
+      position: absolute;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.8s ease;
+      pointer-events: none;
+      z-index: 19;
+    }
+    
+    .desk-container.spotlight-recorder::before {
+      transform: translateX(calc(-50% - 150px));
+      opacity: 1;
+    }
+    
+    .desk-container.spotlight-papers::before {
+      transform: translateX(calc(-50% - 50px));
+      opacity: 1;
+    }
+    
+    .desk-container.spotlight-microphone::before {
+      transform: translateX(calc(-50% + 50px));
+      opacity: 1;
+    }
+    
+    .desk-container.spotlight-monitor::before {
+      transform: translateX(calc(-50% + 150px));
+      opacity: 1;
+      width: 250px;
+      height: 250px;
+    }
 
     .desk {
       position: absolute;
@@ -1121,7 +1333,7 @@
     .items__item {
       cursor: pointer;
       will-change: transform;
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease;
       position: relative;
       display: flex;
       align-items: flex-end;
@@ -1132,7 +1344,7 @@
       display: block;
       filter: drop-shadow(0 10px 25px var(--desk-item-shadow)) 
               drop-shadow(0 20px 40px var(--desk-item-shadow));
-      transition: filter 0.5s ease, transform 0.5s ease;
+      transition: filter 0.8s ease, transform 0.8s ease;
       object-fit: contain;
       object-position: bottom;
       transform-style: preserve-3d;
@@ -1185,7 +1397,7 @@
       );
       border-radius: 50%;
       will-change: width, opacity;
-      transition: all 0.5s ease;
+      transition: all 0.8s ease;
       opacity: 0.85;
     }
 
@@ -1194,10 +1406,11 @@
     .shadow-microphone { width: 45px; }
     .shadow-monitor { width: 127px; }
 
+    /* Adjusted item descriptions positioning - moved more right */
     .item-descriptions {
       position: absolute;
-      bottom: -50px;
-      left: 50%;
+      bottom: -80px;
+      left: 35%;
       transform: translateX(-50%);
       width: 100%;
       max-width: 700px;
@@ -1218,7 +1431,8 @@
       font-size: 1rem;
       line-height: 1.65;
       color: var(--desk-text-color);
-      transition: opacity 0.3s ease, visibility 0.3s ease, color 0.5s ease;
+      transition: none;
+      pointer-events: none;
     }
 
     .item-description.active {
@@ -1405,7 +1619,7 @@
       color: #000;
     }
     
-    /* Solutions Section from Redesign */
+    /* Solutions Section - Fixed height */
     .solutions {
       background: #fff;
       padding: 3rem 1.5rem;
@@ -1468,15 +1682,32 @@
       background: #F9F9F9;
       opacity: 0;
       transform: translateY(40px);
+      min-height: 380px; /* Fixed height */
     }
     
     .solution-slide {
       display: none;
       flex-direction: column;
+      min-height: 380px; /* Fixed height */
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
     }
     
     .solution-slide.active {
       display: flex;
+      opacity: 1;
+      animation: fadeInSlide 0.5s ease-out;
+    }
+    
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
     
     @media (min-width: 768px) {
@@ -1501,23 +1732,18 @@
     @media (min-width: 768px) {
       .solution-image {
         width: 45%;
-        height: auto;
+        height: 380px; /* Fixed height */
       }
     }
     
     .solution-content {
       flex: 1;
-      padding: 1.5rem;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 1rem;
-    }
-    
-    @media (min-width: 768px) {
-      .solution-content {
-        padding: 2rem;
-      }
+      min-height: 380px; /* Fixed height */
     }
     
     .solution-tag {
@@ -1990,12 +2216,6 @@
         transform: scale(0.6);
       }
       
-      .hero-wave {
-        animation-duration: 4.5s;
-        width: 70%;
-        height: 70%;
-      }
-      
       .services-grid {
         grid-template-columns: 1fr;
       }
@@ -2036,30 +2256,6 @@
         transform: scale(0.5);
       }
       
-      .hero-wave-container {
-        mask-image: radial-gradient(circle at bottom left, black 0%, rgba(0,0,0,0.6) 30%, transparent 60%);
-        -webkit-mask-image: radial-gradient(circle at bottom left, black 0%, rgba(0,0,0,0.6) 30%, transparent 60%);
-      }
-      
-      .hero-wave {
-        border-width: 0.2px;
-        animation-duration: 5s;
-        width: 60%;
-        height: 60%;
-      }
-      
-      .hero-wave:nth-child(1) {
-        border-width: 0.4px;
-      }
-      
-      .hero-wave:nth-child(2) {
-        border-width: 0.35px;
-      }
-      
-      .hero-wave:nth-child(3) {
-        border-width: 0.3px;
-      }
-      
       .service-column {
         width: 100%;
       }
@@ -2070,6 +2266,10 @@
       
       .services-grid {
         flex-direction: column;
+      }
+      
+      .item-descriptions {
+        left: 50%;
       }
     }
   </style>
@@ -2185,11 +2385,8 @@
   </div>
 
   <div class="hero">
-    <!-- Quarter Circle Wave Effect - Hero Section Background -->
+    <!-- Quarter Circle Wave Effect - Hero Section Background (15 waves) -->
     <div class="hero-wave-container">
-      <div class="hero-wave"></div>
-      <div class="hero-wave"></div>
-      <div class="hero-wave"></div>
       <div class="hero-wave"></div>
       <div class="hero-wave"></div>
       <div class="hero-wave"></div>
@@ -2473,10 +2670,15 @@
       localStorage.setItem("desk-theme", body.classList.contains("dark-mode") ? "dark" : "light");
     });
 
-    // Desk 3D Layout Interactions
+    // Auto-hover functionality - SLOWER with smooth transitions
     const deskItems = document.querySelectorAll(".items__item");
     const deskShadows = document.querySelectorAll(".shadow-item");
     const deskDescriptions = document.querySelectorAll(".item-description");
+    const deskContainer = document.querySelector(".desk-container");
+    
+    let currentIndex = 2; // Start with default item
+    let autoHoverInterval;
+    let isManualHover = false;
 
     const shadowSizes = { 
       'shadow-recorder': 38, 
@@ -2491,7 +2693,7 @@
           rotateY: 0,
           y: 0,
           scale: 1,
-          duration: 0.5, 
+          duration: 0.8, 
           ease: "power2.out",
           transformOrigin: "center bottom"
         });
@@ -2499,7 +2701,7 @@
         if (img) {
           gsap.to(img, { 
             filter: "drop-shadow(0 10px 25px var(--desk-item-shadow)) drop-shadow(0 20px 40px var(--desk-item-shadow))", 
-            duration: 0.5 
+            duration: 0.8 
           });
         }
       });
@@ -2507,110 +2709,118 @@
       deskShadows.forEach(shadow => {
         const className = Array.from(shadow.classList).find(c => c.startsWith('shadow-'));
         const baseWidth = shadowSizes[className] || 70;
-        gsap.to(shadow, { width: baseWidth, opacity: 0.85, duration: 0.5 });
+        gsap.to(shadow, { width: baseWidth, opacity: 0.85, duration: 0.8 });
       });
+      
+      // Remove all spotlight classes
+      deskContainer.classList.remove('spotlight-recorder', 'spotlight-papers', 'spotlight-microphone', 'spotlight-monitor');
     }
 
     function updateDeskDescription(itemIndex) {
+      // 모든 설명을 즉시 숨김
       deskDescriptions.forEach((desc) => {
         const descIndex = desc.getAttribute("data-index");
         if (descIndex !== itemIndex) {
           desc.classList.remove("active");
+          desc.style.opacity = "0";
         }
       });
 
+      // 새로운 설명 표시
       const activeDescription = document.querySelector(`.item-description[data-index="${itemIndex}"]`);
       if (activeDescription) {
         activeDescription.classList.add("active");
+        gsap.to(activeDescription, { 
+          opacity: 1, 
+          duration: 0.5,
+          ease: "power2.out"
+        });
       }
     }
 
-    deskItems.forEach((item, idx) => {
-      item.addEventListener("mouseenter", () => {
-        resetAllDesk();
-        
-        gsap.to(item, { 
-          rotateY: -5,
-          y: -3,
-          scale: 1.02,
-          duration: 0.5, 
-          ease: "power2.out",
-          transformOrigin: "center bottom"
-        });
-        
-        const img = item.querySelector("img");
-        if (img) {
-          gsap.to(img, { 
-            filter: "drop-shadow(0 15px 35px var(--desk-item-shadow-strong)) drop-shadow(0 25px 50px var(--desk-item-shadow))", 
-            duration: 0.5 
-          });
-        }
-        
-        const shadow = deskShadows[idx];
-        if (shadow) {
-          const className = Array.from(shadow.classList).find(c => c.startsWith('shadow-'));
-          const baseWidth = shadowSizes[className] || 70;
-          gsap.to(shadow, { 
-            width: baseWidth + 22, 
-            opacity: 1,
-            duration: 0.5 
-          });
-        }
-        
-        updateDeskDescription(item.getAttribute("data-index"));
-      });
-    });
-
-    const defaultItem = document.getElementById("default-item");
-    const defaultIdx = Array.from(deskItems).indexOf(defaultItem);
-    
-    gsap.to(defaultItem, { 
-      rotateY: -5,
-      y: -3,
-      scale: 1.02,
-      duration: 0.5, 
-      ease: "power2.out",
-      transformOrigin: "center bottom"
-    });
-    
-    const defaultImg = defaultItem.querySelector("img");
-    if (defaultImg) {
-      gsap.to(defaultImg, { 
-        filter: "drop-shadow(0 15px 35px var(--desk-item-shadow-strong)) drop-shadow(0 25px 50px var(--desk-item-shadow))", 
-        duration: 0.5 
-      });
-    }
-    
-    const defaultShadow = deskShadows[defaultIdx];
-    if (defaultShadow) {
-      gsap.to(defaultShadow, { width: 67, opacity: 1, duration: 0.5 });
-    }
-
-    document.querySelector(".desk-container").addEventListener("mouseleave", () => {
+    function activateItem(item, idx) {
       resetAllDesk();
       
-      gsap.to(defaultItem, { 
+      // Add spotlight class based on item
+      const itemClass = item.classList[1]; // get item-recorder, item-papers, etc.
+      if (itemClass) {
+        const spotlightClass = 'spotlight-' + itemClass.replace('item-', '');
+        deskContainer.classList.add(spotlightClass);
+      }
+      
+      gsap.to(item, { 
         rotateY: -5,
         y: -3,
         scale: 1.02,
-        duration: 0.5, 
+        duration: 0.8, 
         ease: "power2.out",
         transformOrigin: "center bottom"
       });
       
-      if (defaultImg) {
-        gsap.to(defaultImg, { 
+      const img = item.querySelector("img");
+      if (img) {
+        gsap.to(img, { 
           filter: "drop-shadow(0 15px 35px var(--desk-item-shadow-strong)) drop-shadow(0 25px 50px var(--desk-item-shadow))", 
-          duration: 0.5 
+          duration: 0.8 
         });
       }
       
-      if (defaultShadow) {
-        gsap.to(defaultShadow, { width: 67, opacity: 1, duration: 0.5 });
+      const shadow = deskShadows[idx];
+      if (shadow) {
+        const className = Array.from(shadow.classList).find(c => c.startsWith('shadow-'));
+        const baseWidth = shadowSizes[className] || 70;
+        gsap.to(shadow, { 
+          width: baseWidth + 22, 
+          opacity: 1,
+          duration: 0.8 
+        });
       }
       
-      updateDeskDescription("2");
+      updateDeskDescription(item.getAttribute("data-index"));
+    }
+
+    // Auto hover loop - SLOWER INTERVAL
+    function startAutoHover() {
+      if (isManualHover) return;
+      
+      autoHoverInterval = setInterval(() => {
+        if (!isManualHover) {
+          currentIndex = (currentIndex + 1) % deskItems.length;
+          activateItem(deskItems[currentIndex], currentIndex);
+        }
+      }, 5000); // Changed from 3000 to 5000ms
+    }
+
+    function stopAutoHover() {
+      if (autoHoverInterval) {
+        clearInterval(autoHoverInterval);
+        autoHoverInterval = null;
+      }
+    }
+
+    // Manual hover handlers
+    deskItems.forEach((item, idx) => {
+      item.addEventListener("mouseenter", () => {
+        isManualHover = true;
+        stopAutoHover();
+        activateItem(item, idx);
+        currentIndex = idx;
+      });
     });
+
+    deskContainer.addEventListener("mouseleave", () => {
+      isManualHover = false;
+      // Resume auto hover after a short delay
+      setTimeout(() => {
+        if (!isManualHover) {
+          startAutoHover();
+        }
+      }, 1500);
+    });
+
+    // Initialize default item and start auto hover
+    activateItem(deskItems[currentIndex], currentIndex);
+    startAutoHover();
     
     // Quick Contact Modal Functions
     window.openQuickContact = function(event) {
@@ -2678,53 +2888,50 @@
       }
     });
     
-    // Solutions data
+    // Solutions data - UPDATED
     const solutions = [
       {
-        title: '실시간 자막 센터',
-        subtitle: '저지연 웹뷰어 · 현장 오버레이',
-        description: '2인 1조 교대, 라우팅 매트릭스, 현장에서 바로 작동하는 자막 운영 체계를 제공합니다.',
+        title: '속기사가 직접 개발한 맞춤형 플랫폼',
+        subtitle: '속기사의 시선으로 만든, 속기사와 의뢰인을 위한 시스템',
+        description: '10년 이상 현장 속기 경험을 바탕으로 개발한 플랫폼입니다. 실제 업무 흐름에 최적화된 편집·검수·전달 구조를 구현했습니다.',
         bullets: [
-          '다국어 웹뷰어 & QR 접속',
-          '실시간 품질 모니터링 대시보드'
+          '기술보다 기록의 본질에 집중한 UX 설계',
+          '법원, 기관, 방송 환경에서 검증된 실사용 기반'
         ],
-        icon: '📡',
+        icon: '🎯',
         image: 'card5.jpg'
       },
       {
-        title: '문서 아카이브 센터',
-        subtitle: '법원·공공기관 맞춤 서식',
-        description: '회의록, 보고서, 검증용 원본 등 문서를 프로젝트별로 구조화하고 접근권한을 관리합니다.',
+        title: '신뢰와 투명성의 기록 문화',
+        subtitle: '기록의 신뢰는 투명한 절차에서 시작됩니다',
+        description: '모든 작업 단계를 기록화하고 검수 로그를 관리합니다. 표준 형식을 준수하며 법원·기관 제출용 문서 규격에 대응합니다.',
         bullets: [
-          '전자소송 PDF · 서식 자동화',
-          '전용 SFTP & DRM 배포',
-          'AI 보안 필터링으로 민감정보 보호'
+          '개인정보·보안·비밀유지 협약 철저 준수',
+          '작업 이력의 추적 및 검증 가능 구조 구축'
         ],
-        icon: '📚',
+        icon: '📝',
         image: 'card6.jpg'
       },
       {
-        title: 'AI 어시스트 랩',
-        subtitle: '음성 복원 · 요약 · 번역',
-        description: '잡음 제거, 화자 분리, 요약, 다국어 번역을 지원하는 자체 파이프라인으로 처리 속도와 품질을 높입니다.',
+        title: '전문성과 품질의 균형',
+        subtitle: '기술과 사람이 만드는 최상의 기록 품질',
+        description: '숙련된 전문가의 경험과 최신 기술을 결합하여 정확도와 효율성을 동시에 달성합니다. 각 분야별 전문 용어와 맥락을 이해하는 깊이 있는 기록을 제공합니다.',
         bullets: [
-          '스마트 보정 + 수동 검수 결합',
-          '단락 요약 & 액션 아이템 추출',
-          '영·중·일 동시 번역'
+          'AI 보정과 전문가 검수의 이중 품질 관리 시스템',
+          '분야별 전문 속기사 배정으로 맥락 있는 기록 보장'
         ],
-        icon: '🤖',
+        icon: '⚡',
         image: 'card7.jpg'
       },
       {
-        title: '속기 인재 아카데미',
-        subtitle: '전문가 온보딩 & QA',
-        description: '10년차 이상 멘토가 신입 속기사를 양성하고 표준 QA 프로토콜을 공유합니다.',
+        title: '유니버설 디자인과 접근성',
+        subtitle: '누구에게나 읽히고, 전달되는 기록을 위해',
+        description: '색각·시각 약자도 고려한 가독성 중심 UI를 구현합니다. 자막·속기·문서의 일관된 디자인 언어를 적용합니다.',
         bullets: [
-          '케이스 기반 집중 교육',
-          'QA 매뉴얼 & 스타일 가이드',
-          '실시간 피드백 대시보드'
+          '투명 디스플레이, 모바일 등 다양한 환경 지원',
+          '장애인·비장애인 모두 접근 가능한 정보 전달 구조'
         ],
-        icon: '🎓',
+        icon: '♿',
         image: 'card8.jpg'
       }
     ];
@@ -2828,10 +3035,13 @@
       .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, 1.4)
       .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 1.6);
     
-    // Solutions Slider
+    // Solutions Slider with fade effect
     function renderSolutions() {
       const slider = document.getElementById('solutionsSlider');
-      slider.innerHTML = solutions.map((sol, i) => `
+      const currentSlide = slider.querySelector('.solution-slide.active');
+      
+      // Create new content
+      const newContent = solutions.map((sol, i) => `
         <div class="solution-slide ${i === solutionIndex ? 'active' : ''}">
           <div class="solution-image">
             <img src="${sol.image}" alt="${sol.title}" 
@@ -2840,7 +3050,7 @@
           </div>
           <div class="solution-content">
             <div>
-              <span class="solution-tag">Center</span>
+              <span class="solution-tag">Platform</span>
               <h3 class="solution-title">${sol.title}</h3>
               <p class="solution-subtitle">${sol.subtitle}</p>
               <p class="solution-desc">${sol.description}</p>
@@ -2854,11 +3064,27 @@
               </ul>
             </div>
             <a href="#services" class="solution-link">
-              센터 소개 <span>→</span>
+              자세히 보기 <span>→</span>
             </a>
           </div>
         </div>
       `).join('');
+      
+      // Apply fade transition
+      if (currentSlide) {
+        currentSlide.style.opacity = '0';
+        setTimeout(() => {
+          slider.innerHTML = newContent;
+          const newSlide = slider.querySelector('.solution-slide.active');
+          if (newSlide) {
+            setTimeout(() => {
+              newSlide.style.opacity = '1';
+            }, 10);
+          }
+        }, 200);
+      } else {
+        slider.innerHTML = newContent;
+      }
 
       const indicators = document.getElementById('solutionIndicators');
       indicators.innerHTML = solutions.map((_, i) => 
@@ -2868,17 +3094,19 @@
     }
     
     function setSolution(index) {
-      solutionIndex = index;
-      renderSolutions();
+      if (index !== solutionIndex) {
+        solutionIndex = index;
+        renderSolutions();
+      }
     }
     
     function changeSolution(direction) {
-      solutionIndex = (solutionIndex + direction + solutions.length) % solutions.length;
-      renderSolutions();
+      const newIndex = (solutionIndex + direction + solutions.length) % solutions.length;
+      setSolution(newIndex);
     }
     
-    // Auto-rotate solutions
-    setInterval(() => {
+    // Auto-rotate solutions with improved timing
+    let solutionAutoRotate = setInterval(() => {
       changeSolution(1);
     }, 8000);
     
