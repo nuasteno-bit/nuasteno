@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>누아속기사무소</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
@@ -14,6 +14,8 @@
       --offsetY: 120px;
       --section-padding: 120px;
       --primary-color: #2563EB;
+      --primary-blue: #1e40af;
+      --primary-blue-light: #3b82f6;
     }
     
     @media (max-width: 1024px) {
@@ -38,11 +40,20 @@
     }
     
     body {
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: 'Pretendard', -apple-system, sans-serif;
       background: #fff;
       color: #000;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+    
+    /* Anti-flicker styles */
+    .hero-badge,
+    .hero-title span,
+    .hero-subtitle,
+    .hero-cta {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
     
     .progress-indicator {
@@ -56,7 +67,7 @@
     .progress-bar-container {
       width: 2px;
       height: 180px;
-      background: #000;
+      background: rgba(0,0,0,0.1);
       border-radius: 2px;
       overflow: hidden;
       position: relative;
@@ -71,38 +82,6 @@
       background: var(--primary-color);
       border-radius: 2px;
       transition: height 0.15s ease-out;
-    }
-    
-    .scroll-to-top {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      background: var(--primary-color);
-      border: none;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      z-index: 1001;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-    }
-    
-    .scroll-to-top:hover {
-      background: #1d4ed8;
-      transform: translate(-50%, -50%) translateY(-4px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-    }
-    
-    .scroll-to-top:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 2px;
     }
     
     .scroll-indicator {
@@ -251,11 +230,6 @@
       transition: color 0.3s;
     }
     
-    .nav-link:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 4px;
-    }
-    
     .nav-link::after {
       content: '';
       position: absolute;
@@ -271,172 +245,7 @@
       width: 100%;
     }
     
-    .special-menu {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      text-decoration: none;
-      padding: 0.7rem 1.3rem;
-      border-radius: 8px;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      background: #fff;
-      min-height: 60px;
-      isolation: isolate;
-      border: 1px solid rgba(37, 99, 235, 0.2);
-    }
-    
-    .special-menu::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 8px;
-      padding: 2px;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        transparent 40%,
-        rgba(37, 99, 235, 0.25) 50%,
-        rgba(96, 165, 250, 0.35) 53%,
-        rgba(37, 99, 235, 0.25) 56%,
-        transparent 60%,
-        transparent 100%
-      );
-      background-size: 200% 100%;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: borderShine 4s linear infinite;
-    }
-    
-    @keyframes borderShine {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-    
-    .special-menu::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px;
-      background: radial-gradient(
-        circle at center,
-        transparent 0%,
-        rgba(37, 99, 235, 0.03) 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .special-menu:hover {
-      transform: translateY(-2px);
-      background: rgba(37, 99, 235, 0.04);
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
-      border-color: rgba(37, 99, 235, 0.3);
-    }
-    
-    .special-menu:hover::before {
-      animation: borderShine 2s linear infinite;
-    }
-    
-    .special-menu:hover::after {
-      opacity: 1;
-    }
-    
-    .special-menu:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 4px;
-    }
-    
-    .special-menu-content {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .live-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    
-    .live-dot {
-      width: 6px;
-      height: 6px;
-      background: #ef4444;
-      border-radius: 50%;
-      position: relative;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    
-    .live-dot::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      background: #ef4444;
-      border-radius: 50%;
-      animation: pulse-ring 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulse-dot {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.6;
-      }
-    }
-    
-    @keyframes pulse-ring {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(2.5);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-    }
-    
-    .special-menu-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    
-    .special-menu-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #000;
-      font-family: 'Noto Serif KR', serif;
-      letter-spacing: -0.3px;
-      line-height: 1.3;
-    }
-    
-    .special-menu-subtitle {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--primary-color);
-      letter-spacing: 0.3px;
-      line-height: 1.3;
-    }
-    
+    /* Fixed Navigation Buttons - 원본 복원 */
     .fixed-nav-black {
       position: fixed;
       right: 0;
@@ -450,11 +259,13 @@
       justify-content: center;
       writing-mode: vertical-rl;
       color: #fff;
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: 'Pretendard', sans-serif;
       font-weight: 800;
       font-size: 0.9rem;
       letter-spacing: 0.3em;
       transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s;
+      text-decoration: none;
+      cursor: pointer;
     }
     
     .fixed-nav-black.is-collapsed {
@@ -483,6 +294,7 @@
       font-size: 1.5rem;
       transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
+      text-decoration: none;
     }
     
     .fixed-nav-yellow:hover {
@@ -493,14 +305,68 @@
       top: 150px;
     }
     
+    /* LIVE Button */
+    .fixed-nav-live {
+      position: fixed;
+      right: 0;
+      top: 370px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #000;
+      transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1), all 0.3s;
+      font-size: 0.7rem;
+      font-weight: 700;
+      gap: 0.25rem;
+    }
+    
+    .fixed-nav-live:hover {
+      background: var(--primary-blue);
+      color: #fff;
+      border-color: var(--primary-blue);
+    }
+    
+    .fixed-nav-live.is-collapsed {
+      top: 210px;
+    }
+    
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+    
+    /* Hero Section with Lighter Gradient Background */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       padding: 0 3rem;
-      background: #fff;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, 
+        rgba(240, 249, 255, 0.4) 0%, 
+        rgba(224, 242, 254, 0.3) 35%, 
+        rgba(186, 230, 253, 0.2) 70%, 
+        rgba(255, 255, 255, 1) 100%);
     }
     
     .soundwave-bg {
@@ -516,7 +382,6 @@
     
     .soundwave-bg circle {
       fill: none;
-      stroke: rgba(37, 99, 235, 0.1);
       stroke-width: 0.25;
       transform-origin: 50% 50%;
       opacity: 1;
@@ -529,14 +394,21 @@
     }
     
     .soundwave-bg circle:nth-child(odd) {
+      stroke: rgba(37, 99, 235, 0.05);
       animation-name: soundwave-fade-strong;
     }
     
+    .soundwave-bg circle:nth-child(even) {
+      stroke: rgba(59, 130, 246, 0.04);
+    }
+    
     .soundwave-bg circle:nth-child(3n) {
+      stroke: rgba(96, 165, 250, 0.045);
       stroke-width: 0.2;
     }
     
     .soundwave-bg circle:nth-child(5n) {
+      stroke: rgba(147, 197, 253, 0.03);
       animation-name: soundwave-fade-weak;
     }
     
@@ -628,6 +500,7 @@
       }
     }
     
+    /* Hero Container - 원본 레이아웃 복원 */
     .hero-container {
       max-width: 1800px;
       margin: 0 auto;
@@ -657,7 +530,6 @@
       letter-spacing: 0.5px;
       margin-bottom: 2.5rem;
       text-transform: uppercase;
-      opacity: 0;
     }
     
     .hero-badge::before {
@@ -677,26 +549,44 @@
       letter-spacing: -3px;
     }
     
-    .hero-title .line-1 {
-      display: block;
-      text-align: left;
-    }
-    
-    .hero-title .line-2 {
-      display: block;
-      text-align: left;
-      margin-left: 6rem;
-    }
-    
+    .hero-title .line-1,
+    .hero-title .line-2,
     .hero-title .line-3 {
       display: block;
       text-align: left;
+      overflow: hidden;
+    }
+    
+    .hero-title .line-1 {
+      animation: slideInFromLeft 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .hero-title .line-2 {
+      margin-left: 6rem;
+      animation: slideInFromLeft 0.8s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .hero-title .line-3 {
       margin-left: 0;
+      animation: slideInFromLeft 0.8s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes slideInFromLeft {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
     
     .hero-title span {
       display: inline-block;
-      opacity: 0;
     }
     
     .dot {
@@ -709,7 +599,6 @@
       line-height: 1.9;
       margin-bottom: 3rem;
       max-width: 500px;
-      opacity: 0;
     }
     
     .hero-cta {
@@ -723,12 +612,6 @@
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s;
-      opacity: 0;
-    }
-    
-    .hero-cta:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 4px;
     }
     
     .hero-cta:hover {
@@ -746,206 +629,9 @@
       position: relative;
       width: 100%;
       height: 550px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding-bottom: 2rem;
     }
     
-    .img-card {
-      width: 100px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      cursor: pointer;
-      position: relative;
-      height: 400px;
-    }
-    
-    .img-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    
-    .img-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-    
-    .img-card.active {
-      width: 600px;
-      height: 500px;
-      z-index: 100;
-    }
-    
-    .highlights {
-      padding: var(--section-padding) 3rem;
-      position: relative;
-      background: #fafafa;
-    }
-    
-    .scroll-text {
-      position: absolute;
-      top: 50%;
-      right: -15%;
-      transform: translateY(-50%);
-      font-size: clamp(4rem, 10vw, 12rem);
-      font-weight: 900;
-      font-family: 'Noto Serif KR', serif;
-      color: rgba(0,0,0,0.03);
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 0;
-      letter-spacing: -3px;
-      line-height: 1;
-    }
-    
-    .section-main-title {
-      position: relative;
-      font-size: clamp(4rem, 7vw, 8rem);
-      font-weight: 900;
-      font-family: 'Noto Serif KR', serif;
-      margin-bottom: 4rem;
-      letter-spacing: -3px;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-    
-    .section-label {
-      text-align: left;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-bottom: 0.8rem;
-      max-width: var(--maxw);
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .section-title {
-      text-align: left;
-      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-      font-weight: 600;
-      font-family: 'Noto Serif KR', serif;
-      margin-bottom: 40px;
-      letter-spacing: -0.3px;
-      max-width: var(--maxw);
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .hl__inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 40px;
-      padding: 0 3rem;
-    }
-    
-    .hl__col {
-      display: grid;
-      row-gap: 40px;
-    }
-    
-    .hl__col--right {
-      margin-top: 80px;
-    }
-    
-    .card {
-      background: transparent;
-      box-shadow: none;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-    }
-    
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0) 0%, rgba(37, 99, 235, 0.03) 100%);
-      opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-    }
-    
-    .card:hover::before {
-      opacity: 1;
-    }
-    
-    .card:hover {
-      transform: translateY(-4px);
-    }
-    
-    .card-media {
-      aspect-ratio: 16/10;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      background: #f0f0f0;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    
-    .card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-      transform: scale(1.15);
-    }
-    
-    .card:hover .card-img {
-      transform: scale(1.05);
-    }
-    
-    .card-label-vertical {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      opacity: 0;
-    }
-    
-    .card-body {
-      padding: 20px 0;
-    }
-    
-    .card-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      opacity: 0.5;
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-      color: var(--primary-color);
-    }
-    
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      line-height: 1.5;
-      font-family: 'Noto Serif KR', serif;
-      color: #000;
-      letter-spacing: -0.3px;
-    }
-    
+    /* Services Section */
     .services {
       padding: var(--section-padding) 3rem;
       background: #fff;
@@ -965,6 +651,8 @@
       font-family: 'Noto Serif KR', serif;
       margin-bottom: 1rem;
       letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(40px);
     }
     
     .services-subtitle {
@@ -972,6 +660,8 @@
       color: #666;
       max-width: 600px;
       margin: 0 auto;
+      opacity: 0;
+      transform: translateY(30px);
     }
     
     .services-grid {
@@ -1045,13 +735,21 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 0 0 80px 30px;
-      border: 1px solid #fff;
+      background: #fff;
+      border: 2px solid rgba(0,0,0,0.08);
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    .service-card:hover .service-card-color-box {
+      border-color: var(--primary-blue);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
     }
     
     .service-card-content {
       position: relative;
       z-index: 3;
-      color: #fff;
+      color: #000;
       width: 90%;
     }
     
@@ -1059,20 +757,10 @@
       transform: translateY(-4px);
     }
     
-    .service-card.clicked {
-      opacity: 0;
-      transform: translateY(-40px);
-    }
-    
-    .service-card.out {
-      opacity: 0;
-      transform: translateY(-40px);
-    }
-    
     .service-icon {
       width: 60px;
       height: 60px;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1080,6 +768,7 @@
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
       color: #fff;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
     }
     
     .service-name {
@@ -1087,7 +776,7 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      color: rgba(0,0,0,0.5);
       margin-bottom: 1rem;
     }
     
@@ -1098,202 +787,349 @@
       margin-bottom: 0;
       line-height: 1.2;
       letter-spacing: -0.5px;
-      color: #fff;
+      color: #000;
     }
     
-    .service-description {
-      color: rgba(255,255,255,0.9);
-      line-height: 1.6;
-      font-size: 0.9rem;
-      display: none;
-    }
-    
-    .service-cover {
-      position: fixed;
-      z-index: 1000;
-      transform-origin: 50% 50%;
-      transition: transform 300ms ease-in-out;
-      pointer-events: none;
-    }
-    
-    .service-open-content {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: 1010;
-      opacity: 0;
-      pointer-events: none;
-      overflow-y: auto;
-      transition: opacity 200ms linear 0ms;
-    }
-    
-    .service-open-content.open {
-      opacity: 1;
-      pointer-events: all;
-      transition-delay: 600ms;
-    }
-    
-    .service-detail-content {
+    /* Solutions Section from Redesign */
+    .solutions {
       background: #fff;
-      max-width: 900px;
-      margin: 80px auto 80px;
-      padding: 4rem 3rem;
-      position: relative;
+      padding: 3rem 1.5rem;
     }
     
-    .service-close-content {
-      display: block;
-      position: fixed;
-      right: 30px;
-      top: 30px;
+    .solutions-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: var(--maxw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    @media (min-width: 1024px) {
+      .solutions-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        text-align: left;
+      }
+    }
+    
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      font-family: 'Noto Serif KR', serif;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .section-desc {
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .solutions-slider {
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      background: #F9F9F9;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    
+    .solution-slide {
+      display: none;
+      flex-direction: column;
+    }
+    
+    .solution-slide.active {
+      display: flex;
+    }
+    
+    @media (min-width: 768px) {
+      .solution-slide.active {
+        flex-direction: row;
+      }
+    }
+    
+    .solution-image {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--primary-blue-light);
+    }
+    
+    @media (min-width: 768px) {
+      .solution-image {
+        width: 45%;
+        height: auto;
+      }
+    }
+    
+    .solution-content {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .solution-content {
+        padding: 2rem;
+      }
+    }
+    
+    .solution-tag {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+    }
+    
+    .solution-title {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Noto Serif KR', serif;
+    }
+    
+    .solution-subtitle {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+      margin-bottom: 0.75rem;
+    }
+    
+    .solution-desc {
+      font-size: 0.8125rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    
+    .solution-bullets {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    
+    .solution-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.6;
+      margin-bottom: 0.375rem;
+    }
+    
+    .offering-bullet {
+      width: 0.375rem;
+      height: 0.375rem;
+      background: var(--primary-blue);
+      border-radius: 50%;
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+    
+    .solution-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #000;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .solution-link:hover {
+      gap: 0.75rem;
+    }
+    
+    .slide-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.25rem;
+      margin-top: 1rem;
+    }
+    
+    .slide-indicator {
+      width: 2rem;
+      height: 0.375rem;
+      border-radius: 9999px;
+      background: rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .slide-indicator.active {
+      background: var(--primary-blue);
+    }
+    
+    .services-controls {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .carousel-btn {
       width: 40px;
       height: 40px;
-      z-index: 1020;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-    
-    .service-close-content:hover {
-      background: var(--primary-color);
-      transform: rotate(90deg);
-    }
-    
-    .service-close-content span {
-      background: #000;
-      width: 24px;
-      height: 3px;
-      display: block;
-      position: absolute;
-      top: 18px;
-      left: 8px;
-      border-radius: 2px;
-    }
-    
-    .service-close-content .x-1 {
-      transform: rotate(45deg);
-    }
-    
-    .service-close-content .x-2 {
-      transform: rotate(-45deg);
-    }
-    
-    .service-detail-content h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      font-family: 'Noto Serif KR', serif;
-      margin-bottom: 1.5rem;
-      color: #000;
-    }
-    
-    .service-detail-content h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      font-family: 'Noto Serif KR', serif;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      color: #000;
-    }
-    
-    .service-detail-content p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #444;
-      margin-bottom: 1.2rem;
-    }
-    
-    .service-detail-content ul {
-      margin: 1.5rem 0;
-      padding-left: 1.5rem;
-    }
-    
-    .service-detail-content li {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #444;
-      margin-bottom: 0.8rem;
-    }
-    
-    .price-box {
-      background: #fafafa;
-      border-left: 4px solid var(--primary-color);
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
-    }
-    
-    .price-box strong {
-      color: #000;
-      font-size: 1.8rem;
-      font-family: 'Noto Serif KR', serif;
-    }
-    
-    .careers {
-      padding: var(--section-padding) 3rem;
-      background: #000;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .careers-title {
-      text-align: center;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700;
-      font-family: 'Noto Serif KR', serif;
-      margin-bottom: 3rem;
-      letter-spacing: -0.5px;
-    }
-    
-    .careers-wrapper {
-      position: relative;
-      height: 100px;
-      overflow: hidden;
-    }
-    
-    .careers-row {
+      border: 1px solid rgba(0,0,0,0.1);
+      background: #fff;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .carousel-btn:hover {
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+    
+    /* Experience Section - 3줄로 수정 */
+    .experience {
+      padding: var(--section-padding) 3rem;
+      background: #f5f5f5;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .experience-container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    
+    .experience-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .experience-line {
+      width: 3rem;
+      height: 0.25rem;
+      background: var(--primary-blue-light);
+      border-radius: 9999px;
+    }
+    
+    .experience-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+    }
+    
+    .experience-title {
+      font-size: 1.875rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Noto Serif KR', serif;
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    
+    .experience-track {
+      position: relative;
+      overflow: hidden;
+      padding: 0.5rem 0;
+      opacity: 0;
+    }
+    
+    .experience-track::before,
+    .experience-track::after {
+      content: '';
       position: absolute;
-      white-space: nowrap;
-      will-change: transform;
-    }
-    
-    .careers-row:nth-child(1) {
       top: 0;
-      animation: scrollLeft 30s linear infinite;
+      bottom: 0;
+      width: 150px;
+      z-index: 10;
+      pointer-events: none;
     }
     
-    .careers-row:nth-child(2) {
-      top: 50px;
-      animation: scrollRight 35s linear infinite;
+    .experience-track::before {
+      left: 0;
+      background: linear-gradient(90deg, #f5f5f5 0%, #f5f5f5 20%, transparent 100%);
     }
     
-    .careers-row:nth-child(3) {
-      display: none;
+    .experience-track::after {
+      right: 0;
+      background: linear-gradient(270deg, #f5f5f5 0%, #f5f5f5 20%, transparent 100%);
     }
     
-    @keyframes scrollLeft {
+    .experience-row {
+      display: flex;
+      margin-bottom: 0.75rem;
+      white-space: nowrap;
+      padding: 0 50px;
+    }
+    
+    .experience-row:nth-child(1),
+    .experience-row:nth-child(3) {
+      animation: scroll-left 50s linear infinite;
+    }
+    
+    .experience-row:nth-child(2) {
+      animation: scroll-right 55s linear infinite;
+    }
+    
+    @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
     
-    @keyframes scrollRight {
+    @keyframes scroll-right {
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
     
-    .career-item {
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 0 3rem;
-      border-right: 2px solid rgba(255,255,255,0.2);
-      color: #fff;
-      font-family: 'Noto Serif KR', serif;
+    .experience-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.7);
+      margin-right: 1rem;
     }
     
+    /* Values Section */
     .values {
       padding: var(--section-padding) 3rem;
       background: #fafafa;
@@ -1316,6 +1152,8 @@
       font-family: 'Noto Serif KR', serif;
       margin-bottom: 1rem;
       letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(30px);
     }
     
     .values-subtitle {
@@ -1339,6 +1177,8 @@
       transition: all 0.4s;
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
     }
     
     .value-card::before {
@@ -1385,74 +1225,118 @@
       font-size: 0.9rem;
     }
     
+    /* Footer from Redesign */
     .footer {
-      background: #0a0a0a;
-      color: #fff;
-      padding: 5rem 3rem 3rem;
+      background: #F7F7F7;
+      padding: 4rem 1.5rem;
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.7);
       position: relative;
     }
     
-    .footer-content {
-      max-width: 1600px;
+    .footer-container {
+      max-width: 1536px;
       margin: 0 auto;
+    }
+    
+    .footer-content {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 5rem;
+      gap: 3rem;
       margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
     }
     
-    .footer-logo {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: 'Noto Serif KR', serif;
-      margin-bottom: 1.5rem;
-      letter-spacing: -1px;
+    @media (min-width: 1024px) {
+      .footer-content {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
     }
     
-    .footer-description {
-      color: #666;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-    }
-    
-    .footer-section-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+    .footer-brand-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      color: var(--primary-color);
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
     }
     
-    .footer-link {
-      color: #999;
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      color: #000;
+      margin-bottom: 1rem;
+      font-family: 'Noto Serif KR', serif;
+    }
+    
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-section a {
+      color: rgba(0,0,0,0.7);
       text-decoration: none;
-      display: block;
-      margin-bottom: 0.8rem;
       transition: color 0.3s;
-      font-size: 0.9rem;
     }
     
-    .footer-link:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 2px;
+    .footer-section a:hover {
+      color: #000;
     }
     
-    .footer-link:hover {
-      color: #fff;
+    .footer-section p {
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
     }
     
     .footer-bottom {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #666;
-      font-size: 0.85rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .footer-scroll-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .footer-scroll-btn:hover {
+      border-color: #000;
     }
     
     @media (max-width: 1440px) {
@@ -1495,11 +1379,6 @@
         grid-template-columns: 1fr;
       }
       
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-      
       .nav-menu {
         display: none;
       }
@@ -1509,36 +1388,6 @@
         margin-left: 0;
       }
       
-      .special-menu {
-        padding: 0.5rem 0.9rem;
-        min-height: 50px;
-      }
-      
-      .special-menu-content {
-        gap: 0.4rem;
-      }
-      
-      .live-dot {
-        width: 5px;
-        height: 5px;
-      }
-      
-      .special-menu-title {
-        font-size: 0.9rem;
-      }
-      
-      .special-menu-subtitle {
-        font-size: 0.6rem;
-      }
-      
-      .hl__inner {
-        grid-template-columns: 1fr;
-        margin-right: auto;
-      }
-      .hl__col--right {
-        margin-top: 0;
-      }
-      
       .progress-indicator {
         display: none;
       }
@@ -1546,12 +1395,6 @@
       .scroll-indicator {
         right: 1.5rem;
         bottom: 1.5rem;
-      }
-      
-      .scroll-to-top {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
       }
     }
   </style>
@@ -1580,25 +1423,20 @@
         <a href="price.html" class="nav-link">요금안내</a>
         <a href="contact.html" class="nav-link">문의</a>
       </nav>
-      <a href="http://live.nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
-        <div class="special-menu-content">
-          <div class="live-indicator">
-            <span class="live-dot"></span>
-          </div>
-          <div class="special-menu-text">
-            <span class="special-menu-title">누아스튜디오</span>
-            <span class="special-menu-subtitle">실시간 속기 솔루션</span>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 
-  <div class="fixed-nav-black">빠른접수</div>
+  <a href="tel:02-3489-4433" class="fixed-nav-black">빠른접수</a>
+  
   <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
     </svg>
+  </a>
+  
+  <a href="http://live.nuastudio.co.kr" target="_blank" class="fixed-nav-live">
+    LIVE
+    <span class="live-dot"></span>
   </a>
 
   <div class="hero">
@@ -1645,87 +1483,25 @@
       </div>
       
       <div class="hero-visual">
-        <div class="img-card" style="background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);">
-          <img src="card1.jpg" alt="법원 녹취록 서비스">
-        </div>
-        <div class="img-card" style="background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);">
-          <img src="card2.jpg" alt="현장 속기 서비스">
-        </div>
-        <div class="img-card" style="background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);">
-          <img src="card3.jpg" alt="영상 자막 서비스">
-        </div>
-        <div class="img-card" style="background: linear-gradient(180deg, #43e97b 0%, #38f9d7 100%);">
-          <img src="card4.jpg" alt="회의록 작성 서비스">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="intro" class="highlights">
-    <h2 class="section-main-title">HIGHLIGHTS<span class="dot">.</span></h2>
-    
-    <div class="hl__inner">
-      <div class="hl__col hl__col--left">
-        <article class="card">
-          <div class="card-media">
-            <div class="card-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-            <div class="card-label-vertical">COURT</div>
-          </div>
-          <div class="card-body">
-            <div class="card-label">법원 녹취록</div>
-            <h3 class="card-title">모든 법원 소송 절차에 필요한 정확한 녹취록 작성</h3>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="card-media">
-            <div class="card-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-            <div class="card-label-vertical">SUBTITLE</div>
-          </div>
-          <div class="card-body">
-            <div class="card-label">영상 자막</div>
-            <h3 class="card-title">영상 콘텐츠 자막 제작 및 배리어프리 자막 지원</h3>
-          </div>
-        </article>
-      </div>
-      
-      <div class="hl__col hl__col--right">
-        <article class="card">
-          <div class="card-media">
-            <div class="card-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-            <div class="card-label-vertical">REALTIME</div>
-          </div>
-          <div class="card-body">
-            <div class="card-label">현장 속기</div>
-            <h3 class="card-title">세미나, 컨퍼런스, 포럼 등 실시간 현장 기록 서비스</h3>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="card-media">
-            <div class="card-img" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
-            <div class="card-label-vertical">MEETING</div>
-          </div>
-          <div class="card-body">
-            <div class="card-label">회의록</div>
-            <h3 class="card-title">주주총회, 이사회 등 공식 회의록 작성 서비스</h3>
-          </div>
-        </article>
+        <!-- 여기에 다른 컨텐츠 추가 예정 -->
       </div>
     </div>
   </div>
 
   <div id="services" class="services">
-    <h2 class="section-main-title">SERVICES<span class="dot">.</span></h2>
+    <div class="services-header">
+      <h2 class="services-title">SERVICES<span class="dot">.</span></h2>
+      <p class="services-subtitle">법원 녹취 전문, 한글속기 1급 자격을 갖춘 전문가들이 제공하는 서비스</p>
+    </div>
     
     <div class="services-grid">
       <div class="service-column">
-        <div class="service-card" data-service="0">
+        <div class="service-card">
           <div class="service-card-wrapper">
             <div class="service-card-image">
               <img src="card1.jpg" alt="법원 녹취록" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
             </div>
-            <div class="service-card-color-box" style="background: #EB5160;">
+            <div class="service-card-color-box">
               <div class="service-card-content">
                 <div class="service-icon">⚖</div>
                 <div class="service-name">Court Transcription</div>
@@ -1735,12 +1511,12 @@
           </div>
         </div>
         
-        <div class="service-card" data-service="2">
+        <div class="service-card">
           <div class="service-card-wrapper">
             <div class="service-card-image">
               <img src="card3.jpg" alt="현장 속기" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'">
             </div>
-            <div class="service-card-color-box" style="background: #8DAA91;">
+            <div class="service-card-color-box">
               <div class="service-card-content">
                 <div class="service-icon">🎙</div>
                 <div class="service-name">On-site Stenography</div>
@@ -1752,12 +1528,12 @@
       </div>
       
       <div class="service-column">
-        <div class="service-card" data-service="1">
+        <div class="service-card">
           <div class="service-card-wrapper">
             <div class="service-card-image">
               <img src="card2.jpg" alt="공식 회의록" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'">
             </div>
-            <div class="service-card-color-box" style="background: #8F3985;">
+            <div class="service-card-color-box">
               <div class="service-card-content">
                 <div class="service-icon">📊</div>
                 <div class="service-name">Meeting Minutes</div>
@@ -1767,12 +1543,12 @@
           </div>
         </div>
         
-        <div class="service-card" data-service="3">
+        <div class="service-card">
           <div class="service-card-wrapper">
             <div class="service-card-image">
               <img src="card4.jpg" alt="전문 분야 녹취" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'">
             </div>
-            <div class="service-card-color-box" style="background: #888DA7;">
+            <div class="service-card-color-box">
               <div class="service-card-content">
                 <div class="service-icon">🔬</div>
                 <div class="service-name">Specialized Fields</div>
@@ -1783,56 +1559,47 @@
         </div>
       </div>
     </div>
-    
-    <div id="service-cover" class="service-cover"></div>
-    <div id="service-open-content" class="service-open-content">
-      <a href="#" id="service-close-content" class="service-close-content">
-        <span class="x-1"></span>
-        <span class="x-2"></span>
-      </a>
-      <div class="service-detail-content" id="service-detail-content"></div>
-    </div>
   </div>
 
-  <div id="pricing" class="careers">
-    <h2 class="section-main-title" style="color: #fff;">CAREERS<span class="dot">.</span></h2>
-    <div class="careers-wrapper">
-      <div class="careers-row careers-row-1">
-        <div class="career-item">법원 제출용 녹취록 5,000건+</div>
-        <div class="career-item">서울중앙지법 전속 계약</div>
-        <div class="career-item">대법원 지정 속기사</div>
-        <div class="career-item">한글속기 1급 자격증</div>
-        <div class="career-item">법원 제출용 녹취록 5,000건+</div>
-        <div class="career-item">서울중앙지법 전속 계약</div>
-        <div class="career-item">대법원 지정 속기사</div>
-        <div class="career-item">한글속기 1급 자격증</div>
+  <div id="solutions" class="solutions">
+    <div class="solutions-header">
+      <div>
+        <p class="section-label">Solutions</p>
+        <h2 class="section-title">NUA 센터 & 솔루션</h2>
+        <p class="section-desc">
+          현장 자막, 문서 아카이브, AI 보정, 교육까지 운영을 완성하는 센터 기반 서비스를 제공합니다.
+        </p>
       </div>
-      <div class="careers-row careers-row-2">
-        <div class="career-item">주요 로펌 협력사</div>
-        <div class="career-item">정부기관 공식 회의록</div>
-        <div class="career-item">법원 제출용 녹취록 5,000건+</div>
-        <div class="career-item">서울중앙지법 전속 계약</div>
-        <div class="career-item">주요 로펌 협력사</div>
-        <div class="career-item">정부기관 공식 회의록</div>
-        <div class="career-item">법원 제출용 녹취록 5,000건+</div>
-        <div class="career-item">서울중앙지법 전속 계약</div>
+      <div class="services-controls">
+        <button class="carousel-btn" onclick="changeSolution(-1)">←</button>
+        <button class="carousel-btn" onclick="changeSolution(1)">→</button>
       </div>
-      <div class="careers-row careers-row-3">
-        <div class="career-item">대법원 지정 속기사</div>
-        <div class="career-item">한글속기 1급 자격증</div>
-        <div class="career-item">주요 로펌 협력사</div>
-        <div class="career-item">정부기관 공식 회의록</div>
-        <div class="career-item">대법원 지정 속기사</div>
-        <div class="career-item">한글속기 1급 자격증</div>
-        <div class="career-item">주요 로펌 협력사</div>
-        <div class="career-item">정부기관 공식 회의록</div>
+    </div>
+
+    <div class="solutions-slider" id="solutionsSlider"></div>
+    <div class="slide-indicators" id="solutionIndicators"></div>
+  </div>
+
+  <div class="experience">
+    <div class="experience-container">
+      <div class="experience-header">
+        <span class="experience-line"></span>
+        <p class="experience-label">Experience</p>
+      </div>
+      <h2 class="experience-title">주요 수행 경력</h2>
+      <div class="experience-track">
+        <div class="experience-row" id="experience-row-1"></div>
+        <div class="experience-row" id="experience-row-2"></div>
+        <div class="experience-row" id="experience-row-3"></div>
       </div>
     </div>
   </div>
 
   <div id="contact" class="values">
-    <h2 class="section-main-title">CENTERS<span class="dot">.</span></h2>
     <div class="values-container">
+      <div class="values-header">
+        <h2 class="values-title">CENTERS<span class="dot">.</span></h2>
+      </div>
       <div class="values-grid">
         <div class="value-card">
           <div class="value-number">01</div>
@@ -1855,39 +1622,135 @@
     </div>
   </div>
 
-  <div class="footer">
-    <button class="scroll-to-top" aria-label="맨 위로">↑</button>
-    
-    <div class="footer-content">
-      <div>
-        <div class="footer-logo">누아속기사무소</div>
-        <p class="footer-description">법원 녹취 전문, 한글속기 1급 자격을 갖춘 전문가들이 정확하고 신속한 서비스를 제공합니다.</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-brand-label">NUA STUDIO / NUA 속기사무소</p>
+          <h3>누아속기사무소</h3>
+          <p>서울특별시 가산디지털2로 173, 719호 (에이스비즈타워)</p>
+          <p>실시간 자막 · 속기 · 녹취록·회의록</p>
+          <p>Tel. 02-3489-4433</p>
+          <p>Email. nuasteno@gmail.com</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">보안/규격 준수</a></li>
+            <li><a href="#">납품·검수 기준</a></li>
+            <li><a href="#contact">문의</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <p>최신 행사 운영 인사이트와 솔루션 업데이트를 받아보세요.</p>
+        </div>
       </div>
       
-      <div>
-        <div class="footer-section-title">Contact</div>
-        <a href="mailto:nuasteno@gmail.com" class="footer-link">nuasteno@gmail.com</a>
-        <a href="tel:02-3489-4433" class="footer-link">T. 02-3489-4433</a>
-        <a href="tel:010-3489-4433" class="footer-link">M. 010-3489-4433</a>
-      </div>
-      
-      <div>
-        <div class="footer-section-title">Location</div>
-        <p class="footer-link">서울 금천구 가산디지털2로 173, 719호</p>
-        <p class="footer-link">사업자: 186-24-02138</p>
+      <div class="footer-bottom">
+        <p>© 2025 NUA STUDIO. All rights reserved.</p>
+        <button class="footer-scroll-btn" onclick="scrollToTop()">↑</button>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>© 2025 누아속기사무소. All rights reserved.</p>
-      <p>Designed with precision and care.</p>
-    </div>
-  </div>
+  </footer>
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
     
-    // Progress Bar (Left Vertical - Modern Small Design)
+    // Solutions data
+    const solutions = [
+      {
+        title: '실시간 자막 센터',
+        subtitle: '저지연 웹뷰어 · 현장 오버레이',
+        description: '2인 1조 교대, 라우팅 매트릭스, 현장에서 바로 작동하는 자막 운영 체계를 제공합니다.',
+        bullets: [
+          '다국어 웹뷰어 & QR 접속',
+          '실시간 품질 모니터링 대시보드'
+        ],
+        icon: '📡'
+      },
+      {
+        title: '문서 아카이브 센터',
+        subtitle: '법원·공공기관 맞춤 서식',
+        description: '회의록, 보고서, 검증용 원본 등 문서를 프로젝트별로 구조화하고 접근권한을 관리합니다.',
+        bullets: [
+          '전자소송 PDF · 서식 자동화',
+          '전용 SFTP & DRM 배포',
+          'AI 보안 필터링으로 민감정보 보호'
+        ],
+        icon: '📚'
+      },
+      {
+        title: 'AI 어시스트 랩',
+        subtitle: '음성 복원 · 요약 · 번역',
+        description: '잡음 제거, 화자 분리, 요약, 다국어 번역을 지원하는 자체 파이프라인으로 처리 속도와 품질을 높입니다.',
+        bullets: [
+          '스마트 보정 + 수동 검수 결합',
+          '단락 요약 & 액션 아이템 추출',
+          '영·중·일 동시 번역'
+        ],
+        icon: '🤖'
+      },
+      {
+        title: '속기 인재 아카데미',
+        subtitle: '전문가 온보딩 & QA',
+        description: '10년차 이상 멘토가 신입 속기사를 양성하고 표준 QA 프로토콜을 공유합니다.',
+        bullets: [
+          '케이스 기반 집중 교육',
+          'QA 매뉴얼 & 스타일 가이드',
+          '실시간 피드백 대시보드'
+        ],
+        icon: '🎓'
+      }
+    ];
+    
+    // Experience data - 3줄로 분할
+    const credentials = [
+      '국무이리 목요대화 속기 수행',
+      '국가인권위원회 속기 수행',
+      '산업통상자원부 에너지위원회 속기 수행',
+      '교육부 교원간담회 속기 수행',
+      '인사혁신처 공무원 간담회 속기 수행',
+      '국가교육위원회 속기 수행',
+      '서울시 정책박람회 속기 수행',
+      '장애인이동편의증진 특별위원회 속기 수행',
+      '국무조정실 청년기본법 토론회 속기 수행',
+      '한국항만공사 속기 수행',
+      '정부혁신국민포럼 속기 수행',
+      '국회 진보당 중앙위원회 실시간 자막',
+      'APEC 경주 실시간 속기 수행',
+      '세계인권도시포럼 속기 수행',
+      '제10회 아시아미래포럼 속기 수행',
+      '유네스코 세계유산 해석 국제회의 속기 수행',
+      '제10회 문화예술세계대회 실시간 자막',
+      '한국인터넷거버넌스포럼 속기 수행',
+      '사회적기업 국제포럼 속기 수행',
+      '세계도시 혁신정책공유 심포지엄 속기 수행',
+      '보조공학 컨퍼런스 속기 수행',
+      'AI 시대 모두를 위한 교육 컨퍼런스 실시간 자막',
+      '체인지메이커 컨퍼런스 실시간 자막',
+      '연합뉴스TV 한미·한일 정상회담 동시통역 속기',
+      'MBC 미국 개표방송 실시간 자막',
+      'YTN 윤석열 미 의회 연설 특보 실시간 자막',
+      '서울국제도서전 실시간 자막',
+      '서울문화재단 속기 수행',
+      '서울장애인인권영화제 문자통역',
+      '한국영화진흥위원회 속기 수행',
+      '경희대학교 평화의전당 속기 수행',
+      '연세대학교 장애인권위원회 속기 수행',
+      '민주사회를 위한 변호사 모임 속기 수행',
+      '한국장애인개발원 속기 수행',
+      '파이콘 코리아 속기 수행',
+      'JSConf 속기 수행'
+    ];
+    
+    // Initialize states
+    let solutionIndex = 0;
+    
+    // Progress Bar
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1898,7 +1761,6 @@
         progressBar.style.height = scrollPercent + '%';
       }
       
-      // Hide scroll indicator after scrolling
       const scrollIndicator = document.querySelector('.scroll-indicator');
       if (scrollIndicator) {
         if (scrollTop > 100) {
@@ -1909,79 +1771,128 @@
       }
     });
     
-    // Scroll to Top Button
-    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    // Fixed Nav Scroll Behavior - 원본 복원
+    const fixedNavBlack = document.querySelector('.fixed-nav-black');
+    const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
+    const fixedNavLive = document.querySelector('.fixed-nav-live');
     
-    if (scrollToTopBtn) {
-      scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
+    if (fixedNavBlack && fixedNavYellow && fixedNavLive) {
+      ScrollTrigger.create({
+        start: 'top+=150 top',
+        end: 'max',
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            fixedNavBlack.classList.add('is-collapsed');
+            fixedNavYellow.classList.add('is-collapsed');
+            fixedNavLive.classList.add('is-collapsed');
+          } else {
+            fixedNavBlack.classList.remove('is-collapsed');
+            fixedNavYellow.classList.remove('is-collapsed');
+            fixedNavLive.classList.remove('is-collapsed');
+          }
+        }
       });
     }
     
-    // Hero Initial Animation
+    // Scroll to Top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Hero Animation
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
-      .to('.hero-badge', { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-      .to('.hero-title span', { opacity: 1, y: 0, stagger: 0.05, duration: 0.6 }, 0.4)
-      .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, 0.8)
-      .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8 }, 1);
+      .from('.hero-badge', { opacity: 0, y: 20, duration: 0.8 }, 0.2)
+      .from('.hero-title span', { opacity: 0, y: 20, stagger: 0.05, duration: 0.6 }, 0.4)
+      .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, 0.8)
+      .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 1);
     
-    // Hero Image Cards Click to Expand
-    const imgCards = document.querySelectorAll('.img-card');
-    let currentIndex = 0;
+    // Solutions Slider
+    function renderSolutions() {
+      const slider = document.getElementById('solutionsSlider');
+      slider.innerHTML = solutions.map((sol, i) => `
+        <div class="solution-slide ${i === solutionIndex ? 'active' : ''}">
+          <div class="solution-image">
+            <div style="font-size: 4rem;">${sol.icon}</div>
+          </div>
+          <div class="solution-content">
+            <div>
+              <span class="solution-tag">Center</span>
+              <h3 class="solution-title">${sol.title}</h3>
+              <p class="solution-subtitle">${sol.subtitle}</p>
+              <p class="solution-desc">${sol.description}</p>
+              <ul class="solution-bullets">
+                ${sol.bullets.map(bullet => `
+                  <li>
+                    <span class="offering-bullet"></span>
+                    <span>${bullet}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            <a href="#services" class="solution-link">
+              센터 소개 <span>→</span>
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      const indicators = document.getElementById('solutionIndicators');
+      indicators.innerHTML = solutions.map((_, i) => 
+        `<button class="slide-indicator ${i === solutionIndex ? 'active' : ''}" 
+                 onclick="setSolution(${i})"></button>`
+      ).join('');
+    }
     
-    imgCards.forEach((card, index) => {
-      card.addEventListener('click', () => {
-        if (card.classList.contains('active')) {
-          card.classList.remove('active');
-        } else {
-          imgCards.forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
-          currentIndex = index;
-        }
-      });
-    });
+    function setSolution(index) {
+      solutionIndex = index;
+      renderSolutions();
+    }
     
+    function changeSolution(direction) {
+      solutionIndex = (solutionIndex + direction + solutions.length) % solutions.length;
+      renderSolutions();
+    }
+    
+    // Auto-rotate solutions
     setInterval(() => {
-      imgCards.forEach(c => c.classList.remove('active'));
-      imgCards[currentIndex].classList.add('active');
-      currentIndex = (currentIndex + 1) % imgCards.length;
-    }, 5000);
+      changeSolution(1);
+    }, 8000);
     
-    // Section Main Titles Animation
-    gsap.utils.toArray('.section-main-title').forEach(title => {
-      gsap.fromTo(title,
-        { x: -100, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: title,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-            once: true
-          }
-        }
-      );
-    });
-    
-    // Highlights Cards
-    const highlightCards = document.querySelectorAll('.highlights .card');
-    highlightCards.forEach((card, i) => {
-      const img = card.querySelector('.card-img');
-      const label = card.querySelector('.card-label-vertical');
+    // Experience Marquee - 3줄로 분할
+    function renderCredentials() {
+      const itemsPerRow = Math.ceil(credentials.length / 3);
+      const row1 = credentials.slice(0, itemsPerRow);
+      const row2 = credentials.slice(itemsPerRow, itemsPerRow * 2);
+      const row3 = credentials.slice(itemsPerRow * 2);
       
+      // 무한 스크롤을 위해 복사
+      const row1HTML = [...row1, ...row1].map(cred => 
+        `<div class="experience-item">${cred}</div>`
+      ).join('');
+      
+      const row2HTML = [...row2, ...row2].map(cred => 
+        `<div class="experience-item">${cred}</div>`
+      ).join('');
+      
+      const row3HTML = [...row3, ...row3].map(cred => 
+        `<div class="experience-item">${cred}</div>`
+      ).join('');
+      
+      document.getElementById('experience-row-1').innerHTML = row1HTML;
+      document.getElementById('experience-row-2').innerHTML = row2HTML;
+      document.getElementById('experience-row-3').innerHTML = row3HTML;
+    }
+    
+    // Service Cards Animation
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, i) => {
       gsap.fromTo(card,
-        { y: 40, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 0.8,
           delay: i * 0.15,
           ease: 'power3.out',
           scrollTrigger: {
@@ -1992,62 +1903,161 @@
           }
         }
       );
-      
-      if (img) {
-        gsap.fromTo(img,
-          { scale: 1.3 },
-          {
-            scale: 1,
-            duration: 1.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              once: true
-            }
-          }
-        );
+    });
+    
+    // Services Section Title Animation
+    gsap.fromTo('.services-title',
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.services-header',
+          start: 'top 80%',
+          once: true
+        }
       }
-      
-      if (label) {
-        gsap.to(label, {
-          opacity: 1,
-          duration: 1,
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            once: true
-          }
-        });
+    );
+    
+    gsap.fromTo('.services-subtitle',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.services-header',
+          start: 'top 80%',
+          once: true
+        }
       }
-    });
+    );
     
-    // Careers Split Rows Animation (2 rows only)
-    gsap.to('.careers-row-1', {
-      x: '-100%',
-      duration: 30,
-      repeat: -1,
-      ease: 'none'
-    });
+    // Solutions Section Animation
+    gsap.fromTo('.section-label',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.solutions-header',
+          start: 'top 85%',
+          once: true
+        }
+      }
+    );
     
-    gsap.to('.careers-row-2', {
-      x: '-100%',
-      duration: 35,
-      repeat: -1,
-      ease: 'none'
-    });
+    gsap.fromTo('.section-title',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        delay: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.solutions-header',
+          start: 'top 85%',
+          once: true
+        }
+      }
+    );
     
-    // Values Cards
+    gsap.fromTo('.section-desc',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.solutions-header',
+          start: 'top 85%',
+          once: true
+        }
+      }
+    );
+    
+    gsap.fromTo('.solutions-slider',
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.solutions-slider',
+          start: 'top 85%',
+          once: true
+        }
+      }
+    );
+    
+    // Experience Section Animation
+    gsap.fromTo('.experience-header',
+      { x: -30, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.experience',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    gsap.fromTo('.experience-title',
+      { x: -40, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.7,
+        delay: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.experience',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    gsap.fromTo('.experience-track',
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        delay: 0.3,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.experience',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    // Values Cards Animation
     const valueCards = document.querySelectorAll('.values .value-card');
     valueCards.forEach((card, i) => {
       gsap.fromTo(card,
-        { y: 24, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          delay: i * 0.06,
+          duration: 0.7,
+          delay: i * 0.1,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.values',
@@ -2073,239 +2083,59 @@
       }
     });
     
-    // Fixed Nav Scroll Behavior
-    const fixedNavBlack = document.querySelector('.fixed-nav-black');
-    const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
-    
-    if (fixedNavBlack && fixedNavYellow) {
-      ScrollTrigger.create({
-        start: 'top+=150 top',
-        end: 'max',
-        onUpdate: (self) => {
-          if (self.direction === 1) {
-            fixedNavBlack.classList.add('is-collapsed');
-            fixedNavYellow.classList.add('is-collapsed');
-          } else {
-            fixedNavBlack.classList.remove('is-collapsed');
-            fixedNavYellow.classList.remove('is-collapsed');
-          }
+    // Values Title Animation
+    gsap.fromTo('.values-title',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.values-header',
+          start: 'top 80%',
+          once: true
         }
-      });
-    }
-    
-    // Service Card Expansion Effect
-    const serviceCardsAll = document.querySelectorAll('.service-card');
-    const serviceCover = document.getElementById('service-cover');
-    const serviceOpenContent = document.getElementById('service-open-content');
-    const serviceDetailContent = document.getElementById('service-detail-content');
-    const serviceCloseContent = document.getElementById('service-close-content');
-    let currentServiceCard = null;
-    let servicePageIsOpen = false;
-    
-    const serviceDetails = [
-      {
-        title: '법원 제출용 녹취록',
-        icon: '⚖',
-        content: `
-          <h3>서비스 개요</h3>
-          <p>모든 법원 소송 절차에 필요한 정확한 녹취록을 작성해드립니다. 민사, 형사, 가사, 행정 소송 등 모든 분야의 법원 제출용 녹취록을 표준 양식에 맞춰 정확하게 작성합니다.</p>
-          
-          <h3>주요 특징</h3>
-          <ul>
-            <li><strong>법원 인증</strong>: 대법원 지정 속기사 자격 보유</li>
-            <li><strong>표준 양식</strong>: 법원 제출용 표준 양식 완벽 준수</li>
-            <li><strong>2차 검수</strong>: 모든 녹취록은 2차 검수를 통해 오류 제로 달성</li>
-            <li><strong>빠른 납기</strong>: 표준 2-3일, 긴급 시 당일 작업 가능</li>
-          </ul>
-          
-          <h3>작업 프로세스</h3>
-          <p>1. 녹음 파일 접수 및 확인<br>
-          2. 1차 녹취 작업<br>
-          3. 2차 검수 및 교정<br>
-          4. 법원 양식 적용<br>
-          5. 최종 납품</p>
-          
-          <div class="price-box">
-            <p><strong>60분 기준 150,000원~</strong></p>
-            <p>음질, 화자 수, 전문 용어 사용 정도에 따라 변동</p>
-          </div>
-        `
-      },
-      {
-        title: '공식 회의록 작성',
-        icon: '📊',
-        content: `
-          <h3>서비스 개요</h3>
-          <p>주주총회, 이사회, 정책공청회 등 공식 회의의 모든 내용을 체계적으로 정리합니다. 법적 효력이 필요한 공식 문서로 작성됩니다.</p>
-          
-          <h3>주요 특징</h3>
-          <ul>
-            <li><strong>공식 문서</strong>: 법적 효력을 갖춘 공식 회의록 작성</li>
-            <li><strong>체계적 정리</strong>: 안건별, 발언자별 명확한 구분</li>
-            <li><strong>기밀 유지</strong>: 철저한 보안 및 기밀 유지</li>
-            <li><strong>신속 처리</strong>: 회의 종료 후 24시간 내 초안 제공</li>
-          </ul>
-          
-          <h3>적용 분야</h3>
-          <p>주주총회, 이사회, 노사협의회, 정책공청회, 학술 세미나, 전문가 포럼 등</p>
-          
-          <div class="price-box">
-            <p><strong>2시간 기준 200,000원~</strong></p>
-            <p>회의 시간 및 참석 인원에 따라 변동</p>
-          </div>
-        `
-      },
-      {
-        title: '현장 실시간 속기',
-        icon: '🎙',
-        content: `
-          <h3>서비스 개요</h3>
-          <p>컨퍼런스, 포럼, 세미나 등에 전문 속기사를 파견하여 현장에서 실시간으로 속기합니다. 행사 종료와 동시에 완성된 기록을 제공합니다.</p>
-          
-          <h3>주요 특징</h3>
-          <ul>
-            <li><strong>실시간 기록</strong>: 발언과 동시에 텍스트로 변환</li>
-            <li><strong>현장 투입</strong>: 전국 어디든 속기사 파견 가능</li>
-            <li><strong>즉시 납품</strong>: 행사 종료 후 1시간 내 정리본 제공</li>
-            <li><strong>장비 지원</strong>: 전문 속기 장비 일체 제공</li>
-          </ul>
-          
-          <h3>적용 분야</h3>
-          <p>국제 컨퍼런스, 학술 심포지엄, 기업 세미나, 정부 공청회, 기자 간담회 등</p>
-          
-          <div class="price-box">
-            <p><strong>반일(4시간) 기준 400,000원~</strong></p>
-            <p>전일(8시간) 700,000원~, 출장비 별도</p>
-          </div>
-        `
-      },
-      {
-        title: '전문 분야 녹취',
-        icon: '🔬',
-        content: `
-          <h3>서비스 개요</h3>
-          <p>의료, 특허, 건설, 금융 등 전문 분야의 용어에 능통한 속기사가 정확한 녹취를 제공합니다. 일반 녹취로는 불가능한 전문성이 요구되는 프로젝트에 최적화되어 있습니다.</p>
-          
-          <h3>주요 특징</h3>
-          <ul>
-            <li><strong>전문 용어 정확성</strong>: 각 분야 전문 용어 완벽 숙지</li>
-            <li><strong>분야별 전문가</strong>: 의료, 특허, 건설 등 분야별 전담 속기사 배정</li>
-            <li><strong>용어집 관리</strong>: 프로젝트별 전문 용어집 구축</li>
-            <li><strong>검수 시스템</strong>: 해당 분야 전문가 감수 가능</li>
-          </ul>
-          
-          <h3>적용 분야</h3>
-          <p>의료 소송, 특허 분쟁, 건설 중재, 금융 감사, 기술 자문, 학술 연구 등</p>
-          
-          <div class="price-box">
-            <p><strong>60분 기준 200,000원~</strong></p>
-            <p>전문성 수준 및 난이도에 따라 변동</p>
-          </div>
-        `
       }
-    ];
+    );
     
-    serviceCardsAll.forEach((card, index) => {
-      card.addEventListener('click', function() {
-        openServiceDetail(card, index);
-      });
-    });
-    
-    if (serviceCloseContent) {
-      serviceCloseContent.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeServiceDetail();
-      });
-    }
-    
-    function openServiceDetail(card, index) {
-      currentServiceCard = card;
-      
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      
-      card.classList.add('clicked');
-      
-      serviceCardsAll.forEach((c, i) => {
-        if (i !== index) {
-          setTimeout(() => {
-            c.classList.add('out');
-          }, 100 * i);
+    // Footer Animation
+    gsap.fromTo('.footer-content',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.footer',
+          start: 'top 85%',
+          once: true
         }
-      });
-      
-      setTimeout(() => {
-        animateServiceCoverUp(card, index);
-      }, 500);
-      
-      serviceOpenContent.classList.add('open');
-    }
+      }
+    );
     
-    function animateServiceCoverUp(card, index) {
-      const cardPosition = card.getBoundingClientRect();
-      const cardStyle = getComputedStyle(card);
-      
-      serviceCover.style.left = cardPosition.left + 'px';
-      serviceCover.style.top = cardPosition.top + 'px';
-      serviceCover.style.width = cardPosition.width + 'px';
-      serviceCover.style.height = cardPosition.height + 'px';
-      serviceCover.style.backgroundColor = cardStyle.backgroundColor;
-      
-      const scaleX = window.innerWidth / cardPosition.width;
-      const scaleY = window.innerHeight / cardPosition.height;
-      const offsetX = (window.innerWidth / 2 - cardPosition.width / 2 - cardPosition.left) / scaleX;
-      const offsetY = (window.innerHeight / 2 - cardPosition.height / 2 - cardPosition.top) / scaleY;
-      
-      serviceCover.style.transform = `scaleX(${scaleX}) scaleY(${scaleY}) translate3d(${offsetX}px, ${offsetY}px, 0px)`;
-      
-      serviceDetailContent.innerHTML = `
-        <div style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">${serviceDetails[index].icon}</div>
-        <h2>${serviceDetails[index].title}</h2>
-        ${serviceDetails[index].content}
-      `;
-      
-      setTimeout(() => {
-        serviceOpenContent.scrollTop = 0;
-        servicePageIsOpen = true;
-      }, 300);
-    }
+    gsap.fromTo('.footer-bottom',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.footer',
+          start: 'top 85%',
+          once: true
+        }
+      }
+    );
     
-    function closeServiceDetail() {
-      if (!currentServiceCard) return;
-      
-      serviceOpenContent.classList.remove('open');
-      
-      const cardPosition = currentServiceCard.getBoundingClientRect();
-      serviceCover.style.left = cardPosition.left + 'px';
-      serviceCover.style.top = cardPosition.top + 'px';
-      serviceCover.style.width = cardPosition.width + 'px';
-      serviceCover.style.height = cardPosition.height + 'px';
-      serviceCover.style.transform = 'scaleX(1) scaleY(1) translate3d(0px, 0px, 0px)';
-      
-      setTimeout(() => {
-        serviceDetailContent.innerHTML = '';
-        serviceCover.style.width = '0px';
-        serviceCover.style.height = '0px';
-        servicePageIsOpen = false;
-        
-        currentServiceCard.classList.remove('clicked');
-        serviceCardsAll.forEach((card, i) => {
-          setTimeout(() => {
-            card.classList.remove('out');
-          }, 100 * i);
-        });
-        
-        const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-        
-        currentServiceCard = null;
-      }, 301);
-    }
+    // Initialize on load
+    window.addEventListener('load', () => {
+      renderSolutions();
+      renderCredentials();
+    });
   </script>
 </body>
 </html>
