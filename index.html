@@ -672,36 +672,36 @@
     
     .hero-wave {
       position: absolute;
-      bottom: -50%;
-      left: -50%;
-      width: 100%;
-      height: 100%;
+      bottom: -100%;
+      left: -100%;
+      width: 200%;
+      height: 200%;
       border: 0.3px solid rgba(37, 99, 235, 0.12);
       border-radius: 50%;
       transform-origin: center;
       clip-path: polygon(50% 50%, 100% 50%, 100% 0%, 50% 0%);
-      will-change: transform;
+      animation: wave-simple 12s linear infinite;
     }
     
-    /* Optimized wave pattern with faster cycles */
-    .hero-wave:nth-child(1) { animation: wave-pulse-1 10s ease-in-out infinite; border-width: 0.5px; opacity: 0.5; }
-    .hero-wave:nth-child(2) { animation: wave-pulse-2 10.3s ease-in-out infinite; animation-delay: 0.25s; border-width: 0.45px; opacity: 0.48; }
-    .hero-wave:nth-child(3) { animation: wave-pulse-3 10.6s ease-in-out infinite; animation-delay: 0.5s; border-width: 0.4px; opacity: 0.46; }
-    .hero-wave:nth-child(4) { animation: wave-pulse-1 10.9s ease-in-out infinite; animation-delay: 0.75s; border-width: 0.38px; opacity: 0.44; }
-    .hero-wave:nth-child(5) { animation: wave-pulse-2 11.2s ease-in-out infinite; animation-delay: 1s; border-width: 0.36px; opacity: 0.42; }
-    .hero-wave:nth-child(6) { animation: wave-pulse-3 11.5s ease-in-out infinite; animation-delay: 1.25s; border-width: 0.34px; opacity: 0.4; }
-    .hero-wave:nth-child(7) { animation: wave-pulse-1 11.8s ease-in-out infinite; animation-delay: 1.5s; border-width: 0.32px; opacity: 0.38; }
-    .hero-wave:nth-child(8) { animation: wave-pulse-2 12.1s ease-in-out infinite; animation-delay: 1.75s; border-width: 0.3px; opacity: 0.36; }
-    .hero-wave:nth-child(9) { animation: wave-pulse-3 12.4s ease-in-out infinite; animation-delay: 2s; border-width: 0.28px; opacity: 0.34; }
-    .hero-wave:nth-child(10) { animation: wave-pulse-1 12.7s ease-in-out infinite; animation-delay: 2.25s; border-width: 0.26px; opacity: 0.32; }
-    .hero-wave:nth-child(11) { animation: wave-pulse-2 13s ease-in-out infinite; animation-delay: 2.5s; border-width: 0.24px; opacity: 0.3; }
-    .hero-wave:nth-child(12) { animation: wave-pulse-3 13.3s ease-in-out infinite; animation-delay: 2.75s; border-width: 0.22px; opacity: 0.28; }
-    .hero-wave:nth-child(13) { animation: wave-pulse-1 13.6s ease-in-out infinite; animation-delay: 3s; border-width: 0.2px; opacity: 0.26; }
-    .hero-wave:nth-child(14) { animation: wave-pulse-2 13.9s ease-in-out infinite; animation-delay: 3.25s; border-width: 0.18px; opacity: 0.24; }
-    .hero-wave:nth-child(15) { animation: wave-pulse-3 14.2s ease-in-out infinite; animation-delay: 3.5s; border-width: 0.16px; opacity: 0.22; }
-    .hero-wave:nth-child(16) { animation: wave-pulse-1 14.5s ease-in-out infinite; animation-delay: 3.75s; border-width: 0.14px; opacity: 0.2; }
-    .hero-wave:nth-child(17) { animation: wave-pulse-2 14.8s ease-in-out infinite; animation-delay: 4s; border-width: 0.12px; opacity: 0.18; }
-    .hero-wave:nth-child(18) { animation: wave-pulse-3 15.1s ease-in-out infinite; animation-delay: 4.25s; border-width: 0.1px; opacity: 0.16; }
+    /* Simple wave pattern without floating effect */
+    .hero-wave:nth-child(1) { animation-delay: 0s; border-width: 0.5px; opacity: 0.5; }
+    .hero-wave:nth-child(2) { animation-delay: 0.7s; border-width: 0.45px; opacity: 0.48; }
+    .hero-wave:nth-child(3) { animation-delay: 1.4s; border-width: 0.4px; opacity: 0.46; }
+    .hero-wave:nth-child(4) { animation-delay: 2.1s; border-width: 0.38px; opacity: 0.44; }
+    .hero-wave:nth-child(5) { animation-delay: 2.8s; border-width: 0.36px; opacity: 0.42; }
+    .hero-wave:nth-child(6) { animation-delay: 3.5s; border-width: 0.34px; opacity: 0.4; }
+    .hero-wave:nth-child(7) { animation-delay: 4.2s; border-width: 0.32px; opacity: 0.38; }
+    .hero-wave:nth-child(8) { animation-delay: 4.9s; border-width: 0.3px; opacity: 0.36; }
+    .hero-wave:nth-child(9) { animation-delay: 5.6s; border-width: 0.28px; opacity: 0.34; }
+    .hero-wave:nth-child(10) { animation-delay: 6.3s; border-width: 0.26px; opacity: 0.32; }
+    .hero-wave:nth-child(11) { animation-delay: 7s; border-width: 0.24px; opacity: 0.3; }
+    .hero-wave:nth-child(12) { animation-delay: 7.7s; border-width: 0.22px; opacity: 0.28; }
+    .hero-wave:nth-child(13) { animation-delay: 8.4s; border-width: 0.2px; opacity: 0.26; }
+    .hero-wave:nth-child(14) { animation-delay: 9.1s; border-width: 0.18px; opacity: 0.24; }
+    .hero-wave:nth-child(15) { animation-delay: 9.8s; border-width: 0.16px; opacity: 0.22; }
+    .hero-wave:nth-child(16) { animation-delay: 10.5s; border-width: 0.14px; opacity: 0.2; }
+    .hero-wave:nth-child(17) { animation-delay: 11.2s; border-width: 0.12px; opacity: 0.18; }
+    .hero-wave:nth-child(18) { animation-delay: 11.9s; border-width: 0.1px; opacity: 0.16; }
     
     /* Odd waves with stronger color */
     .hero-wave:nth-child(odd) {
@@ -718,36 +718,20 @@
       border-color: rgba(147, 197, 253, 0.12);
     }
     
-    @keyframes wave-pulse-1 {
-      0%, 100% {
-        transform: scale(0.95);
+    @keyframes wave-simple {
+      0% {
+        transform: scale(0.5);
         opacity: 0;
       }
-      50% {
-        transform: scale(1.5);
+      10% {
         opacity: 0.5;
       }
-    }
-    
-    @keyframes wave-pulse-2 {
-      0%, 100% {
-        transform: scale(0.92);
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: scale(1.3);
         opacity: 0;
-      }
-      50% {
-        transform: scale(1.45);
-        opacity: 0.4;
-      }
-    }
-    
-    @keyframes wave-pulse-3 {
-      0%, 100% {
-        transform: scale(0.97);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1.55);
-        opacity: 0.45;
       }
     }
     
@@ -780,6 +764,8 @@
       padding-right: 2rem;
       max-width: 650px;
       margin-left: 120px;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
     
     .hero-badge {
