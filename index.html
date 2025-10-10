@@ -330,6 +330,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     body {
@@ -338,15 +340,25 @@
       color: #000;
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
-    /* Anti-flicker styles */
+    /* Anti-flicker styles - ENHANCED */
     .hero-badge,
-    .hero-title span,
+    .hero-title .line-1,
+    .hero-title .line-2,
+    .hero-title .line-3,
     .hero-subtitle,
     .hero-cta {
-      opacity: 1 !important;
-      visibility: visible !important;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+    
+    .hero-wave {
+      will-change: transform, opacity;
     }
     
     .progress-indicator {
@@ -658,8 +670,7 @@
       background: #fff;
     }
     
-    /* REPLACE: Hero Waves */
-    /* Hero Wave Effect - Bottom Left Corner */
+    /* Hero Wave Effect - Bottom Left Corner - OPTIMIZED */
     .hero-wave-container {
       position: absolute;
       bottom: 0;
@@ -669,184 +680,196 @@
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
-      /* 1/4 원호를 위한 클리핑 - 우상향 */
       clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0, 0 100%);
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      will-change: transform;
     }
 
     .hero-wave {
       position: absolute;
       bottom: 0;
       left: 0;
-      /* 원의 중심을 좌하단 모서리로 설정 */
-      transform: translate(-50%, 50%);
+      transform: translate3d(-50%, 50%, 0);
       width: 100px;
       height: 100px;
-      border: 0.5px solid;
+      border-style: solid;
       border-radius: 50%;
       transform-origin: center;
-      will-change: width, height, opacity;
-      animation: wave-expand 16s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      will-change: transform, opacity;
+      animation: wave-expand 22s linear infinite;
+      animation-fill-mode: both;
+      opacity: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
-    /* 그룹 패턴: 드르르륵 (5개) - 쉼 - 드르르륵 (5개) - 쉼 - 드르르륵 (5개) */
-    
-    /* 첫 번째 그룹 (0-0.8초) - 시작을 흐리게 */
+    /* 더 촘촘한 파동 패턴 - 20개 - OPTIMIZED */
     .hero-wave:nth-child(1) { 
       animation-delay: 0s; 
-      border-color: rgba(37, 99, 235, 0.2); /* 더 흐리게 시작 */
-      border-width: 0.35px;
+      border-color: rgba(37, 99, 235, 0.08);
+      border-width: 0.2px;
     }
     .hero-wave:nth-child(2) { 
-      animation-delay: 0.15s; 
-      border-color: rgba(59, 130, 246, 0.22);
-      border-width: 0.35px;
+      animation-delay: 0.5s; 
+      border-color: rgba(59, 130, 246, 0.09);
+      border-width: 0.2px;
     }
     .hero-wave:nth-child(3) { 
-      animation-delay: 0.3s; 
-      border-color: rgba(147, 197, 253, 0.25);
-      border-width: 0.4px;
+      animation-delay: 1s; 
+      border-color: rgba(147, 197, 253, 0.1);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(4) { 
-      animation-delay: 0.45s; 
-      border-color: rgba(37, 99, 235, 0.28);
-      border-width: 0.4px;
+      animation-delay: 1.5s; 
+      border-color: rgba(37, 99, 235, 0.09);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(5) { 
-      animation-delay: 0.6s; 
-      border-color: rgba(59, 130, 246, 0.3);
-      border-width: 0.45px;
+      animation-delay: 2s; 
+      border-color: rgba(59, 130, 246, 0.1);
+      border-width: 0.25px;
     }
-    
-    /* 휴지기 후 두 번째 그룹 (5.5-6.3초) */
     .hero-wave:nth-child(6) { 
-      animation-delay: 5.5s; 
-      border-color: rgba(147, 197, 253, 0.25);
-      border-width: 0.35px;
+      animation-delay: 2.5s; 
+      border-color: rgba(147, 197, 253, 0.09);
+      border-width: 0.2px;
     }
     .hero-wave:nth-child(7) { 
-      animation-delay: 5.65s; 
-      border-color: rgba(37, 99, 235, 0.3);
-      border-width: 0.4px;
+      animation-delay: 3s; 
+      border-color: rgba(37, 99, 235, 0.1);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(8) { 
-      animation-delay: 5.8s; 
-      border-color: rgba(59, 130, 246, 0.32);
-      border-width: 0.4px;
+      animation-delay: 3.5s; 
+      border-color: rgba(59, 130, 246, 0.11);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(9) { 
-      animation-delay: 5.95s; 
-      border-color: rgba(147, 197, 253, 0.35);
-      border-width: 0.45px;
+      animation-delay: 4s; 
+      border-color: rgba(147, 197, 253, 0.12);
+      border-width: 0.3px;
     }
     .hero-wave:nth-child(10) { 
-      animation-delay: 6.1s; 
-      border-color: rgba(37, 99, 235, 0.38);
-      border-width: 0.45px;
+      animation-delay: 4.5s; 
+      border-color: rgba(37, 99, 235, 0.13);
+      border-width: 0.3px;
     }
-    
-    /* 휴지기 후 세 번째 그룹 (11-11.8초) */
     .hero-wave:nth-child(11) { 
-      animation-delay: 11s; 
-      border-color: rgba(59, 130, 246, 0.28);
-      border-width: 0.35px;
+      animation-delay: 7s; 
+      border-color: rgba(59, 130, 246, 0.09);
+      border-width: 0.2px;
     }
     .hero-wave:nth-child(12) { 
-      animation-delay: 11.15s; 
-      border-color: rgba(147, 197, 253, 0.3);
-      border-width: 0.4px;
+      animation-delay: 7.5s; 
+      border-color: rgba(147, 197, 253, 0.1);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(13) { 
-      animation-delay: 11.3s; 
-      border-color: rgba(37, 99, 235, 0.32);
-      border-width: 0.4px;
+      animation-delay: 8s; 
+      border-color: rgba(37, 99, 235, 0.11);
+      border-width: 0.25px;
     }
     .hero-wave:nth-child(14) { 
-      animation-delay: 11.45s; 
-      border-color: rgba(59, 130, 246, 0.35);
-      border-width: 0.45px;
+      animation-delay: 8.5s; 
+      border-color: rgba(59, 130, 246, 0.12);
+      border-width: 0.3px;
     }
     .hero-wave:nth-child(15) { 
-      animation-delay: 11.6s; 
-      border-color: rgba(147, 197, 253, 0.38);
-      border-width: 0.45px;
+      animation-delay: 9s; 
+      border-color: rgba(147, 197, 253, 0.13);
+      border-width: 0.3px;
+    }
+    .hero-wave:nth-child(16) { 
+      animation-delay: 14s; 
+      border-color: rgba(37, 99, 235, 0.08);
+      border-width: 0.2px;
+    }
+    .hero-wave:nth-child(17) { 
+      animation-delay: 14.5s; 
+      border-color: rgba(59, 130, 246, 0.09);
+      border-width: 0.25px;
+    }
+    .hero-wave:nth-child(18) { 
+      animation-delay: 15s; 
+      border-color: rgba(147, 197, 253, 0.1);
+      border-width: 0.25px;
+    }
+    .hero-wave:nth-child(19) { 
+      animation-delay: 15.5s; 
+      border-color: rgba(37, 99, 235, 0.11);
+      border-width: 0.3px;
+    }
+    .hero-wave:nth-child(20) { 
+      animation-delay: 16s; 
+      border-color: rgba(59, 130, 246, 0.12);
+      border-width: 0.3px;
     }
 
-    /* Hide extra waves if they exist in HTML */
-    .hero-wave:nth-child(n+16) {
-      display: none;
-    }
-
-    /* Main wave animation - 시작을 더 부드럽게 */
+    /* Main wave animation - VISIBLE */
     @keyframes wave-expand {
       0% {
-        width: 100px;
-        height: 100px;
+        transform: translate3d(-50%, 50%, 0) scale(1);
         opacity: 0;
       }
       3% {
-        opacity: 0.3; /* 시작을 흐리게 */
-      }
-      8% {
-        opacity: 0.6; /* 서서히 진해짐 */
-      }
-      50% {
         opacity: 0.2;
       }
+      6% {
+        opacity: 0.3;
+      }
+      12% {
+        opacity: 0.4;
+      }
+      40% {
+        opacity: 0.25;
+      }
+      70% {
+        opacity: 0.1;
+      }
+      85% {
+        opacity: 0;
+        transform: translate3d(-50%, 50%, 0) scale(22);
+      }
       100% {
-        width: 1800px;
-        height: 1800px;
+        transform: translate3d(-50%, 50%, 0) scale(24);
         opacity: 0;
       }
     }
 
     /* Dark mode adjustments */
-    .dark-mode .hero-wave:nth-child(1),
-    .dark-mode .hero-wave:nth-child(4),
-    .dark-mode .hero-wave:nth-child(7) {
-      border-color: rgba(96, 165, 250, 0.45);
-    }
-
-    .dark-mode .hero-wave:nth-child(2),
-    .dark-mode .hero-wave:nth-child(5),
-    .dark-mode .hero-wave:nth-child(8) {
-      border-color: rgba(147, 197, 253, 0.4);
-    }
-
-    .dark-mode .hero-wave:nth-child(3),
-    .dark-mode .hero-wave:nth-child(6) {
-      border-color: rgba(191, 219, 254, 0.35);
+    .dark-mode .hero-wave {
+      border-color: rgba(96, 165, 250, 0.35);
+      border-width: 0.5px;
     }
 
     /* Tablet responsive (≤1024px) */
     @media (max-width: 1024px) {
       .hero-wave {
-        animation-duration: 8s;
+        animation-duration: 15s;
       }
-      
-      .hero-wave:nth-child(1) { border-width: 0.45px; }
-      .hero-wave:nth-child(2) { border-width: 0.4px; }
-      .hero-wave:nth-child(3) { border-width: 0.35px; }
-      .hero-wave:nth-child(4) { border-width: 0.4px; }
-      .hero-wave:nth-child(5) { border-width: 0.35px; }
-      .hero-wave:nth-child(6) { border-width: 0.3px; }
-      .hero-wave:nth-child(7) { border-width: 0.35px; }
-      .hero-wave:nth-child(8) { border-width: 0.3px; }
       
       @keyframes wave-expand {
         0% {
-          width: 80px;
-          height: 80px;
+          transform: translate3d(-50%, 50%, 0) scale(1);
           opacity: 0;
         }
-        10% {
-          opacity: 0.7;
-        }
-        60% {
+        5% {
           opacity: 0.25;
         }
+        10% {
+          opacity: 0.35;
+        }
+        60% {
+          opacity: 0.15;
+        }
+        80% {
+          opacity: 0;
+          transform: translate3d(-50%, 50%, 0) scale(16);
+        }
         100% {
-          width: 1600px;
-          height: 1600px;
+          transform: translate3d(-50%, 50%, 0) scale(18);
           opacity: 0;
         }
       }
@@ -855,33 +878,29 @@
     /* Mobile responsive (≤768px) */
     @media (max-width: 768px) {
       .hero-wave {
-        animation-duration: 7s;
+        animation-duration: 12s;
       }
-      
-      .hero-wave:nth-child(1) { border-width: 0.4px; }
-      .hero-wave:nth-child(2) { border-width: 0.35px; }
-      .hero-wave:nth-child(3) { border-width: 0.3px; }
-      .hero-wave:nth-child(4) { border-width: 0.35px; }
-      .hero-wave:nth-child(5) { border-width: 0.3px; }
-      .hero-wave:nth-child(6) { border-width: 0.25px; }
-      .hero-wave:nth-child(7) { border-width: 0.3px; }
-      .hero-wave:nth-child(8) { border-width: 0.25px; }
       
       @keyframes wave-expand {
         0% {
-          width: 60px;
-          height: 60px;
+          transform: translate3d(-50%, 50%, 0) scale(1);
           opacity: 0;
         }
-        10% {
-          opacity: 0.6;
-        }
-        50% {
+        5% {
           opacity: 0.2;
         }
+        10% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.12;
+        }
+        75% {
+          opacity: 0;
+          transform: translate3d(-50%, 50%, 0) scale(12);
+        }
         100% {
-          width: 1200px;
-          height: 1200px;
+          transform: translate3d(-50%, 50%, 0) scale(14);
           opacity: 0;
         }
       }
@@ -890,23 +909,11 @@
     /* Accessibility: Reduce motion for users who prefer it */
     @media (prefers-reduced-motion: reduce) {
       .hero-wave {
-        animation: wave-expand-reduced 15s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      }
-      
-      @keyframes wave-expand-reduced {
-        0%, 100% {
-          width: 400px;
-          height: 400px;
-          opacity: 0.15;
-        }
-        50% {
-          width: 600px;
-          height: 600px;
-          opacity: 0.2;
-        }
+        animation: none;
+        opacity: 0.05;
       }
     }
-    /* REPLACE: Hero Waves END */
+    /* Hero Waves END */
     
     /* Hero Container - Updated Layout */
     .hero-container {
@@ -929,6 +936,8 @@
       padding-bottom: 40px;
       position: relative;
       z-index: 3;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
     
     .hero-badge {
@@ -945,6 +954,7 @@
       position: relative;
       z-index: 2;
       background: rgba(255, 255, 255, 0.9);
+      transform: translateZ(0);
     }
     
     .hero-badge::before {
@@ -972,32 +982,39 @@
       display: block;
       text-align: left;
       overflow: hidden;
+      will-change: transform, opacity;
     }
     
     .hero-title .line-1 {
-      animation: slideInFromLeft 0.8s ease-out forwards;
+      animation: slideInFromLeft 0.8s ease-out 0.1s forwards;
       opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+      animation-fill-mode: both;
     }
     
     .hero-title .line-2 {
       margin-left: 6rem;
-      animation: slideInFromLeft 0.8s ease-out 0.2s forwards;
+      animation: slideInFromLeft 0.8s ease-out 0.3s forwards;
       opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+      animation-fill-mode: both;
     }
     
     .hero-title .line-3 {
       margin-left: 0;
-      animation: slideInFromLeft 0.8s ease-out 0.4s forwards;
+      animation: slideInFromLeft 0.8s ease-out 0.5s forwards;
       opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+      animation-fill-mode: both;
     }
     
     @keyframes slideInFromLeft {
       0% {
-        transform: translateX(-100%);
+        transform: translate3d(-100%, 0, 0);
         opacity: 0;
       }
       100% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
       }
     }
@@ -1054,9 +1071,12 @@
       align-items: center;
       justify-content: center;
       z-index: 2;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
-    /* Desk 3D Layout Styles - Integrated and Scaled */
+    /* Desk 3D Layout Styles - Updated with Text */
     .desk-theme-toggle {
       position: fixed;
       top: 24px;
@@ -1082,149 +1102,50 @@
       position: relative;
       z-index: 3;
       margin-top: 60px;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
-    /* Desk Sound Wave Effect */
-    .desk-soundwave-bg {
+    /* Floating Text above desk - ANIMATED WITH LOOP */
+    .desk-floating-text {
       position: absolute;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 2;
       pointer-events: none;
-      width: 200%;
-      height: 200%;
-      bottom: -50%;
-      left: -50%;
-      z-index: 0;
-      overflow: visible;
-      opacity: 0.6;
-      clip-path: circle(70% at 20% 100%);
+      width: 100%;
     }
-    
-    .desk-soundwave-bg circle {
-      fill: none;
-      stroke-width: 0.5;
-      transform-origin: 20% 80%;
+
+    .desk-floating-text-item {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
       opacity: 0;
-      cx: 160;
-      cy: 400;
-      animation-iteration-count: infinite;
-      animation-timing-function: cubic-bezier(0.25, 0, 0.35, 1);
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0s 0.8s;
     }
-    
-    .desk-soundwave-bg circle:nth-child(odd) {
-      stroke: rgba(37, 99, 235, 0.2);
-      animation-name: desk-wave-pulse-strong;
+
+    .desk-floating-text-item.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.8s ease, visibility 0s 0s;
     }
-    
-    .desk-soundwave-bg circle:nth-child(even) {
-      stroke: rgba(59, 130, 246, 0.15);
-      animation-name: desk-wave-pulse;
+
+    .desk-floating-text h3 {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.06);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    
-    .desk-soundwave-bg circle:nth-child(3n) {
-      stroke: rgba(96, 165, 250, 0.18);
-      stroke-width: 0.35;
-      animation-name: desk-wave-pulse-medium;
-    }
-    
-    .desk-soundwave-bg circle:nth-child(1) { r: 80; animation-delay: 0s; animation-duration: 4s; }
-    .desk-soundwave-bg circle:nth-child(2) { r: 120; animation-delay: 0.2s; animation-duration: 4.3s; }
-    .desk-soundwave-bg circle:nth-child(3) { r: 160; animation-delay: 0.4s; animation-duration: 4.6s; }
-    .desk-soundwave-bg circle:nth-child(4) { r: 200; animation-delay: 0.6s; animation-duration: 4.9s; }
-    .desk-soundwave-bg circle:nth-child(5) { r: 240; animation-delay: 0.8s; animation-duration: 5.2s; }
-    .desk-soundwave-bg circle:nth-child(6) { r: 280; animation-delay: 1s; animation-duration: 5.5s; }
-    .desk-soundwave-bg circle:nth-child(7) { r: 320; animation-delay: 1.2s; animation-duration: 5.8s; }
-    .desk-soundwave-bg circle:nth-child(8) { r: 360; animation-delay: 1.4s; animation-duration: 6.1s; }
-    .desk-soundwave-bg circle:nth-child(9) { r: 400; animation-delay: 1.6s; animation-duration: 6.4s; }
-    .desk-soundwave-bg circle:nth-child(10) { r: 440; animation-delay: 1.8s; animation-duration: 6.7s; }
-    .desk-soundwave-bg circle:nth-child(11) { r: 480; animation-delay: 2s; animation-duration: 7s; }
-    .desk-soundwave-bg circle:nth-child(12) { r: 520; animation-delay: 2.2s; animation-duration: 7.3s; }
-    .desk-soundwave-bg circle:nth-child(13) { r: 560; animation-delay: 2.4s; animation-duration: 7.6s; }
-    .desk-soundwave-bg circle:nth-child(14) { r: 600; animation-delay: 2.6s; animation-duration: 7.9s; }
-    .desk-soundwave-bg circle:nth-child(15) { r: 640; animation-delay: 2.8s; animation-duration: 8.2s; }
-    
-    @keyframes desk-wave-pulse {
-      0% {
-        transform: scale(0.5);
-        opacity: 0;
-        stroke-width: 1;
-      }
-      15% {
-        opacity: 0.4;
-        stroke-width: 0.8;
-      }
-      30% {
-        transform: scale(1);
-        opacity: 0.6;
-        stroke-width: 0.6;
-      }
-      60% {
-        transform: scale(1.4);
-        opacity: 0.3;
-        stroke-width: 0.4;
-      }
-      100% {
-        transform: scale(1.8);
-        opacity: 0;
-        stroke-width: 0.2;
-      }
-    }
-    
-    @keyframes desk-wave-pulse-strong {
-      0% {
-        transform: scale(0.4);
-        opacity: 0;
-        stroke-width: 1.2;
-      }
-      10% {
-        opacity: 0.6;
-        stroke-width: 1;
-      }
-      25% {
-        transform: scale(0.9);
-        opacity: 0.8;
-        stroke-width: 0.8;
-      }
-      50% {
-        transform: scale(1.3);
-        opacity: 0.5;
-        stroke-width: 0.6;
-      }
-      75% {
-        transform: scale(1.6);
-        opacity: 0.2;
-        stroke-width: 0.4;
-      }
-      100% {
-        transform: scale(2);
-        opacity: 0;
-        stroke-width: 0.2;
-      }
-    }
-    
-    @keyframes desk-wave-pulse-medium {
-      0% {
-        transform: scale(0.45) rotate(0deg);
-        opacity: 0;
-        stroke-width: 1;
-      }
-      20% {
-        opacity: 0.5;
-        stroke-width: 0.7;
-      }
-      40% {
-        transform: scale(1.1) rotate(10deg);
-        opacity: 0.7;
-        stroke-width: 0.5;
-      }
-      70% {
-        transform: scale(1.5) rotate(15deg);
-        opacity: 0.35;
-        stroke-width: 0.35;
-      }
-      100% {
-        transform: scale(1.9) rotate(20deg);
-        opacity: 0;
-        stroke-width: 0.2;
-      }
+
+    .dark-mode .desk-floating-text h3 {
+      color: rgba(255, 255, 255, 0.06);
     }
 
     .desk-container {
@@ -1237,45 +1158,6 @@
       z-index: 1;
     }
     
-    /* Spotlight effect for active item */
-    .desk-container::before {
-      content: '';
-      position: absolute;
-      bottom: 140px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
-      border-radius: 50%;
-      opacity: 0;
-      transition: all 0.8s ease;
-      pointer-events: none;
-      z-index: 19;
-    }
-    
-    .desk-container.spotlight-recorder::before {
-      transform: translateX(calc(-50% - 150px));
-      opacity: 1;
-    }
-    
-    .desk-container.spotlight-papers::before {
-      transform: translateX(calc(-50% - 50px));
-      opacity: 1;
-    }
-    
-    .desk-container.spotlight-microphone::before {
-      transform: translateX(calc(-50% + 50px));
-      opacity: 1;
-    }
-    
-    .desk-container.spotlight-monitor::before {
-      transform: translateX(calc(-50% + 150px));
-      opacity: 1;
-      width: 250px;
-      height: 250px;
-    }
-
     .desk {
       position: absolute;
       bottom: 180px;
@@ -1406,7 +1288,7 @@
     .shadow-microphone { width: 45px; }
     .shadow-monitor { width: 127px; }
 
-    /* Adjusted item descriptions positioning - moved more right */
+    /* Adjusted item descriptions positioning */
     .item-descriptions {
       position: absolute;
       bottom: -80px;
@@ -1431,13 +1313,14 @@
       font-size: 1rem;
       line-height: 1.65;
       color: var(--desk-text-color);
-      transition: none;
+      transition: opacity 0.5s ease, visibility 0s 0.5s;
       pointer-events: none;
     }
 
     .item-description.active {
       opacity: 1;
       visibility: visible;
+      transition: opacity 0.5s ease, visibility 0s 0s;
     }
 
     .item-description h3 {
@@ -1522,6 +1405,8 @@
       margin-right: auto;
       transition: all 0.3s ease, opacity 200ms linear, transform 200ms ease-out;
       cursor: pointer;
+      opacity: 0;
+      transform: translateY(60px);
     }
     
     .service-card-wrapper {
@@ -1682,13 +1567,13 @@
       background: #F9F9F9;
       opacity: 0;
       transform: translateY(40px);
-      min-height: 380px; /* Fixed height */
+      min-height: 380px;
     }
     
     .solution-slide {
       display: none;
       flex-direction: column;
-      min-height: 380px; /* Fixed height */
+      min-height: 380px;
       opacity: 0;
       transition: opacity 0.4s ease-in-out;
     }
@@ -1732,7 +1617,7 @@
     @media (min-width: 768px) {
       .solution-image {
         width: 45%;
-        height: 380px; /* Fixed height */
+        height: 380px;
       }
     }
     
@@ -1743,7 +1628,7 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 1rem;
-      min-height: 380px; /* Fixed height */
+      min-height: 380px;
     }
     
     .solution-tag {
@@ -2216,6 +2101,10 @@
         transform: scale(0.6);
       }
       
+      .desk-floating-text h3 {
+        font-size: 2.2rem;
+      }
+      
       .services-grid {
         grid-template-columns: 1fr;
       }
@@ -2254,6 +2143,10 @@
       
       .desk-3d-wrapper {
         transform: scale(0.5);
+      }
+      
+      .desk-floating-text h3 {
+        font-size: 1.8rem;
       }
       
       .service-column {
@@ -2385,11 +2278,8 @@
   </div>
 
   <div class="hero">
-    <!-- Quarter Circle Wave Effect - Hero Section Background (15 waves) -->
+    <!-- Quarter Circle Wave Effect - Hero Section Background with 12 waves -->
     <div class="hero-wave-container">
-      <div class="hero-wave"></div>
-      <div class="hero-wave"></div>
-      <div class="hero-wave"></div>
       <div class="hero-wave"></div>
       <div class="hero-wave"></div>
       <div class="hero-wave"></div>
@@ -2427,6 +2317,22 @@
       
       <div class="hero-visual">
         <div class="desk-3d-wrapper">
+          <!-- Floating text above desk - SYNCED WITH ITEMS -->
+          <div class="desk-floating-text">
+            <div class="desk-floating-text-item" data-index="0">
+              <h3>Meeting Minutes</h3>
+            </div>
+            <div class="desk-floating-text-item" data-index="1">
+              <h3>Document Archive</h3>
+            </div>
+            <div class="desk-floating-text-item active" data-index="2">
+              <h3>Live Stenography</h3>
+            </div>
+            <div class="desk-floating-text-item" data-index="3">
+              <h3>Video Subtitles</h3>
+            </div>
+          </div>
+          
           <div class="desk-container">
             <div class="item-shadow">
               <div class="shadow-item shadow-recorder"></div>
@@ -2670,15 +2576,17 @@
       localStorage.setItem("desk-theme", body.classList.contains("dark-mode") ? "dark" : "light");
     });
 
-    // Auto-hover functionality - SLOWER with smooth transitions
+    // Auto-hover functionality - FIXED with proper interval management
     const deskItems = document.querySelectorAll(".items__item");
     const deskShadows = document.querySelectorAll(".shadow-item");
     const deskDescriptions = document.querySelectorAll(".item-description");
+    const deskFloatingTexts = document.querySelectorAll(".desk-floating-text-item");
     const deskContainer = document.querySelector(".desk-container");
     
     let currentIndex = 2; // Start with default item
-    let autoHoverInterval;
+    let autoHoverInterval = null;
     let isManualHover = false;
+    let isTransitioning = false;
 
     const shadowSizes = { 
       'shadow-recorder': 38, 
@@ -2711,42 +2619,41 @@
         const baseWidth = shadowSizes[className] || 70;
         gsap.to(shadow, { width: baseWidth, opacity: 0.85, duration: 0.8 });
       });
-      
-      // Remove all spotlight classes
-      deskContainer.classList.remove('spotlight-recorder', 'spotlight-papers', 'spotlight-microphone', 'spotlight-monitor');
     }
 
     function updateDeskDescription(itemIndex) {
-      // 모든 설명을 즉시 숨김
+      // Use a transition flag to prevent flickering
+      if (isTransitioning) return;
+      isTransitioning = true;
+      
+      // Hide all descriptions and floating texts
       deskDescriptions.forEach((desc) => {
-        const descIndex = desc.getAttribute("data-index");
-        if (descIndex !== itemIndex) {
-          desc.classList.remove("active");
-          desc.style.opacity = "0";
-        }
+        desc.classList.remove("active");
+      });
+      
+      deskFloatingTexts.forEach((text) => {
+        text.classList.remove("active");
       });
 
-      // 새로운 설명 표시
-      const activeDescription = document.querySelector(`.item-description[data-index="${itemIndex}"]`);
-      if (activeDescription) {
-        activeDescription.classList.add("active");
-        gsap.to(activeDescription, { 
-          opacity: 1, 
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
+      // Show new description and floating text after a brief delay
+      setTimeout(() => {
+        const activeDescription = document.querySelector(`.item-description[data-index="${itemIndex}"]`);
+        const activeFloatingText = document.querySelector(`.desk-floating-text-item[data-index="${itemIndex}"]`);
+        
+        if (activeDescription) {
+          activeDescription.classList.add("active");
+        }
+        
+        if (activeFloatingText) {
+          activeFloatingText.classList.add("active");
+        }
+        
+        isTransitioning = false;
+      }, 100);
     }
 
     function activateItem(item, idx) {
       resetAllDesk();
-      
-      // Add spotlight class based on item
-      const itemClass = item.classList[1]; // get item-recorder, item-papers, etc.
-      if (itemClass) {
-        const spotlightClass = 'spotlight-' + itemClass.replace('item-', '');
-        deskContainer.classList.add(spotlightClass);
-      }
       
       gsap.to(item, { 
         rotateY: -5,
@@ -2779,8 +2686,11 @@
       updateDeskDescription(item.getAttribute("data-index"));
     }
 
-    // Auto hover loop - SLOWER INTERVAL
+    // Auto hover loop - FIXED
     function startAutoHover() {
+      // Clear any existing interval first
+      stopAutoHover();
+      
       if (isManualHover) return;
       
       autoHoverInterval = setInterval(() => {
@@ -2788,11 +2698,11 @@
           currentIndex = (currentIndex + 1) % deskItems.length;
           activateItem(deskItems[currentIndex], currentIndex);
         }
-      }, 5000); // Changed from 3000 to 5000ms
+      }, 6000); // Consistent 6-second interval
     }
 
     function stopAutoHover() {
-      if (autoHoverInterval) {
+      if (autoHoverInterval !== null) {
         clearInterval(autoHoverInterval);
         autoHoverInterval = null;
       }
@@ -2810,17 +2720,19 @@
 
     deskContainer.addEventListener("mouseleave", () => {
       isManualHover = false;
-      // Resume auto hover after a short delay
+      // Resume auto hover after a longer delay
       setTimeout(() => {
         if (!isManualHover) {
           startAutoHover();
         }
-      }, 1500);
+      }, 2000);
     });
 
     // Initialize default item and start auto hover
     activateItem(deskItems[currentIndex], currentIndex);
-    startAutoHover();
+    setTimeout(() => {
+      startAutoHover();
+    }, 1000);
     
     // Quick Contact Modal Functions
     window.openQuickContact = function(event) {
@@ -2888,7 +2800,7 @@
       }
     });
     
-    // Solutions data - UPDATED
+    // Solutions data
     const solutions = [
       {
         title: '속기사가 직접 개발한 맞춤형 플랫폼',
@@ -3031,9 +2943,9 @@
     // Hero Animation
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
-      .from('.hero-badge', { opacity: 0, y: 20, duration: 0.8 }, 1.2)
-      .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, 1.4)
-      .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 1.6);
+      .from('.hero-badge', { opacity: 0, y: 20, duration: 0.6 }, 0.5)
+      .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.6 }, 0.8)
+      .from('.hero-cta', { opacity: 0, y: 20, duration: 0.6 }, 1.1);
     
     // Solutions Slider with fade effect
     function renderSolutions() {
@@ -3105,7 +3017,7 @@
       setSolution(newIndex);
     }
     
-    // Auto-rotate solutions with improved timing
+    // Auto-rotate solutions
     let solutionAutoRotate = setInterval(() => {
       changeSolution(1);
     }, 8000);
@@ -3134,7 +3046,7 @@
       document.getElementById('experience-row-3').innerHTML = row3HTML;
     }
     
-    // Service Cards Animation
+    // Service Cards Animation - FIXED
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach((card, i) => {
       gsap.fromTo(card,
@@ -3155,7 +3067,7 @@
       );
     });
     
-    // Section Animations
+    // Section Animations - COMPLETE
     gsap.fromTo('.services-title',
       { y: 40, opacity: 0 },
       {
