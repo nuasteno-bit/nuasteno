@@ -642,7 +642,7 @@
     .services-header {
       max-width: var(--maxw);
       margin: 0 auto 50px;
-      text-align: center;
+      text-align: left;
     }
     
     .services-title {
@@ -659,7 +659,6 @@
       font-size: 1rem;
       color: #666;
       max-width: 600px;
-      margin: 0 auto;
       opacity: 0;
       transform: translateY(30px);
     }
@@ -1426,9 +1425,9 @@
     </div>
   </div>
 
-  <a href="tel:02-3489-4433" class="fixed-nav-black">빠른접수</a>
+  <a href="#" class="fixed-nav-black" onclick="openQuickContact(event)">빠른접수</a>
   
-  <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
+  <a href="http://pf.kakao.com/_askxcn/chat" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
     </svg>
@@ -1565,7 +1564,7 @@
     <div class="solutions-header">
       <div>
         <p class="section-label">Solutions</p>
-        <h2 class="section-title">NUA 센터 & 솔루션</h2>
+        <h2 class="section-title">솔루션</h2>
         <p class="section-desc">
           현장 자막, 문서 아카이브, AI 보정, 교육까지 운영을 완성하는 센터 기반 서비스를 제공합니다.
         </p>
@@ -1670,7 +1669,8 @@
           '다국어 웹뷰어 & QR 접속',
           '실시간 품질 모니터링 대시보드'
         ],
-        icon: '📡'
+        icon: '📡',
+        image: 'card5.jpg'
       },
       {
         title: '문서 아카이브 센터',
@@ -1681,7 +1681,8 @@
           '전용 SFTP & DRM 배포',
           'AI 보안 필터링으로 민감정보 보호'
         ],
-        icon: '📚'
+        icon: '📚',
+        image: 'card6.jpg'
       },
       {
         title: 'AI 어시스트 랩',
@@ -1692,7 +1693,8 @@
           '단락 요약 & 액션 아이템 추출',
           '영·중·일 동시 번역'
         ],
-        icon: '🤖'
+        icon: '🤖',
+        image: 'card7.jpg'
       },
       {
         title: '속기 인재 아카데미',
@@ -1703,7 +1705,8 @@
           'QA 매뉴얼 & 스타일 가이드',
           '실시간 피드백 대시보드'
         ],
-        icon: '🎓'
+        icon: '🎓',
+        image: 'card8.jpg'
       }
     ];
     
@@ -1799,13 +1802,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Hero Animation
+    // Hero Animation - 슬라이드인 애니메이션 제거하고 CSS 애니메이션 활용
     const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTL
-      .from('.hero-badge', { opacity: 0, y: 20, duration: 0.8 }, 0.2)
-      .from('.hero-title span', { opacity: 0, y: 20, stagger: 0.05, duration: 0.6 }, 0.4)
-      .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, 0.8)
-      .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 1);
+      .from('.hero-badge', { opacity: 0, y: 20, duration: 0.8 }, 1.2)
+      .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.8 }, 1.4)
+      .from('.hero-cta', { opacity: 0, y: 20, duration: 0.8 }, 1.6);
     
     // Solutions Slider
     function renderSolutions() {
@@ -1813,7 +1815,9 @@
       slider.innerHTML = solutions.map((sol, i) => `
         <div class="solution-slide ${i === solutionIndex ? 'active' : ''}">
           <div class="solution-image">
-            <div style="font-size: 4rem;">${sol.icon}</div>
+            <img src="${sol.image}" alt="${sol.title}" 
+                 style="width: 100%; height: 100%; object-fit: cover;" 
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size: 4rem;\\'>${sol.icon}</div>'">
           </div>
           <div class="solution-content">
             <div>
