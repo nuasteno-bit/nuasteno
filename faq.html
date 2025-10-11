@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자주 묻는 질문 - 누아손기사무소</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Pretendard:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --maxw: 1200px;
+      --primary-color: #2563EB;
+      --primary-blue: #1e40af;
+      --primary-blue-light: #3b82f6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Header - Same as index.html */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 1.5rem 3rem;
+    }
+    
+    .header-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      font-family: 'Noto Serif KR', serif;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -1px;
+      position: relative;
+      margin-left: 2rem;
+      display: inline-block;
+    }
+    
+    .logo-text,
+    .logo-hover {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .logo-text {
+      display: inline-block;
+    }
+    
+    .logo-hover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+      font-weight: 900;
+      letter-spacing: 4px;
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-text {
+      opacity: 0;
+      transform: scale(1.2);
+      filter: blur(10px);
+    }
+    
+    .logo:hover .logo-hover {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      filter: blur(0);
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 3rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    
+    .nav-link {
+      pointer-events: all;
+      color: #000;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
+    }
+    
+    .nav-link.active {
+      color: var(--primary-blue);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* FAQ Hero Section */
+    .faq-hero {
+      padding: 140px 3rem 60px;
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .faq-hero-container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .faq-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      border-radius: 100px;
+      word-break: keep-all;
+      white-space: nowrap;
+    }
+    
+    .faq-hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--primary-color);
+      border-radius: 50%;
+    }
+    
+    .faq-hero-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+      word-break: keep-all;
+    }
+    
+    .dot {
+      color: var(--primary-color);
+    }
+    
+    .faq-hero-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    /* Search Bar */
+    .faq-search-container {
+      padding: 2rem 3rem;
+      background: #fff;
+      position: sticky;
+      top: 90px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .faq-search-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .faq-search-input {
+      width: 100%;
+      padding: 1.25rem 3.5rem 1.25rem 1.5rem;
+      font-size: 1rem;
+      border: 2px solid rgba(0,0,0,0.08);
+      border-radius: 100px;
+      outline: none;
+      transition: all 0.3s ease;
+      font-family: 'Pretendard', sans-serif;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .faq-search-input::placeholder {
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .faq-search-input:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+    
+    .faq-search-icon {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    /* Category Tabs - 여기만 수정 */
+    .faq-categories {
+      padding: 2rem 3rem 1rem;
+      background: #fff;
+    }
+    
+    .faq-categories-container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .faq-category-btn {
+      padding: 0.75rem 1.5rem;
+      background: #ffffff;
+      border: 1.5px solid rgba(0,0,0,0.25);
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Pretendard', sans-serif;
+      word-break: keep-all;
+      word-wrap: break-word;
+      white-space: nowrap;
+      transform: scale(1);
+    }
+    
+    .faq-category-btn:hover {
+      background: #f5f5f5;
+      border-color: rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    
+    .faq-category-btn.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      transform: scale(1);
+    }
+    
+    /* FAQ Content */
+    .faq-content {
+      padding: 3rem 3rem 6rem;
+      background: #fff;
+    }
+    
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .faq-group {
+      margin-bottom: 3rem;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .faq-group.animating {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .faq-group.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .faq-group-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .faq-group-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      background: rgba(0,0,0,0.01);
+    }
+    
+    .faq-question {
+      width: 100%;
+      padding: 1.75rem 3rem 1.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      font-family: 'Pretendard', sans-serif;
+      position: relative;
+      transition: background 0.2s ease;
+    }
+    
+    .faq-question:hover {
+      background: rgba(37, 99, 235, 0.02);
+    }
+    
+    .faq-question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #000;
+      line-height: 1.5;
+      flex: 1;
+      padding-left: 2.5rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+      transition: color 0.2s ease;
+    }
+    
+    .faq-item.active .faq-question-text {
+      color: var(--primary-blue);
+    }
+    
+    .faq-question-number {
+      position: absolute;
+      left: 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      opacity: 0.6;
+    }
+    
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: #000;
+      transition: all 0.3s;
+    }
+    
+    .faq-icon::before {
+      width: 100%;
+      height: 2px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+    
+    .faq-icon::after {
+      width: 2px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .faq-item.active .faq-answer {
+      transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .faq-answer-content {
+      padding: 0 1.5rem 2rem 1.5rem;
+      margin-left: 2.5rem;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #666;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    /* Highlight for search results */
+    .faq-item.highlight {
+      background: rgba(37, 99, 235, 0.04);
+      border-color: var(--primary-blue-light);
+      animation: highlightPulse 0.6s ease;
+    }
+    
+    @keyframes highlightPulse {
+      0% {
+        background: rgba(37, 99, 235, 0.15);
+        transform: scale(1.01);
+      }
+      100% {
+        background: rgba(37, 99, 235, 0.04);
+        transform: scale(1);
+      }
+    }
+    
+    .highlight-text {
+      background: rgba(255, 229, 0, 0.3);
+      padding: 0.1rem 0.2rem;
+      border-radius: 2px;
+    }
+    
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #999;
+      word-break: keep-all;
+      word-wrap: break-word;
+      display: none;
+      opacity: 0;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    
+    .no-results-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+      animation: bounce 2s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .no-results-text {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .no-results-hint {
+      font-size: 0.9rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    /* Footer - Same as index.html */
+    .footer {
+      background: #F7F7F7;
+      padding: 4rem 1.5rem;
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.7);
+    }
+    
+    .footer-container {
+      max-width: 1536px;
+      margin: 0 auto;
+    }
+    
+    .footer-content {
+      display: grid;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .footer-content {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+    
+    .footer-brand-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+      word-break: keep-all;
+    }
+    
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      color: #000;
+      margin-bottom: 1rem;
+      font-family: 'Noto Serif KR', serif;
+      word-break: keep-all;
+    }
+    
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .footer-section h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+      word-break: keep-all;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-section a {
+      color: rgba(0,0,0,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .footer-section a:hover {
+      color: #000;
+    }
+    
+    .footer-section p {
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.5);
+      word-break: keep-all;
+    }
+    
+    .footer-scroll-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .footer-scroll-btn:hover {
+      border-color: #000;
+    }
+    
+    /* Fixed Navigation Buttons */
+    .fixed-nav-yellow {
+      position: fixed;
+      right: 0;
+      top: 150px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #FEE500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .fixed-nav-yellow:hover {
+      background: #FDD835;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .logo {
+        font-size: 1.4rem;
+        margin-left: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .faq-hero {
+        padding: 120px 1.5rem 40px;
+      }
+      
+      .faq-search-container {
+        padding: 1.5rem;
+      }
+      
+      .faq-categories {
+        padding: 1.5rem 1.5rem 1rem;
+      }
+      
+      .faq-content {
+        padding: 2rem 1.5rem 4rem;
+      }
+      
+      .faq-question {
+        padding: 1.5rem 2.5rem 1.5rem 1rem;
+      }
+      
+      .faq-answer-content {
+        padding: 0 1rem 1.5rem 1rem;
+        margin-left: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-text">누아손기사무소</span>
+        <span class="logo-hover">NUA</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="about.html" class="nav-link">소개</a>
+        <a href="service.html" class="nav-link">서비스</a>
+        <a href="price.html" class="nav-link">요금안내</a>
+        <a href="faq.html" class="nav-link active">FAQ</a>
+        <a href="contact.html" class="nav-link">문의</a>
+      </nav>
+    </div>
+  </div>
+
+  <a href="http://pf.kakao.com/_askxcn/chat" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <section class="faq-hero">
+    <div class="faq-hero-container">
+      <div class="faq-hero-badge">자주 묻는 질문 30선</div>
+      <h1 class="faq-hero-title">
+        FAQ<span class="dot">.</span>
+      </h1>
+      <p class="faq-hero-subtitle">
+        법원 녹취부터 현장 속기까지, 고객님들이 가장 궁금해하시는 질문들을 모았습니다
+      </p>
+    </div>
+  </section>
+
+  <div class="faq-search-container">
+    <div class="faq-search-wrapper">
+      <input 
+        type="text" 
+        class="faq-search-input" 
+        id="faqSearch"
+        placeholder="궁금하신 내용을 검색하세요 (예: 법원, 비용, 납기)"
+      >
+      <svg class="faq-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="faq-categories">
+    <div class="faq-categories-container">
+      <button class="faq-category-btn active" data-category="all">전체</button>
+      <button class="faq-category-btn" data-category="basic">기본 서비스</button>
+      <button class="faq-category-btn" data-category="court">법원 제출용</button>
+      <button class="faq-category-btn" data-category="live">현장 속기/자막</button>
+      <button class="faq-category-btn" data-category="cost">비용 및 납기</button>
+      <button class="faq-category-btn" data-category="security">보안 및 품질</button>
+    </div>
+  </div>
+
+  <div class="faq-content">
+    <div class="faq-container" id="faqContainer">
+      <!-- 기본 서비스 관련 -->
+      <div class="faq-group" data-category="basic">
+        <h2 class="faq-group-title">기본 서비스 관련</h2>
+        
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q1</span>
+            <span class="faq-question-text">방문 없이 온라인으로만 의뢰해도 되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 가능합니다. 누아스튜디오 온라인 플랫폼을 통해 전국 어디서나 카카오톡, 이메일, 전화 상담만으로 접수부터 납품까지 모든 과정이 진행됩니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q2</span>
+            <span class="faq-question-text">녹취록과 회의록의 차이는 무엇인가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              녹취록은 이미 녹음된 음성파일을 문서화하는 것이고, 회의록은 현장에서 직접 회의 내용을 실시간으로 기록하는 것입니다. 저희는 두 가지 모두 제공합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q3</span>
+            <span class="faq-question-text">필요한 부분만 발췌해서 녹취록 작성이 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 가능합니다. 전체 녹음 중 필요한 시간대만 알려주시면 해당 부분만 작성하여 비용을 절감하실 수 있습니다. 단, 법원 제출용의 경우 상대방이 전체 녹음 제출을 요구할 수 있으니 참고하세요.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q4</span>
+            <span class="faq-question-text">녹취록 작성에 며칠 걸리나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              표준 납기는 2-3일입니다. 긴급한 경우 당일 또는 익일 작업도 가능합니다(긴급료 별도). 10분 미만 분량은 당일 16시 이전 접수 시 당일 완료 가능합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q5</span>
+            <span class="faq-question-text">외국어 녹취록도 작성 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 가능합니다. 영어, 중국어, 일본어 등 주요 언어의 녹취 및 번역을 언어 전문가와 협업하여 제공합니다. 언어별로 견적이 다르니 문의 주세요.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q6</span>
+            <span class="faq-question-text">음질이 안 좋아도 녹취가 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              10년 이상 경력의 전문 속기사들이 최대한 청취하여 작성합니다. 다만 음질 상태에 따라 작업 시간이 길어지거나 일부 내용이 '(알아들을 수 없음)' 처리될 수 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q7</span>
+            <span class="faq-question-text">대화자가 5명 이상인데 비용이 달라지나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 대화자가 많을수록 발언자 구분 작업이 복잡해져 추가 비용이 발생할 수 있습니다. 정확한 견적은 파일 확인 후 안내해드립니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="basic">
+          <button class="faq-question">
+            <span class="faq-question-number">Q8</span>
+            <span class="faq-question-text">여러 파일을 한꺼번에 의뢰하면 할인이 되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 대량 작업 시 할인 혜택을 드립니다. 총 녹음 시간과 파일 개수에 따라 협의 가능하니 문의 주세요.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 법원 제출용 녹취록 -->
+      <div class="faq-group" data-category="court">
+        <h2 class="faq-group-title">법원 제출용 녹취록</h2>
+        
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q9</span>
+            <span class="faq-question-text">법원 제출용 녹취록은 일반 녹취록과 다른가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 법원 제출용은 국가공인 속기사의 날인(도장)과 함께 특정 형식을 준수해야 합니다. 저희는 법원 제출 규격에 맞춰 제본 2부 + CD 1장 + PDF 파일로 제공합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q10</span>
+            <span class="faq-question-text">녹취록 작성 후 별도로 공증을 받아야 하나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              아니요, 국가공인 1급 속기사가 작성하고 날인한 녹취록은 별도 공증 없이 법원에 제출 가능합니다. 속기사 날인이 공증 역할을 합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q11</span>
+            <span class="faq-question-text">상대방 몰래 녹음한 것도 증거로 쓸 수 있나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              본인이 대화에 참여했다면 상대방 동의 없이 녹음해도 불법이 아닙니다. 단, 제3자가 타인 간 대화를 녹음한 것은 통신비밀보호법 위반입니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q12</span>
+            <span class="faq-question-text">전체 녹음 중 일부만 발췌해서 제출해도 되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 가능하지만 상대방이 전체 녹음 파일 제출을 요구할 수 있습니다. 부분 녹취 시 시간대를 명확히 표기하여 오해를 방지합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q13</span>
+            <span class="faq-question-text">녹취록은 어떤 형태로 납품되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              제본된 서류 2부, CD 1장, 전자소송용 PDF 파일을 제공합니다. 우편 발송 또는 직접 수령 가능하며, PDF는 이메일로 즉시 전송됩니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q14</span>
+            <span class="faq-question-text">법원에서 녹취록을 거부하면 어떻게 하나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              정식 속기사가 작성한 녹취록이 거부되는 경우는 거의 없습니다. 만약 형식 문제로 재작성이 필요하면 무상으로 수정해드립니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="court">
+          <button class="faq-question">
+            <span class="faq-question-number">Q15</span>
+            <span class="faq-question-text">검찰, 경찰, 노동청에도 제출 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 법원뿐 아니라 모든 사법기관 및 공공기관에 제출 가능한 형식으로 작성합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 현장 실시간 속기/자막 -->
+      <div class="faq-group" data-category="live">
+        <h2 class="faq-group-title">현장 실시간 속기/자막</h2>
+        
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q16</span>
+            <span class="faq-question-text">현장 실시간 자막은 어떤 방식으로 송출되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              2인 1조로 투입되어 한 명이 입력하는 동안 다른 한 명이 실시간 검수 및 교정을 진행합니다. 타이핑한 내용이 즉시 스크린, 모니터, 또는 온라인 플랫폼(Zoom, YouTube 등)에 표시됩니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q17</span>
+            <span class="faq-question-text">온라인 행사(Zoom, YouTube 라이브)도 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 완벽하게 가능합니다. 누아스튜디오의 투명 뷰어 시스템을 사용하여 발표자 화면이나 공유 자료를 가리지 않고 자막을 오버레이로 표시할 수 있습니다. 음성만 공유하시면 됩니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q18</span>
+            <span class="faq-question-text">원격 회의나 강의도 실시간 속기가 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, Zoom, Google Meet, Microsoft Teams 등 모든 화상회의 플랫폼에서 가능합니다. 속기사가 원격으로 참여하여 실시간 자막을 제공하며, 투명 뷰어로 화면 방해 없이 표시됩니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q19</span>
+            <span class="faq-question-text">실시간 자막의 정확도는 어느 정도인가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              10년 이상 경력의 전문 속기사 2명이 3역 시스템(입력-검수-송출)으로 작업하므로 99% 이상의 정확도를 보장합니다. AI 자동 자막과는 비교할 수 없는 수준입니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q20</span>
+            <span class="faq-question-text">행사 종료 후 속기록도 받을 수 있나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 요청 시 행사 종료와 동시에 또는 익일 전체 속기록을 정리하여 전달해드립니다. 실시간으로 작성된 내용이 자동 저장되므로 별도 작업 없이 제공 가능합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q21</span>
+            <span class="faq-question-text">여러 언어로 동시 송출이 가능한가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 한국어와 외국어(영어, 중국어 등)를 동시에 송출할 수 있습니다. 통역사와 협업하여 진행합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="live">
+          <button class="faq-question">
+            <span class="faq-question-number">Q22</span>
+            <span class="faq-question-text">투명 뷰어란 무엇인가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              일렉트론 기반의 투명 자막 창으로, PPT나 동영상 위에 자막만 떠 있어 발표 자료를 가리지 않습니다. 특히 온라인 강의나 화상회의에서 유용합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 비용 및 납기 -->
+      <div class="faq-group" data-category="cost">
+        <h2 class="faq-group-title">비용 및 납기</h2>
+        
+        <div class="faq-item" data-category="cost">
+          <button class="faq-question">
+            <span class="faq-question-number">Q23</span>
+            <span class="faq-question-text">비용은 어떻게 책정되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              통화 녹음과 현장 녹음으로 나뉘며, 녹음 시간, 음질, 대화자 수, 긴급도에 따라 달라집니다. 파일 전송 후 정확한 견적을 드립니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="cost">
+          <button class="faq-question">
+            <span class="faq-question-number">Q24</span>
+            <span class="faq-question-text">통화 녹음과 현장 녹음 요금이 왜 다른가요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              통화 녹음은 음질이 비교적 명확한 반면, 현장 녹음은 배경 소음, 여러 발언자의 목소리 구분 등 작업 난이도가 높아 요금 차이가 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="cost">
+          <button class="faq-question">
+            <span class="faq-question-number">Q25</span>
+            <span class="faq-question-text">긴급 작업 시 추가 비용이 있나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 당일 또는 익일 납품 요청 시 긴급 작업비가 추가됩니다. 표준 납기는 2-3일입니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="cost">
+          <button class="faq-question">
+            <span class="faq-question-number">Q26</span>
+            <span class="faq-question-text">결제는 어떻게 하나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              계좌 이체, 카드 결제, 현금 영수증 발행 가능합니다. 선입금 후 작업 진행을 원칙으로 하며, 정기 거래처는 후불도 협의 가능합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="cost">
+          <button class="faq-question">
+            <span class="faq-question-number">Q27</span>
+            <span class="faq-question-text">세금계산서 발행이 되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              네, 사업자 등록증이 있으시면 세금계산서 발행 가능합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 보안 및 품질 관리 -->
+      <div class="faq-group" data-category="security">
+        <h2 class="faq-group-title">보안 및 품질 관리</h2>
+        
+        <div class="faq-item" data-category="security">
+          <button class="faq-question">
+            <span class="faq-question-number">Q28</span>
+            <span class="faq-question-text">녹취 내용의 비밀은 보장되나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              모든 작업 내용은 철저히 비밀로 관리되며, 작업 완료 후 즉시 파일을 삭제합니다. 필요 시 별도 비밀유지 계약서를 작성합니다. 누아스튜디오 플랫폼의 채널 시스템은 암호화되어 보안이 철저합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="security">
+          <button class="faq-question">
+            <span class="faq-question-number">Q29</span>
+            <span class="faq-question-text">2인 1조 시스템은 어떻게 작동하나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              한 명(권한자)이 입력하는 동안 다른 한 명(대기자)이 실시간으로 화면을 보며 오타나 누락을 즉시 체크합니다. F7 키로 권한을 요청하여 교정할 수 있으며, 권한자도 F8 키로 교정을 요청할 수 있습니다. 이렇게 3역(입력-검수-송출)이 동시에 진행되어 최고의 정확도를 보장합니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="security">
+          <button class="faq-question">
+            <span class="faq-question-number">Q30</span>
+            <span class="faq-question-text">작업물의 품질은 어떻게 보증하나요?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              모든 속기사는 10년 이상의 경력자이며, 2인 1조 교차 검수 시스템으로 작업합니다. 초안 제공 후 고객님이 최종 승인하실 때까지 횟수 제한 없이 수정해드립니다. 최종 승인 후 추가 수정이 필요한 경우 범위에 따라 협의 가능합니다. 또한 누아스튜디오 플랫폼은 실시간 자동 백업 기능으로 작업 중 데이터 손실 위험이 전혀 없습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No results message (hidden by default) -->
+      <div class="no-results" id="noResults">
+        <div class="no-results-icon">🔍</div>
+        <div class="no-results-text">검색 결과가 없습니다</div>
+        <div class="no-results-hint">다른 키워드로 검색해보세요</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-brand-label">NUA STUDIO / NUA 손기사무소</p>
+          <h3>누아손기사무소</h3>
+          <p>서울특별시 가산디지털2로 173, 719호 (에이스비즈타워)</p>
+          <p>실시간 자막 · 속기 · 녹취록·회의록</p>
+          <p>Tel. 02-3489-4433</p>
+          <p>Email. nuasteno@gmail.com</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">보안/규격 준수</a></li>
+            <li><a href="#">납품·검수 기준</a></li>
+            <li><a href="contact.html">문의</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <p>최신 행사 운영 인사이트와 솔루션 업데이트를 받아보세요.</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 NUA STUDIO. All rights reserved.</p>
+        <button class="footer-scroll-btn" onclick="scrollToTop()">↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // FAQ Accordion with smooth animation
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        const wasActive = item.classList.contains('active');
+        
+        // Close other items in the same group with animation
+        const parent = item.closest('.faq-group');
+        if (parent) {
+          parent.querySelectorAll('.faq-item').forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+              otherItem.classList.remove('active');
+              // Animate close
+              const answer = otherItem.querySelector('.faq-answer');
+              answer.style.maxHeight = '0px';
+            }
+          });
+        }
+        
+        // Toggle current item with smooth animation
+        if (!wasActive) {
+          item.classList.add('active');
+          const answer = item.querySelector('.faq-answer');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          
+          // Smooth scroll to item
+          setTimeout(() => {
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        } else {
+          item.classList.remove('active');
+          const answer = item.querySelector('.faq-answer');
+          answer.style.maxHeight = '0px';
+        }
+      });
+    });
+    
+    // Category Filter with staggered animation
+    const categoryBtns = document.querySelectorAll('.faq-category-btn');
+    const allFaqGroups = document.querySelectorAll('.faq-group');
+    
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        
+        // Update active button with animation
+        categoryBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.transform = 'scale(1)';
+        });
+        btn.classList.add('active');
+        btn.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+          btn.style.transform = 'scale(1)';
+        }, 200);
+        
+        // Show/hide groups with animation
+        allFaqGroups.forEach(group => {
+          if (category === 'all') {
+            group.style.display = 'block';
+            group.classList.remove('animating');
+            group.classList.add('visible');
+          } else if (group.dataset.category === category) {
+            group.style.display = 'block';
+            group.classList.remove('animating');
+            group.classList.add('visible');
+          } else {
+            group.classList.add('animating');
+            setTimeout(() => {
+              group.style.display = 'none';
+            }, 300);
+          }
+        });
+        
+        // Check if any results
+        setTimeout(() => {
+          checkResults();
+        }, 200);
+      });
+    });
+    
+    // Search Function with highlight animation
+    const searchInput = document.getElementById('faqSearch');
+    const noResults = document.getElementById('noResults');
+    
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      let hasResults = false;
+      
+      if (searchTerm === '') {
+        // Reset all items
+        faqItems.forEach(item => {
+          item.style.display = 'block';
+          item.classList.remove('highlight');
+        });
+        allFaqGroups.forEach(group => {
+          group.style.display = 'block';
+          group.classList.remove('animating');
+          group.classList.add('visible');
+        });
+        noResults.style.display = 'none';
+        return;
+      }
+      
+      // Search and highlight with animation
+      faqItems.forEach((item, index) => {
+        const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+        const answerText = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+        
+        if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+          setTimeout(() => {
+            item.style.display = 'block';
+            item.classList.add('highlight');
+          }, index * 30);
+          hasResults = true;
+          
+          // Show parent group
+          const parent = item.closest('.faq-group');
+          if (parent) {
+            parent.style.display = 'block';
+            parent.classList.remove('animating');
+            parent.classList.add('visible');
+          }
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('highlight');
+        }
+      });
+      
+      // Hide empty groups
+      allFaqGroups.forEach(group => {
+        const visibleItems = group.querySelectorAll('.faq-item[style*="display: block"], .faq-item:not([style*="display"])');
+        const actuallyVisible = Array.from(visibleItems).filter(item => {
+          return item.style.display !== 'none';
+        });
+        if (actuallyVisible.length === 0) {
+          group.classList.add('animating');
+          setTimeout(() => {
+            group.style.display = 'none';
+          }, 300);
+        }
+      });
+      
+      // Show/hide no results message with animation
+      if (hasResults) {
+        noResults.style.display = 'none';
+      } else {
+        noResults.style.display = 'block';
+        noResults.style.animation = 'fadeInUp 0.5s ease forwards';
+      }
+    });
+    
+    function checkResults() {
+      const activeCategory = document.querySelector('.faq-category-btn.active').dataset.category;
+      let hasResults = false;
+      
+      allFaqGroups.forEach(group => {
+        if (activeCategory === 'all' || group.dataset.category === activeCategory) {
+          const items = group.querySelectorAll('.faq-item');
+          if (items.length > 0) {
+            hasResults = true;
+          }
+        }
+      });
+      
+      noResults.style.display = hasResults ? 'none' : 'block';
+    }
+    
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Hero animations
+    gsap.timeline()
+      .from('.faq-hero-badge', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, 0.2)
+      .from('.faq-hero-title', { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' }, 0.3)
+      .from('.faq-hero-subtitle', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, 0.5);
+    
+    // Search bar animation
+    gsap.from('.faq-search-container', {
+      opacity: 0,
+      y: -20,
+      duration: 0.6,
+      delay: 0.8,
+      ease: 'power2.out'
+    });
+    
+    // Category tabs animation - REMOVED (causing visibility issue)
+    
+    // FAQ groups scroll animation - REMOVED (causing content to disappear)
+  </script>
+</body>
+</html>
