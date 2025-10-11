@@ -670,7 +670,7 @@
       background: #fff;
     }
     
-    /* Hero Wave Effect - Bottom Left Corner - OPTIMIZED */
+    /* Hero Wave Effect - Bottom Left Corner - ENHANCED VISIBILITY */
     .hero-wave-container {
       position: absolute;
       bottom: 0;
@@ -705,128 +705,88 @@
       -webkit-backface-visibility: hidden;
     }
 
-    /* 더 촘촘한 파동 패턴 - 20개 - OPTIMIZED */
+    /* 더 뚜렷한 파동 패턴 - Opacity 2배 증가 */
     .hero-wave:nth-child(1) { 
       animation-delay: 0s; 
-      border-color: rgba(37, 99, 235, 0.08);
-      border-width: 0.2px;
+      border-color: rgba(37, 99, 235, 0.16);
+      border-width: 0.4px;
     }
     .hero-wave:nth-child(2) { 
       animation-delay: 0.5s; 
-      border-color: rgba(59, 130, 246, 0.09);
-      border-width: 0.2px;
+      border-color: rgba(59, 130, 246, 0.18);
+      border-width: 0.4px;
     }
     .hero-wave:nth-child(3) { 
       animation-delay: 1s; 
-      border-color: rgba(147, 197, 253, 0.1);
-      border-width: 0.25px;
+      border-color: rgba(147, 197, 253, 0.20);
+      border-width: 0.5px;
     }
     .hero-wave:nth-child(4) { 
       animation-delay: 1.5s; 
-      border-color: rgba(37, 99, 235, 0.09);
-      border-width: 0.25px;
+      border-color: rgba(37, 99, 235, 0.18);
+      border-width: 0.5px;
     }
     .hero-wave:nth-child(5) { 
       animation-delay: 2s; 
-      border-color: rgba(59, 130, 246, 0.1);
-      border-width: 0.25px;
+      border-color: rgba(59, 130, 246, 0.20);
+      border-width: 0.5px;
     }
     .hero-wave:nth-child(6) { 
       animation-delay: 2.5s; 
-      border-color: rgba(147, 197, 253, 0.09);
-      border-width: 0.2px;
+      border-color: rgba(147, 197, 253, 0.18);
+      border-width: 0.4px;
     }
     .hero-wave:nth-child(7) { 
       animation-delay: 3s; 
-      border-color: rgba(37, 99, 235, 0.1);
-      border-width: 0.25px;
+      border-color: rgba(37, 99, 235, 0.20);
+      border-width: 0.5px;
     }
     .hero-wave:nth-child(8) { 
       animation-delay: 3.5s; 
-      border-color: rgba(59, 130, 246, 0.11);
-      border-width: 0.25px;
+      border-color: rgba(59, 130, 246, 0.22);
+      border-width: 0.5px;
     }
     .hero-wave:nth-child(9) { 
       animation-delay: 4s; 
-      border-color: rgba(147, 197, 253, 0.12);
-      border-width: 0.3px;
+      border-color: rgba(147, 197, 253, 0.24);
+      border-width: 0.6px;
     }
     .hero-wave:nth-child(10) { 
       animation-delay: 4.5s; 
-      border-color: rgba(37, 99, 235, 0.13);
-      border-width: 0.3px;
+      border-color: rgba(37, 99, 235, 0.26);
+      border-width: 0.6px;
     }
     .hero-wave:nth-child(11) { 
       animation-delay: 7s; 
-      border-color: rgba(59, 130, 246, 0.09);
-      border-width: 0.2px;
+      border-color: rgba(59, 130, 246, 0.18);
+      border-width: 0.4px;
     }
     .hero-wave:nth-child(12) { 
       animation-delay: 7.5s; 
-      border-color: rgba(147, 197, 253, 0.1);
-      border-width: 0.25px;
-    }
-    .hero-wave:nth-child(13) { 
-      animation-delay: 8s; 
-      border-color: rgba(37, 99, 235, 0.11);
-      border-width: 0.25px;
-    }
-    .hero-wave:nth-child(14) { 
-      animation-delay: 8.5s; 
-      border-color: rgba(59, 130, 246, 0.12);
-      border-width: 0.3px;
-    }
-    .hero-wave:nth-child(15) { 
-      animation-delay: 9s; 
-      border-color: rgba(147, 197, 253, 0.13);
-      border-width: 0.3px;
-    }
-    .hero-wave:nth-child(16) { 
-      animation-delay: 14s; 
-      border-color: rgba(37, 99, 235, 0.08);
-      border-width: 0.2px;
-    }
-    .hero-wave:nth-child(17) { 
-      animation-delay: 14.5s; 
-      border-color: rgba(59, 130, 246, 0.09);
-      border-width: 0.25px;
-    }
-    .hero-wave:nth-child(18) { 
-      animation-delay: 15s; 
-      border-color: rgba(147, 197, 253, 0.1);
-      border-width: 0.25px;
-    }
-    .hero-wave:nth-child(19) { 
-      animation-delay: 15.5s; 
-      border-color: rgba(37, 99, 235, 0.11);
-      border-width: 0.3px;
-    }
-    .hero-wave:nth-child(20) { 
-      animation-delay: 16s; 
-      border-color: rgba(59, 130, 246, 0.12);
-      border-width: 0.3px;
+      border-color: rgba(147, 197, 253, 0.20);
+      border-width: 0.5px;
     }
 
-    /* Main wave animation - VISIBLE */
+    /* Main wave animation - More visible */
     @keyframes wave-expand {
       0% {
         transform: translate3d(-50%, 50%, 0) scale(1);
         opacity: 0;
       }
       3% {
-        opacity: 0.2;
-      }
-      6% {
-        opacity: 0.3;
-      }
-      12% {
         opacity: 0.4;
       }
+      6% {
+        opacity: 0.6;
+      }
+      12% {
+        opacity: 0.8;
+      }
       40% {
-        opacity: 0.25;
+        opacity: 0.5;
       }
       70% {
-        opacity: 0.1;
+        opacity: 0.2;
       }
       85% {
         opacity: 0;
@@ -840,8 +800,8 @@
 
     /* Dark mode adjustments */
     .dark-mode .hero-wave {
-      border-color: rgba(96, 165, 250, 0.35);
-      border-width: 0.5px;
+      border-color: rgba(96, 165, 250, 0.5);
+      border-width: 0.7px;
     }
 
     /* Tablet responsive (≤1024px) */
@@ -856,13 +816,13 @@
           opacity: 0;
         }
         5% {
-          opacity: 0.25;
+          opacity: 0.5;
         }
         10% {
-          opacity: 0.35;
+          opacity: 0.7;
         }
         60% {
-          opacity: 0.15;
+          opacity: 0.3;
         }
         80% {
           opacity: 0;
@@ -887,13 +847,13 @@
           opacity: 0;
         }
         5% {
-          opacity: 0.2;
+          opacity: 0.4;
         }
         10% {
-          opacity: 0.3;
+          opacity: 0.6;
         }
         50% {
-          opacity: 0.12;
+          opacity: 0.24;
         }
         75% {
           opacity: 0;
@@ -910,7 +870,7 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-wave {
         animation: none;
-        opacity: 0.05;
+        opacity: 0.1;
       }
     }
     /* Hero Waves END */
@@ -1107,10 +1067,10 @@
       -webkit-backface-visibility: hidden;
     }
 
-    /* Floating Text above desk - ANIMATED WITH LOOP */
+    /* Floating Text above desk - ENHANCED 2 LINES WITH LARGER SIZE */
     .desk-floating-text {
       position: absolute;
-      top: -180px;
+      top: -220px;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -1126,26 +1086,34 @@
       top: 0;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.8s ease, visibility 0s 0.8s;
+      transition: opacity 1s ease, visibility 0s 1s, transform 0.8s ease;
+      transform: translateY(10px);
     }
 
     .desk-floating-text-item.active {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.8s ease, visibility 0s 0s;
+      transform: translateY(0);
+      transition: opacity 1s ease, visibility 0s 0s, transform 0.8s ease;
     }
 
     .desk-floating-text h3 {
       font-family: 'Pretendard', sans-serif;
-      font-size: 3rem;
+      font-size: 4.5rem;
       font-weight: 700;
-      color: rgba(0, 0, 0, 0.06);
-      letter-spacing: 0.5px;
+      color: rgba(0, 0, 0, 0.08);
+      letter-spacing: 1px;
       text-transform: uppercase;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .desk-floating-text .text-line {
+      display: block;
     }
 
     .dark-mode .desk-floating-text h3 {
-      color: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.08);
     }
 
     .desk-container {
@@ -1855,6 +1823,161 @@
       margin-right: 1rem;
     }
     
+    /* FAQ Section - IMPROVED TEXT WRAPPING */
+    .faq-section {
+      padding: var(--section-padding) 3rem;
+      background: #fafafa;
+      position: relative;
+    }
+    
+    .faq-section-container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    
+    .faq-section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .faq-section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      border-radius: 100px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .faq-section-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--primary-color);
+      border-radius: 50%;
+    }
+    
+    .faq-section-title {
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 700;
+      font-family: 'Noto Serif KR', serif;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .faq-section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .faq-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .faq-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    
+    .faq-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--primary-color);
+      transition: height 0.4s;
+    }
+    
+    .faq-card:hover::before {
+      height: 100%;
+    }
+    
+    .faq-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: var(--primary-blue-light);
+    }
+    
+    .faq-card-header {
+      margin-bottom: 1rem;
+    }
+    
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #000;
+      font-family: 'Pretendard', sans-serif;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .faq-answer {
+      color: #666;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+    
+    .faq-more-link {
+      text-align: center;
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .faq-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .faq-more-btn:hover {
+      background: var(--primary-blue);
+      gap: 1rem;
+    }
+    
+    .faq-more-btn::after {
+      content: '→';
+      font-size: 1.2rem;
+    }
+    
     /* Values Section */
     .values {
       padding: var(--section-padding) 3rem;
@@ -1949,6 +2072,8 @@
       color: #666;
       line-height: 1.7;
       font-size: 0.9rem;
+      word-break: keep-all;
+      word-wrap: break-word;
     }
     
     /* Footer */
@@ -2102,7 +2227,7 @@
       }
       
       .desk-floating-text h3 {
-        font-size: 2.2rem;
+        font-size: 3rem;
       }
       
       .services-grid {
@@ -2134,6 +2259,10 @@
       .desk-theme-toggle {
         right: 70px;
       }
+      
+      .faq-cards {
+        grid-template-columns: 1fr;
+      }
     }
     
     @media (max-width: 768px) {
@@ -2146,7 +2275,7 @@
       }
       
       .desk-floating-text h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
       
       .service-column {
@@ -2163,6 +2292,10 @@
       
       .item-descriptions {
         left: 50%;
+      }
+      
+      .faq-section {
+        padding: 80px 1.5rem;
       }
     }
   </style>
@@ -2189,6 +2322,7 @@
         <a href="about.html" class="nav-link">소개</a>
         <a href="service.html" class="nav-link">서비스</a>
         <a href="price.html" class="nav-link">요금안내</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
         <a href="contact.html" class="nav-link">문의</a>
       </nav>
     </div>
@@ -2317,19 +2451,31 @@
       
       <div class="hero-visual">
         <div class="desk-3d-wrapper">
-          <!-- Floating text above desk - SYNCED WITH ITEMS -->
+          <!-- Floating text above desk - ENHANCED 2 LINES -->
           <div class="desk-floating-text">
             <div class="desk-floating-text-item" data-index="0">
-              <h3>Meeting Minutes</h3>
+              <h3>
+                <span class="text-line">Professional</span>
+                <span class="text-line">Meeting Minutes</span>
+              </h3>
             </div>
             <div class="desk-floating-text-item" data-index="1">
-              <h3>Document Archive</h3>
+              <h3>
+                <span class="text-line">Organized</span>
+                <span class="text-line">Document Archive</span>
+              </h3>
             </div>
             <div class="desk-floating-text-item active" data-index="2">
-              <h3>Live Stenography</h3>
+              <h3>
+                <span class="text-line">Real-time</span>
+                <span class="text-line">Live Stenography</span>
+              </h3>
             </div>
             <div class="desk-floating-text-item" data-index="3">
-              <h3>Video Subtitles</h3>
+              <h3>
+                <span class="text-line">Accurate</span>
+                <span class="text-line">Video Subtitles</span>
+              </h3>
             </div>
           </div>
           
@@ -2495,6 +2641,81 @@
         <div class="experience-row" id="experience-row-1"></div>
         <div class="experience-row" id="experience-row-2"></div>
         <div class="experience-row" id="experience-row-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <div class="faq-section-container">
+      <div class="faq-section-header">
+        <div class="faq-section-badge">자주 묻는 질문</div>
+        <h2 class="faq-section-title">FAQ<span class="dot">.</span></h2>
+        <p class="faq-section-subtitle">
+          고객님들이 가장 많이 문의하시는 내용을 정리했습니다
+        </p>
+      </div>
+      
+      <div class="faq-cards">
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">방문 없이 온라인으로만 의뢰해도 되나요?</h3>
+          </div>
+          <p class="faq-answer">
+            네, 가능합니다. 누아스튜디오 온라인 플랫폼을 통해 전국 어디서나 카카오톡, 이메일, 전화 상담만으로 접수부터 납품까지 모든 과정이 진행됩니다.
+          </p>
+        </div>
+        
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">녹취록 작성에 며칠 걸리나요?</h3>
+          </div>
+          <p class="faq-answer">
+            표준 납기는 2-3일입니다. 긴급한 경우 당일 또는 익일 작업도 가능합니다(긴급료 별도). 10분 미만 분량은 당일 16시 이전 접수 시 당일 완료 가능합니다.
+          </p>
+        </div>
+        
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">법원 제출용 녹취록은 일반 녹취록과 다른가요?</h3>
+          </div>
+          <p class="faq-answer">
+            네, 법원 제출용은 국가공인 속기사의 날인(도장)과 함께 특정 형식을 준수해야 합니다. 저희는 법원 제출 규격에 맞춰 제본 2부 + CD 1장 + PDF 파일로 제공합니다.
+          </p>
+        </div>
+        
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">실시간 자막의 정확도는 어느 정도인가요?</h3>
+          </div>
+          <p class="faq-answer">
+            10년 이상 경력의 전문 속기사 2명이 3역 시스템(입력-검수-송출)으로 작업하므로 99% 이상의 정확도를 보장합니다. AI 자동 자막과는 비교할 수 없는 수준입니다.
+          </p>
+        </div>
+        
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">비용은 어떻게 책정되나요?</h3>
+          </div>
+          <p class="faq-answer">
+            통화 녹음과 현장 녹음으로 나뉘며, 녹음 시간, 음질, 대화자 수, 긴급도에 따라 달라집니다. 파일 전송 후 정확한 견적을 드립니다.
+          </p>
+        </div>
+        
+        <div class="faq-card">
+          <div class="faq-card-header">
+            <h3 class="faq-question">녹취 내용의 비밀은 보장되나요?</h3>
+          </div>
+          <p class="faq-answer">
+            모든 작업 내용은 철저히 비밀로 관리되며, 작업 완료 후 즉시 파일을 삭제합니다. 필요 시 별도 비밀유지 계약서를 작성합니다. 누아스튜디오 플랫폼의 채널 시스템은 암호화되어 보안이 철저합니다.
+          </p>
+        </div>
+      </div>
+      
+      <div class="faq-more-link">
+        <a href="faq.html" class="faq-more-btn">
+          전체 FAQ 보기
+        </a>
       </div>
     </div>
   </div>
@@ -2821,7 +3042,7 @@
           '개인정보·보안·비밀유지 협약 철저 준수',
           '작업 이력의 추적 및 검증 가능 구조 구축'
         ],
-        icon: '📝',
+        icon: '🔒',
         image: 'card6.jpg'
       },
       {
@@ -3203,6 +3424,89 @@
         scrollTrigger: {
           trigger: '.experience',
           start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    // FAQ Section Animations
+    gsap.fromTo('.faq-section-badge',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.faq-section-header',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    gsap.fromTo('.faq-section-title',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.faq-section-header',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    gsap.fromTo('.faq-section-subtitle',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.faq-section-header',
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+    
+    const faqCards = document.querySelectorAll('.faq-card');
+    faqCards.forEach((card, i) => {
+      gsap.fromTo(card,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          delay: i * 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.faq-cards',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+            once: true
+          }
+        }
+      );
+    });
+    
+    gsap.fromTo('.faq-more-link',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.faq-more-link',
+          start: 'top 85%',
           once: true
         }
       }
