@@ -27,43 +27,50 @@
     
     <style>
         /* Reset CSS */
-        html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed, 
-        figure, figcaption, footer, header, hgroup, 
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
+        * {
             margin: 0;
             padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
+            box-sizing: border-box;
         }
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-            display: block;
+        
+        html, body {
+            margin: 0;
+            padding: 0;
         }
+        
+        html {
+            font-size: 16px;
+        }
+        
         body {
             line-height: 1; 
             font-family: 'Noto Sans KR', 'Pretendard', sans-serif;
         }
+        
         ol, ul {
             list-style: none;
         }
-        a {text-decoration:none; color: inherit;}
-        img {max-width: 100%; height: auto; vertical-align: top;}
+        
+        a {
+            text-decoration: none; 
+            color: inherit;
+        }
+        
+        img {
+            max-width: 100%; 
+            height: auto; 
+            vertical-align: top;
+        }
 
         /* Scroll styles */
-        html::-webkit-scrollbar {width: 8px;}
-        html::-webkit-scrollbar-thumb {background-color: #2f3542; border-radius: 10px;}
+        html::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        html::-webkit-scrollbar-thumb {
+            background-color: #2f3542; 
+            border-radius: 10px;
+        }
 
         /* Variables */
         :root {
@@ -74,10 +81,22 @@
         }
 
         /* General styles */
-        .wrap {margin: 0 auto; width: 95%;}
-        .wrap[max='1708'] {max-width: 1708px;}
-        .wrap[max='1440'] {max-width: 1440px;}
-        .wrap[max='1920'] {max-width: 1920px;}
+        .wrap {
+            margin: 0 auto; 
+            width: 95%;
+        }
+        
+        .wrap[max='1708'] {
+            max-width: 1708px;
+        }
+        
+        .wrap[max='1440'] {
+            max-width: 1440px;
+        }
+        
+        .wrap[max='1920'] {
+            max-width: 1920px;
+        }
 
         .viewBtn {
             display: inline-flex; 
@@ -91,6 +110,7 @@
             position: relative; 
             padding: calc(25/18*1em) calc(50/18*1em);
         }
+        
         .viewBtn::before,
         .viewBtn::after {
             content: ''; 
@@ -101,12 +121,28 @@
             z-index: -1; 
             transition: .15s;
         }
-        .viewBtn::before {transform: translateX(calc(-25/24*1em)); left: 0; top: 0;}
-        .viewBtn::after {transform: translateX(calc(25/24*1em)); right: 0; bottom: 0;}
-        .viewBtn:hover::before {transform: translateX(0%);}
-        .viewBtn:hover::after {transform: translateX(0%);}
+        
+        .viewBtn::before {
+            transform: translateX(calc(-25/24*1em)); 
+            left: 0; 
+            top: 0;
+        }
+        
+        .viewBtn::after {
+            transform: translateX(calc(25/24*1em)); 
+            right: 0; 
+            bottom: 0;
+        }
+        
+        .viewBtn:hover::before {
+            transform: translateX(0%);
+        }
+        
+        .viewBtn:hover::after {
+            transform: translateX(0%);
+        }
 
-        /* Header styles - From service.html */
+        /* Header styles */
         .header {
             position: fixed;
             top: 0;
@@ -115,7 +151,7 @@
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 1.5rem 3rem;
+            padding: 24px 48px;
         }
         
         .header-container {
@@ -125,6 +161,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 2rem;
+            position: relative;
         }
         
         .logo {
@@ -177,12 +214,10 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            pointer-events: none;
         }
         
         .nav-item {
             position: relative;
-            pointer-events: all;
         }
         
         .nav-link {
@@ -777,7 +812,7 @@
             padding-top: 0;
         }
 
-        /* Hero Section (formerly s3) */
+        /* Hero Section */
         .about .hero {
             position: relative;
             padding-top: 200px;
@@ -895,7 +930,12 @@
             position: relative;
             z-index: 3;
         }
-        .about .hero .txt {width: calc(780/1440*100%); margin-left: auto;}
+        
+        .about .hero .txt {
+            width: calc(780/1440*100%); 
+            margin-left: auto;
+        }
+        
         .about .hero .txt > span {
             font-family: 'Poppins'; 
             font-size: 18px; 
@@ -904,6 +944,7 @@
             color: #000; 
             display: inline-block;
         }
+        
         .about .hero .txt .slogan {
             font-family: 'Pretendard'; 
             line-height: calc(94/64*1em); 
@@ -915,7 +956,11 @@
             padding-bottom: calc(60/64*1em);
             word-break: keep-all;
         }
-        .about .hero .txt .slogan b {color: #000;}
+        
+        .about .hero .txt .slogan b {
+            color: #000;
+        }
+        
         .about .hero .txt dl dt {
             font-family: 'Pretendard'; 
             font-size: 26px; 
@@ -925,6 +970,7 @@
             padding-bottom: calc(25/26*1em); 
             line-height: calc(39/26*1em);
         }
+        
         .about .hero .txt dl dd {
             font-family: 'Pretendard'; 
             font-size: 16px; 
@@ -932,15 +978,27 @@
             color: #000; 
             line-height: calc(26/16*1em);
         }
-        .about .hero .txt dl dd p + p {margin-top: calc(10/16*1em);}
+        
+        .about .hero .txt dl dd p + p {
+            margin-top: calc(10/16*1em);
+        }
+        
         .about .hero .txt .btn .viewBtn {
             margin-left: calc(25/24*1em); 
             margin-top: calc(54/24*1em);
         }
 
         /* Section 4 - Key Values */
-        .about .s4 .keyWrap {display: flex; flex-direction: column;}
-        .about .s4 .keyWrap dl {display: flex; align-items: flex-start;}
+        .about .s4 .keyWrap {
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        .about .s4 .keyWrap dl {
+            display: flex; 
+            align-items: flex-start;
+        }
+        
         .about .s4 .keyWrap dl dt {
             width: calc(600/1440*100%); 
             flex-shrink: 0; 
@@ -948,6 +1006,7 @@
             flex-direction: column; 
             align-items: flex-start;
         }
+        
         .about .s4 .keyWrap dl dt small {
             font-family: 'Poppins'; 
             padding-left: calc(3/14*1em); 
@@ -957,6 +1016,7 @@
             letter-spacing: 0.01em; 
             position: relative;
         }
+        
         .about .s4 .keyWrap dl dt small::after {
             content: ''; 
             position: absolute; 
@@ -970,9 +1030,19 @@
             opacity: .21; 
             letter-spacing: -0.025em;
         }
-        .about .s4 .keyWrap dl:nth-child(1) dt small::after {content: '01';}
-        .about .s4 .keyWrap dl:nth-child(2) dt small::after {content: '02';}
-        .about .s4 .keyWrap dl:nth-child(3) dt small::after {content: '03';}
+        
+        .about .s4 .keyWrap dl:nth-child(1) dt small::after {
+            content: '01';
+        }
+        
+        .about .s4 .keyWrap dl:nth-child(2) dt small::after {
+            content: '02';
+        }
+        
+        .about .s4 .keyWrap dl:nth-child(3) dt small::after {
+            content: '03';
+        }
+        
         .about .s4 .keyWrap dl dt p {
             font-family: 'Pretendard'; 
             font-size: 38px; 
@@ -982,6 +1052,7 @@
             padding-top: calc(18/38*1em); 
             line-height: calc(59/38*1em);
         }
+        
         .about .s4 .keyWrap dl dd {
             border-top: 1px solid #565656; 
             flex-grow: 1; 
@@ -989,6 +1060,7 @@
             margin-top: 5px; 
             padding-bottom: 110px;
         }
+        
         .about .s4 .keyWrap dl dd b {
             font-family: 'Pretendard'; 
             font-size: 20px; 
@@ -1003,6 +1075,7 @@
             text-decoration-thickness: calc(10/20*1em); 
             display: inline-block;
         }
+        
         .about .s4 .keyWrap dl dd p {
             font-family: 'Pretendard'; 
             font-size: 16px; 
@@ -1010,11 +1083,23 @@
             color: #000; 
             line-height: calc(26/16*1em);
         }
-        .about .s4 .keyWrap dl dd p + p {margin-top: calc(10/16*1em);}
+        
+        .about .s4 .keyWrap dl dd p + p {
+            margin-top: calc(10/16*1em);
+        }
 
         /* Section 5 - Partners */
-        .s5 {background: #fff; padding: 100px 0 180px;}
-        .s5 .titleBox {display: flex; flex-direction: column; align-items: center;}
+        .s5 {
+            background: #fff; 
+            padding: 100px 0 180px;
+        }
+        
+        .s5 .titleBox {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        
         .s5 .titleBox span {
             font-family: 'Pretendard'; 
             font-size: 16px; 
@@ -1023,6 +1108,7 @@
             color: #000; 
             display: inline-block;
         }
+        
         .s5 .titleBox b {
             font-family: 'Poppins'; 
             font-size: 76px; 
@@ -1033,7 +1119,13 @@
             padding-top: calc(30/76*1em); 
             padding-bottom: calc(100/76*1em);
         }
-        .s5 .mqWrap {position: relative; overflow: hidden; padding: 30px 0;}
+        
+        .s5 .mqWrap {
+            position: relative; 
+            overflow: hidden; 
+            padding: 30px 0;
+        }
+        
         .s5 .mqWrap::after {
             content: ''; 
             width: 100%; 
@@ -1045,10 +1137,32 @@
             background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(255,255,255,1) 100%);
             pointer-events: none;
         }
-        .s5 .marquee {width: 100%; position: relative; overflow: hidden; height: 30px; display: flex; align-items: center;}
-        .s5 .marquee + .marquee {margin-top: 40px;}
-        .s5 .marquee .absol {width: 100%; display: flex; align-items: center;}
-        .s5 .marquee .absol .mar_ch {display: flex; align-items: center; gap: 30px;}
+        
+        .s5 .marquee {
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            height: 30px; 
+            display: flex; 
+            align-items: center;
+        }
+        
+        .s5 .marquee + .marquee {
+            margin-top: 40px;
+        }
+        
+        .s5 .marquee .absol {
+            width: 100%; 
+            display: flex; 
+            align-items: center;
+        }
+        
+        .s5 .marquee .absol .mar_ch {
+            display: flex; 
+            align-items: center; 
+            gap: 30px;
+        }
+        
         .s5 .marquee .absol .mar_ch span {
             font-family: 'Pretendard';
             font-size: 18px;
@@ -1060,6 +1174,7 @@
             padding: 0 30px;
             border-right: 1px solid #00f0ff;
         }
+        
         .s5 .marquee .absol .mar_ch span:last-child {
             border-right: none;
         }
@@ -1067,7 +1182,7 @@
         /* Responsive styles */
         @media screen and (max-width: 820px) {
             .header {
-                padding: 1rem 1.5rem;
+                padding: 16px 24px;
             }
             
             .logo {
@@ -1092,14 +1207,17 @@
                 flex-direction: column;
                 gap: 0;
             }
+            
             .header.HmActive .nav-menu {
                 display: flex; 
                 opacity: 1; 
                 transform: translateX(0%);
             }
+            
             .nav-item {
                 width: 100%;
             }
+            
             .nav-link {
                 font-size: 20px; 
                 border-top: 1px solid #333; 
@@ -1107,10 +1225,14 @@
                 color: #fff;
                 padding: 15px 2.5%;
             }
+            
             .dropdown-menu {
                 display: none;
             }
-            .hamburger {display: flex;}
+            
+            .hamburger {
+                display: flex;
+            }
             
             .special-menu {
                 padding: 0.5rem 0.9rem;
@@ -1135,17 +1257,28 @@
                 font-size: 0.6rem;
             }
             
-            .about .hero {padding-top: 140px;}
-            .about .s4 .keyWrap dl {flex-direction: column;}
-            .about .s4 .keyWrap dl dt {width: 100%;}
+            .about .hero {
+                padding-top: 140px;
+            }
+            
+            .about .s4 .keyWrap dl {
+                flex-direction: column;
+            }
+            
+            .about .s4 .keyWrap dl dt {
+                width: 100%;
+            }
+            
             .quick-contact {
                 bottom: 20px;
                 right: 20px;
             }
+            
             .quick-contact .btn {
                 width: 50px;
                 height: 50px;
             }
+            
             .quick-contact .btn i,
             .quick-contact .btn svg {
                 font-size: 20px;
@@ -1164,257 +1297,40 @@
             }
         }
     </style>
-<style>
-/* === HEADER EQUALIZER (from index) === */
-html, body { margin: 0; padding: 0; }
-/* header-specific line-height to match index without touching body content */
-.header, .header * { box-sizing: border-box; }
-.header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      padding: 1.5rem 3rem;
-    }
-.header-container {
-      max-width: 1800px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-    }
-.logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      font-family: 'Noto Serif KR', serif;
-      color: #000;
-      text-decoration: none;
-      letter-spacing: -1px;
-      position: relative;
-      margin-left: 2rem;
-      display: inline-block;
-    }
-.nav-menu {
-      display: flex;
-      gap: 3rem;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-.nav-link {
-      pointer-events: all;
-      color: #000;
-      text-decoration: none;
-      font-size: 1.05rem;
-      font-weight: 600;
-      position: relative;
-      transition: color 0.3s;
-    }
-.special-menu {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      text-decoration: none;
-      padding: 0.7rem 1.3rem;
-      border-radius: 8px;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      background: #fff;
-      min-height: 60px;
-      isolation: isolate;
-      border: 1px solid rgba(37, 99, 235, 0.2);
-    }
-.special-menu-content {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      position: relative;
-      z-index: 1;
-    }
-.special-menu-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-.special-menu-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #000;
-      font-family: 'Noto Serif KR', serif;
-      letter-spacing: -0.3px;
-      line-height: 1.3;
-    }
-.special-menu-subtitle {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--primary-color);
-      letter-spacing: 0.3px;
-      line-height: 1.3;
-    }
-.live-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-.live-dot {
-      width: 6px;
-      height: 6px;
-      background: #ef4444;
-      border-radius: 50%;
-      position: relative;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-
-/* Normalize nav link box metrics to match index */
-.header .nav-link {
-  pointer-events: all;
-  display: inline-block;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* Prevent about-specific nav mobile rules from altering index header */
-@media (max-width: 1024px) {
-  .header .nav-menu { position: absolute; left: 50%; transform: translateX(-50%); }
-}
-/* === END HEADER EQUALIZER === */
-</style>
-<style>
-/* === HEADER EQUALIZER v4 === */
-/* 1) Container-relative centering to avoid scrollbar/padding drift */
-.header-container { position: relative; }
-
-/* absolute center nav to the CONTAINER (not the full header) */
-.header .nav-menu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* 2) Lock header paddings to px (rem variance 제거) */
-.header {
-  padding-top: 24px !important;   /* 1.5rem @16px */
-  padding-bottom: 24px !important;
-  padding-left: 48px !important;  /* 3rem @16px */
-  padding-right: 48px !important;
-}
-
-/* 3) Ensure identical font + letter spacing just for header */
-.header, .header * { }
-
-/* 4) Ensure container max-width + auto margins match index */
-.header-container {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 5) Guard against outer page paddings affecting header width */
-body { margin: 0; padding: 0; }
-#app, main, .page, .wrapper, .container { margin: 0; padding: 0; }
-
-/* 6) No 100vw in header scope to avoid scrollbar compensation issues */
-.header, .header * { max-width: 100%; }
-:root { --nua-header-fix: 1; }
-/* === END HEADER EQUALIZER v4 === */
-</style>
-<style>
-/* --- HEADER TYPOGRAPHY RESTORE (match index) --- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap');
-.header .logo {
-  font-size: 1.8rem !important;
-  font-weight: 800 !important;
-  font-family: 'Noto Serif KR', serif !important;
-  letter-spacing: -1px !important;
-}
-@media (max-width: 768px) {
-  .header .logo {
-    font-size: 1.4rem !important;
-    margin-left: 0 !important;
-  }
-}
-/* --- END RESTORE --- */
-</style>
-<style>
-.header .logo-text { display: inline-block !important; }
-</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
-<style>
-/* === HEADER PIXEL PARITY v6 === */
-html { font-size: 16px !important; }
-.header .nav-menu { left: calc(50% - (100vw - 100%) / 2) !important; transform: translateX(-50%); }
-.header .logo { font-family: 'Noto Serif KR', serif !important; font-size: 1.8rem !important; letter-spacing: -1px !important; font-weight: 800 !important; }
-@media (max-width: 768px) {
-  .header .logo { font-size: 1.4rem !important; margin-left: 0 !important; }
-}
-/* optional micro-jitter guard */
-.header .nav-link, .header .logo-text { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-/* === END === */
-</style>
-<style>
-/* === HEADER ALIGNMENT FINAL v7 === */
-.header { padding: 24px 48px !important; }
-.header .logo { margin-left: 2rem !important; }
-.header .nav-menu { left: 50% !important; transform: translateX(-50%) !important; }
-/* normalize special-menu sizing to index-like footprint */
-.header .special-menu { flex: 0 0 auto; }
-.header .special-menu .special-menu-inner { display: flex; align-items: center; }
-.header .special-menu .special-menu-text { white-space: nowrap; }
-/* === END === */
-</style>
-<style>
-/* === HEADER PARITY v8 (center relative to .header) === */
-.header-container { position: static !important; } /* revert v4 change */
-.header { position: fixed !important; top: 0; width: 100%; } /* ensure positioning like index */
-
-.header .nav-menu {
-  position: absolute !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  display: flex !important;
-  gap: 3rem !important;
-  pointer-events: none !important; /* match index */
-}
-.header .nav-link { pointer-events: all !important; }
-.header-container { max-width: 1800px !important; margin-left: auto !important; margin-right: auto !important; }
-/* === END === */
-</style>
 </head>
 <body>
     <!-- Header -->
     <div class="header">
-    <div class="header-container">
-      <a href="index.html" class="logo">
-        <span class="logo-text">누아속기사무소</span>
-        <span class="logo-hover">NUA</span>
-      </a>
-      <nav class="nav-menu">
-        <a href="about.html" class="nav-link">소개</a>
-        <a href="service.html" class="nav-link">서비스</a>
-        <a href="price.html" class="nav-link">요금안내</a>
-        <a href="faq.html" class="nav-link">FAQ</a>
-        <a href="contact.html" class="nav-link">문의</a>
-      </nav>
-      <a href="http://live.nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
-        <div class="special-menu-content">
-          <div class="live-indicator">
-            <span class="live-dot"></span>
-          </div>
-          <div class="special-menu-text">
-            <span class="special-menu-title">누아스튜디오</span>
-            <span class="special-menu-subtitle">실시간 속기 솔루션</span>
-          </div>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">누아속기사무소</span>
+                <span class="logo-hover">NUA</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="about.html" class="nav-link">소개</a>
+                <a href="service.html" class="nav-link">서비스</a>
+                <a href="price.html" class="nav-link">요금안내</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">문의</a>
+            </nav>
+            <a href="http://live.nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
+                <div class="special-menu-content">
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                    </div>
+                    <div class="special-menu-text">
+                        <span class="special-menu-title">누아스튜디오</span>
+                        <span class="special-menu-subtitle">실시간 속기 솔루션</span>
+                    </div>
+                </div>
+            </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </a>
     </div>
-  </div>
 
     <!-- Fixed Navigation -->
     <a href="tel:02-3489-4433" class="fixed-nav-black" aria-label="전화 상담">빠른접수</a>
@@ -1448,7 +1364,7 @@ html { font-size: 16px !important; }
     <div id="smooth-wrapper">
         <div id="smooth-content">
             <main class="sub about">
-                <!-- Hero Section (formerly s3) -->
+                <!-- Hero Section -->
                 <section class="hero">
                     <div class="objWrap">
                         <div class="obj _big"></div>
@@ -1548,11 +1464,11 @@ html { font-size: 16px !important; }
                         </div>
 
                         <div class="mqWrap">
-                            <!-- marquee 1 - 좌→우 -->
+                            <!-- marquee 1 -->
                             <div class="marquee _1">
                                 <div class="absol">
                                     <div class="mar_ch">
-                                        <span>국무이리 목요대화 속기 수행</span>
+                                        <span>국무총리 목요대화 속기 수행</span>
                                         <span>국가인권위원회 속기 수행</span>
                                         <span>산업통상자원부 에너지위원회 속기 수행</span>
                                         <span>교육부 교원간담회 속기 수행</span>
@@ -1567,7 +1483,7 @@ html { font-size: 16px !important; }
                                     </div>
                                 </div>
                             </div>
-                            <!-- marquee 2 - 우→좌 -->
+                            <!-- marquee 2 -->
                             <div class="marquee _2">
                                 <div class="absol"> 
                                     <div class="mar_ch">
@@ -1585,7 +1501,7 @@ html { font-size: 16px !important; }
                                     </div>
                                 </div>
                             </div>
-                            <!-- marquee 3 - 좌→우 -->
+                            <!-- marquee 3 -->
                             <div class="marquee _3">
                                 <div class="absol">
                                     <div class="mar_ch">
@@ -1782,7 +1698,7 @@ html { font-size: 16px !important; }
             }
         })
 
-        // Marquee Animations - Slower speed (40s instead of 30s)
+        // Marquee Animations
         const s5_1_marquees = document.querySelector('.s5 .marquee._1 .absol');
         const marqueeChildSize_1 = s5_1_marquees.querySelector('.mar_ch');
         const childClone_1 = marqueeChildSize_1.cloneNode(true); 
@@ -1851,18 +1767,6 @@ html { font-size: 16px !important; }
                 }
             });
         }
-
-        // Service Dropdown Navigation with Hash Handling
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const [page, hash] = href.split('#');
-                
-                // Navigate to service.html with the hash
-                window.location.href = href;
-            });
-        });
     </script>
 </body>
 </html>
