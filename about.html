@@ -516,7 +516,7 @@
         .fixed-nav-black {
             position: fixed;
             right: 0;
-            top: 90px;
+            top: 109px;
             z-index: 1001;
             width: 60px;
             height: 220px;
@@ -549,7 +549,7 @@
         .fixed-nav-yellow {
             position: fixed;
             right: 0;
-            top: 310px;
+            top: 329px;
             z-index: 1001;
             width: 60px;
             height: 60px;
@@ -569,7 +569,7 @@
         }
         
         .fixed-nav-yellow.is-collapsed {
-            top: 150px;
+            top: 169px;
         }
 
         /* Quick Contact Buttons */
@@ -1754,7 +1754,7 @@
         
         if (fixedNavBlack && fixedNavYellow) {
             ScrollTrigger.create({
-                start: 'top+=150 top',
+                start: 'top+=200 top',
                 end: 'max',
                 onUpdate: (self) => {
                     if (self.direction === 1) {
