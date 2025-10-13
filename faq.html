@@ -31,7 +31,7 @@
       overflow-x: hidden;
     }
     
-    /* Header - Same as index.html */
+    /* Header */
     .header {
       position: fixed;
       top: 0;
@@ -133,6 +133,66 @@
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 100%;
+    }
+    
+    /* Fixed Navigation Buttons */
+    .fixed-nav-black {
+      position: fixed;
+      right: 0;
+      top: 109px;
+      z-index: 1001;
+      width: 60px;
+      height: 220px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      color: #fff;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .fixed-nav-black.is-collapsed {
+      height: 60px;
+      font-size: 0;
+    }
+    
+    .fixed-nav-black.is-collapsed::before {
+      content: '📞';
+      font-size: 1.3rem;
+      writing-mode: horizontal-tb;
+    }
+    
+    .fixed-nav-yellow {
+      position: fixed;
+      right: 0;
+      top: 329px;
+      z-index: 1001;
+      width: 60px;
+      height: 60px;
+      background: #FEE500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.5rem;
+      transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .fixed-nav-yellow:hover {
+      background: #FDD835;
+    }
+    
+    .fixed-nav-yellow.is-collapsed {
+      top: 169px;
     }
     
     /* FAQ Hero Section */
@@ -247,7 +307,7 @@
       opacity: 0.5;
     }
     
-    /* Category Tabs - 여기만 수정 */
+    /* Category Tabs */
     .faq-categories {
       padding: 2rem 3rem 1rem;
       background: #fff;
@@ -517,7 +577,7 @@
       word-wrap: break-word;
     }
     
-    /* Footer - Same as index.html */
+    /* Footer */
     .footer {
       background: #F7F7F7;
       padding: 4rem 1.5rem;
@@ -632,29 +692,6 @@
       border-color: #000;
     }
     
-    /* Fixed Navigation Buttons */
-    .fixed-nav-yellow {
-      position: fixed;
-      right: 0;
-      top: 150px;
-      z-index: 999;
-      width: 60px;
-      height: 60px;
-      background: #FEE500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      font-size: 1.5rem;
-      transition: all 0.3s;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    
-    .fixed-nav-yellow:hover {
-      background: #FDD835;
-    }
-    
     /* Responsive */
     @media (max-width: 1024px) {
       .nav-menu {
@@ -692,6 +729,11 @@
         padding: 0 1rem 1.5rem 1rem;
         margin-left: 2rem;
       }
+      
+      .fixed-nav-black,
+      .fixed-nav-yellow {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -712,7 +754,8 @@
     </div>
   </div>
 
-  <a href="http://pf.kakao.com/_askxcn/chat" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
+  <a href="tel:02-3489-4433" class="fixed-nav-black" aria-label="전화 상담">빠른접수</a>
+  <a href="http://pf.kakao.com/_xjxeXxj" target="_blank" class="fixed-nav-yellow" aria-label="카카오톡 상담">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
     </svg>
@@ -1409,10 +1452,26 @@
       delay: 0.8,
       ease: 'power2.out'
     });
+
+    // Fixed Nav Scroll Behavior
+    const fixedNavBlack = document.querySelector('.fixed-nav-black');
+    const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
     
-    // Category tabs animation - REMOVED (causing visibility issue)
-    
-    // FAQ groups scroll animation - REMOVED (causing content to disappear)
+    if (fixedNavBlack && fixedNavYellow) {
+      ScrollTrigger.create({
+        start: 'top+=200 top',
+        end: 'max',
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            fixedNavBlack.classList.add('is-collapsed');
+            fixedNavYellow.classList.add('is-collapsed');
+          } else {
+            fixedNavBlack.classList.remove('is-collapsed');
+            fixedNavYellow.classList.remove('is-collapsed');
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
