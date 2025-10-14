@@ -678,14 +678,14 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       padding: 0 3rem;
       position: relative;
       overflow: hidden;
       background: #fff;
     }
     
-    /* Grid Pattern Background */
+    /* Dot Grid Pattern Background */
     .hero::before {
       content: '';
       position: absolute;
@@ -693,12 +693,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 2px, transparent 2px);
+      background-size: 48px 48px;
       pointer-events: none;
-      z-index: 0;
+      z-index: 3;
+    }
+    
+    .dark-mode .hero::before {
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+      background-size: 48px 48px;
     }
     
     .hero-wave-container {
@@ -905,9 +908,11 @@
       display: grid;
       grid-template-columns: 1.1fr 1.3fr;
       gap: 2rem;
-      align-items: center;
+      align-items: flex-end;
       position: relative;
-      z-index: 2;
+      z-index: 4;
+      height: 100%;
+      padding-bottom: 0;
     }
     
     .hero-content {
@@ -915,9 +920,9 @@
       max-width: 650px;
       margin-left: 120px;
       padding-top: 40px;
-      padding-bottom: 40px;
+      padding-bottom: 80px;
       position: relative;
-      z-index: 3;
+      z-index: 5;
       transform: translateZ(0);
       backface-visibility: hidden;
     }
@@ -934,7 +939,7 @@
       margin-bottom: 2.5rem;
       text-transform: uppercase;
       position: relative;
-      z-index: 2;
+      z-index: 5;
       background: rgba(255, 255, 255, 0.9);
       transform: translateZ(0);
     }
@@ -955,7 +960,7 @@
       margin-bottom: 2rem;
       letter-spacing: -3px;
       position: relative;
-      z-index: 2;
+      z-index: 5;
     }
     
     .hero-title .line-1,
@@ -1016,7 +1021,7 @@
       margin-bottom: 3rem;
       max-width: 500px;
       position: relative;
-      z-index: 2;
+      z-index: 5;
     }
     
     .hero-cta {
@@ -1031,7 +1036,7 @@
       font-size: 0.95rem;
       transition: all 0.3s;
       position: relative;
-      z-index: 2;
+      z-index: 5;
     }
     
     .hero-cta:hover {
@@ -1046,16 +1051,29 @@
     }
     
     .hero-visual {
-      position: relative;
-      width: 100%;
-      height: 550px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      align-items: flex-end;
+      justify-content: flex-end;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .hero-image {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      object-position: bottom right;
+      margin-bottom: -2px;
     }
 
     .desk-theme-toggle {
@@ -1073,262 +1091,6 @@
 
     .desk-theme-toggle:hover {
       transform: scale(1.3);
-    }
-
-    .desk-3d-wrapper {
-      transform: scale(0.75);
-      transform-origin: center center;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      z-index: 3;
-      margin-top: 60px;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .desk-floating-text {
-      position: absolute;
-      top: -220px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 2;
-      pointer-events: none;
-      width: 100%;
-    }
-
-    .desk-floating-text-item {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 1s ease, visibility 0s 1s, transform 0.8s ease;
-      transform: translateY(10px);
-    }
-
-    .desk-floating-text-item.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      transition: opacity 1s ease, visibility 0s 0s, transform 0.8s ease;
-    }
-
-    .desk-floating-text h3 {
-      font-family: 'Pretendard', sans-serif;
-      font-size: 4.5rem;
-      font-weight: 700;
-      color: rgba(0, 0, 0, 0.08);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      line-height: 1.3;
-      margin: 0;
-    }
-
-    .desk-floating-text .text-line {
-      display: block;
-    }
-
-    .dark-mode .desk-floating-text h3 {
-      color: rgba(255, 255, 255, 0.08);
-    }
-
-    .desk-container {
-      position: relative;
-      width: 100%;
-      height: 550px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      z-index: 1;
-    }
-    
-    .desk {
-      position: absolute;
-      bottom: 180px;
-      width: 110%;
-      max-width: 1200px;
-      height: 22px;
-      background: var(--desk-surface-bg);
-      border-radius: 2px;
-      z-index: 20;
-      box-shadow:
-        0px -1px 2px rgba(255, 255, 255, 0.2),
-        0px 3px 5px rgba(0, 0, 0, 0.1),
-        0px 8px 15px rgba(0, 0, 0, 0.08),
-        0px 18px 25px rgba(0, 0, 0, 0.06),
-        0px 30px 40px rgba(0, 0, 0, 0.04),
-        0px 50px 70px rgba(0, 0, 0, 0.15);
-      transition: background 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .desk:after {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: var(--desk-edge-bottom);
-      transition: background-color 0.5s ease;
-    }
-
-    .desk:before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: var(--desk-edge-top);
-      transition: background-color 0.5s ease;
-    }
-
-    .items-wrapper {
-      position: absolute;
-      bottom: 204px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 2.2rem;
-      z-index: 25;
-      perspective: 1200px;
-    }
-
-    .items__item {
-      cursor: pointer;
-      will-change: transform;
-      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.8s ease;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      transform-style: preserve-3d;
-    }
-
-    .items__item img {
-      display: block;
-      filter: drop-shadow(0 10px 25px var(--desk-item-shadow)) 
-              drop-shadow(0 20px 40px var(--desk-item-shadow));
-      transition: filter 0.8s ease, transform 0.8s ease;
-      object-fit: contain;
-      object-position: bottom;
-      transform-style: preserve-3d;
-    }
-
-    .item-recorder img {
-      height: 95px;
-      width: auto;
-      transform: translateY(1px);
-    }
-
-    .item-papers img {
-      height: 155px;
-      width: auto;
-      transform: translateY(0px);
-    }
-
-    .item-microphone img {
-      height: 120px;
-      width: auto;
-      max-width: 90px;
-      transform: translateY(0px);
-    }
-
-    .item-monitor img {
-      height: 270px;
-      width: auto;
-      transform: translateY(2px);
-    }
-
-    .item-shadow {
-      position: absolute;
-      bottom: 204px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 2.2rem;
-      z-index: 22;
-    }
-
-    .shadow-item {
-      height: 2.5px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(0, 0, 0, 0.35) 0%,
-        rgba(0, 0, 0, 0.18) 40%,
-        rgba(0, 0, 0, 0) 70%
-      );
-      border-radius: 50%;
-      will-change: width, opacity;
-      transition: all 0.8s ease;
-      opacity: 0.85;
-    }
-
-    .shadow-recorder { width: 38px; }
-    .shadow-papers { width: 80px; }
-    .shadow-microphone { width: 45px; }
-    .shadow-monitor { width: 127px; }
-
-    .item-descriptions {
-      position: absolute;
-      bottom: -80px;
-      left: 35%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 700px;
-      padding: 0 20px;
-      z-index: 5;
-      height: 220px;
-    }
-
-    .item-description {
-      position: absolute;
-      top: 0;
-      left: 20px;
-      right: 20px;
-      opacity: 0;
-      visibility: hidden;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.65;
-      color: var(--desk-text-color);
-      transition: opacity 0.5s ease, visibility 0s 0.5s;
-      pointer-events: none;
-    }
-
-    .item-description.active {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.5s ease, visibility 0s 0s;
-    }
-
-    .item-description h3 {
-      font-weight: 900;
-      font-size: 2rem;
-      margin-bottom: 0.6rem;
-      color: var(--desk-title-color);
-      transition: color 0.5s ease;
-      letter-spacing: -0.02em;
-    }
-
-    .item-description .author {
-      font-weight: 500;
-      opacity: 0.7;
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-    }
-
-    .item-description p {
-      margin-bottom: 0;
-      opacity: 0.9;
     }
     
     /* Services Section - 8 Cards in 2 columns (4 rows) */
@@ -2348,21 +2110,34 @@
         height: 36px;
       }
       
+      .hero {
+        align-items: center;
+      }
+      
       .hero-container {
         grid-template-columns: 1fr;
         gap: 4rem;
+        align-items: center;
+      }
+      
+      .hero-content {
+        padding-bottom: 40px;
       }
       
       .hero-visual {
-        height: 400px;
+        position: relative;
+        width: 100%;
+        height: 500px;
       }
       
-      .desk-3d-wrapper {
-        transform: scale(0.6);
+      .hero::before {
+        background-size: 52px 52px;
+        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.07) 1.8px, transparent 1.8px);
       }
       
-      .desk-floating-text h3 {
-        font-size: 3rem;
+      .dark-mode .hero::before {
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.8px, transparent 1.8px);
+        background-size: 52px 52px;
       }
       
       .services-grid {
@@ -2409,16 +2184,20 @@
         height: 32px;
       }
       
+      .hero {
+        align-items: center;
+      }
+      
       .hero-visual {
-        height: 350px;
+        height: 400px;
       }
       
-      .desk-3d-wrapper {
-        transform: scale(0.5);
+      .hero::before {
+        background-size: 56px 56px;
       }
       
-      .desk-floating-text h3 {
-        font-size: 2rem;
+      .dark-mode .hero::before {
+        background-size: 56px 56px;
       }
       
       .services-grid {
@@ -2427,10 +2206,6 @@
       
       .trust-grid {
         grid-template-columns: 1fr;
-      }
-      
-      .item-descriptions {
-        left: 50%;
       }
       
       .faq-section {
@@ -2589,89 +2364,7 @@
       </div>
       
       <div class="hero-visual">
-        <div class="desk-3d-wrapper">
-          <div class="desk-floating-text">
-            <div class="desk-floating-text-item" data-index="0">
-              <h3>
-                <span class="text-line">Professional</span>
-                <span class="text-line">Meeting Minutes</span>
-              </h3>
-            </div>
-            <div class="desk-floating-text-item" data-index="1">
-              <h3>
-                <span class="text-line">Organized</span>
-                <span class="text-line">Document Archive</span>
-              </h3>
-            </div>
-            <div class="desk-floating-text-item active" data-index="2">
-              <h3>
-                <span class="text-line">Real-time</span>
-                <span class="text-line">Live Stenography</span>
-              </h3>
-            </div>
-            <div class="desk-floating-text-item" data-index="3">
-              <h3>
-                <span class="text-line">Accurate</span>
-                <span class="text-line">Video Subtitles</span>
-              </h3>
-            </div>
-          </div>
-          
-          <div class="desk-container">
-            <div class="item-shadow">
-              <div class="shadow-item shadow-recorder"></div>
-              <div class="shadow-item shadow-papers"></div>
-              <div class="shadow-item shadow-microphone"></div>
-              <div class="shadow-item shadow-monitor"></div>
-            </div>
-            
-            <div class="desk"></div>
-            
-            <div class="items-wrapper">
-              <div class="items__item item-recorder" data-index="0" data-title="녹취록">
-                <img src="https://i.imgur.com/JIbYipo.png" alt="녹음기">
-              </div>
-
-              <div class="items__item item-papers" data-index="1" data-title="속기문서">
-                <img src="https://i.imgur.com/5qi9PW4.png" alt="서류더미">
-              </div>
-
-              <div class="items__item item-microphone" id="default-item" data-index="2" data-title="현장속기">
-                <img src="https://i.imgur.com/V7ImLJ2.png" alt="마이크">
-              </div>
-
-              <div class="items__item item-monitor" data-index="3" data-title="영상자막">
-                <img src="https://i.imgur.com/2mfwj4G.png" alt="모니터">
-              </div>
-            </div>
-
-            <div class="item-descriptions">
-              <div class="item-description" data-index="0">
-                <h3>전문 회의록 작성</h3>
-                <div class="author">체계적 문서 관리</div>
-                <p>회의의 모든 내용을 체계적으로 정리하고 문서화합니다.<br>주요 결정사항과 액션 아이템을 명확하게 기록하여 검색 가능한 형태로 보관합니다.</p>
-              </div>
-
-              <div class="item-description" data-index="1">
-                <h3>속기 문서 아카이브</h3>
-                <div class="author">완전한 기록 보존</div>
-                <p>모든 회의와 행사의 속기 기록을 체계적으로 보관합니다.<br>과거 논의 사항을 빠르게 검색하고 의사결정 과정을 추적할 수 있습니다.</p>
-              </div>
-
-              <div class="item-description active" data-index="2">
-                <h3>현장 속기 시스템</h3>
-                <div class="author">프로페셔널 기록 솔루션</div>
-                <p>대형 스크린을 통해 회의 내용을 실시간으로 표시합니다.<br>참석자 모두가 동시에 내용을 확인하며 즉각적인 수정이 가능합니다.</p>
-              </div>
-
-              <div class="item-description" data-index="3">
-                <h3>영상 자막 제작</h3>
-                <div class="author">멀티미디어 콘텐츠 완성</div>
-                <p>녹화된 영상에 정확한 자막을 삽입하여 접근성을 높입니다.<br>다국어 자막 지원으로 글로벌 콘텐츠 및 배리어프리 제작이 가능합니다.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="hero_tg_woman.png" alt="전문 속기사" class="hero-image">
       </div>
     </div>
   </div>
@@ -3033,155 +2726,6 @@
       body.classList.toggle("dark-mode");
       localStorage.setItem("desk-theme", body.classList.contains("dark-mode") ? "dark" : "light");
     });
-
-    const deskItems = document.querySelectorAll(".items__item");
-    const deskShadows = document.querySelectorAll(".shadow-item");
-    const deskDescriptions = document.querySelectorAll(".item-description");
-    const deskFloatingTexts = document.querySelectorAll(".desk-floating-text-item");
-    const deskContainer = document.querySelector(".desk-container");
-    
-    let currentIndex = 2;
-    let autoHoverInterval = null;
-    let isManualHover = false;
-    let isTransitioning = false;
-
-    const shadowSizes = { 
-      'shadow-recorder': 38, 
-      'shadow-papers': 80, 
-      'shadow-microphone': 45, 
-      'shadow-monitor': 127 
-    };
-
-    function resetAllDesk() {
-      deskItems.forEach(item => {
-        gsap.to(item, { 
-          rotateY: 0,
-          y: 0,
-          scale: 1,
-          duration: 0.8, 
-          ease: "power2.out",
-          transformOrigin: "center bottom"
-        });
-        const img = item.querySelector("img");
-        if (img) {
-          gsap.to(img, { 
-            filter: "drop-shadow(0 10px 25px var(--desk-item-shadow)) drop-shadow(0 20px 40px var(--desk-item-shadow))", 
-            duration: 0.8 
-          });
-        }
-      });
-      
-      deskShadows.forEach(shadow => {
-        const className = Array.from(shadow.classList).find(c => c.startsWith('shadow-'));
-        const baseWidth = shadowSizes[className] || 70;
-        gsap.to(shadow, { width: baseWidth, opacity: 0.85, duration: 0.8 });
-      });
-    }
-
-    function updateDeskDescription(itemIndex) {
-      if (isTransitioning) return;
-      isTransitioning = true;
-      
-      deskDescriptions.forEach((desc) => {
-        desc.classList.remove("active");
-      });
-      
-      deskFloatingTexts.forEach((text) => {
-        text.classList.remove("active");
-      });
-
-      setTimeout(() => {
-        const activeDescription = document.querySelector(`.item-description[data-index="${itemIndex}"]`);
-        const activeFloatingText = document.querySelector(`.desk-floating-text-item[data-index="${itemIndex}"]`);
-        
-        if (activeDescription) {
-          activeDescription.classList.add("active");
-        }
-        
-        if (activeFloatingText) {
-          activeFloatingText.classList.add("active");
-        }
-        
-        isTransitioning = false;
-      }, 100);
-    }
-
-    function activateItem(item, idx) {
-      resetAllDesk();
-      
-      gsap.to(item, { 
-        rotateY: -5,
-        y: -3,
-        scale: 1.02,
-        duration: 0.8, 
-        ease: "power2.out",
-        transformOrigin: "center bottom"
-      });
-      
-      const img = item.querySelector("img");
-      if (img) {
-        gsap.to(img, { 
-          filter: "drop-shadow(0 15px 35px var(--desk-item-shadow-strong)) drop-shadow(0 25px 50px var(--desk-item-shadow))", 
-          duration: 0.8 
-        });
-      }
-      
-      const shadow = deskShadows[idx];
-      if (shadow) {
-        const className = Array.from(shadow.classList).find(c => c.startsWith('shadow-'));
-        const baseWidth = shadowSizes[className] || 70;
-        gsap.to(shadow, { 
-          width: baseWidth + 22, 
-          opacity: 1,
-          duration: 0.8 
-        });
-      }
-      
-      updateDeskDescription(item.getAttribute("data-index"));
-    }
-
-    function startAutoHover() {
-      stopAutoHover();
-      
-      if (isManualHover) return;
-      
-      autoHoverInterval = setInterval(() => {
-        if (!isManualHover) {
-          currentIndex = (currentIndex + 1) % deskItems.length;
-          activateItem(deskItems[currentIndex], currentIndex);
-        }
-      }, 6000);
-    }
-
-    function stopAutoHover() {
-      if (autoHoverInterval !== null) {
-        clearInterval(autoHoverInterval);
-        autoHoverInterval = null;
-      }
-    }
-
-    deskItems.forEach((item, idx) => {
-      item.addEventListener("mouseenter", () => {
-        isManualHover = true;
-        stopAutoHover();
-        activateItem(item, idx);
-        currentIndex = idx;
-      });
-    });
-
-    deskContainer.addEventListener("mouseleave", () => {
-      isManualHover = false;
-      setTimeout(() => {
-        if (!isManualHover) {
-          startAutoHover();
-        }
-      }, 2000);
-    });
-
-    activateItem(deskItems[currentIndex], currentIndex);
-    setTimeout(() => {
-      startAutoHover();
-    }, 1000);
     
     window.openQuickContact = function(event) {
       if (event) event.preventDefault();
