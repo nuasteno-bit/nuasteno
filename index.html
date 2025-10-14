@@ -478,7 +478,26 @@
       text-decoration: none;
       letter-spacing: -1px;
       position: relative;
-      margin-left: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding-left: 8rem;
+    }
+    
+    .logo-image {
+      height: 42px;
+      width: auto;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    
+    .logo:hover .logo-image {
+      transform: scale(1.08) rotate(-3deg);
+    }
+    
+    .logo-text-wrapper {
+      position: relative;
       display: inline-block;
     }
     
@@ -500,6 +519,7 @@
       font-weight: 900;
       letter-spacing: 4px;
       filter: blur(10px);
+      white-space: nowrap;
     }
     
     .logo:hover .logo-text {
@@ -2284,6 +2304,10 @@
     }
     
     @media (max-width: 1440px) {
+      .logo {
+        padding-left: 6rem;
+      }
+      
       .hero-content {
         margin-left: 40px;
         padding-right: 1rem;
@@ -2295,6 +2319,10 @@
     }
     
     @media (max-width: 1280px) {
+      .logo {
+        padding-left: 4rem;
+      }
+      
       .hero-content {
         margin-left: 24px;
         padding-right: 0;
@@ -2310,6 +2338,16 @@
     }
     
     @media (max-width: 1024px) {
+      .logo {
+        font-size: 1.4rem;
+        padding-left: 2rem;
+        gap: 0.5rem;
+      }
+      
+      .logo-image {
+        height: 36px;
+      }
+      
       .hero-container {
         grid-template-columns: 1fr;
         gap: 4rem;
@@ -2343,11 +2381,6 @@
         display: none;
       }
       
-      .logo {
-        font-size: 1.4rem;
-        margin-left: 0;
-      }
-      
       .progress-indicator {
         display: none;
       }
@@ -2367,6 +2400,15 @@
     }
     
     @media (max-width: 768px) {
+      .logo {
+        padding-left: 1rem;
+        gap: 0.4rem;
+      }
+      
+      .logo-image {
+        height: 32px;
+      }
+      
       .hero-visual {
         height: 350px;
       }
@@ -2412,8 +2454,11 @@
   <div class="header">
     <div class="header-container">
       <a href="index.html" class="logo">
-        <span class="logo-text">누아속기사무소</span>
-        <span class="logo-hover">NUA</span>
+        <img src="nuasteno_logo.png" alt="누아속기사무소 로고" class="logo-image">
+        <span class="logo-text-wrapper">
+          <span class="logo-text">누아속기사무소</span>
+          <span class="logo-hover">NUA</span>
+        </span>
       </a>
       <nav class="nav-menu">
         <a href="about.html" class="nav-link">소개</a>
