@@ -387,10 +387,12 @@
       transition: height 0.15s ease-out;
     }
     
+    /* Enhanced Scroll Indicator - 정중앙 아래 배치 */
     .scroll-indicator {
       position: fixed;
-      right: 2.5rem;
-      bottom: 2.5rem;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -405,49 +407,73 @@
       opacity: 0;
     }
     
+    .scroll-indicator-line {
+      width: 2px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    
+    .scroll-indicator-line::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 18px;
+      background: linear-gradient(to bottom, var(--primary-color), transparent);
+      animation: lineMove 2s ease-in-out infinite;
+    }
+    
+    @keyframes lineMove {
+      0% {
+        transform: translateY(-18px);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+    }
+    
     .scroll-indicator-text {
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: 0.65rem;
+      font-weight: 700;
       letter-spacing: 1.5px;
       color: rgba(0, 0, 0, 0.5);
       text-transform: uppercase;
     }
     
-    .scroll-indicator-icon {
-      width: 22px;
-      height: 36px;
-      border: 2px solid rgba(0, 0, 0, 0.3);
-      border-radius: 11px;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding-top: 6px;
-    }
-    
-    .scroll-indicator-icon::before {
-      content: '';
-      width: 3px;
-      height: 8px;
+    .scroll-indicator-dot {
+      width: 4px;
+      height: 4px;
       background: var(--primary-color);
-      border-radius: 2px;
-      animation: scroll-down 2s ease-in-out infinite;
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
     }
     
-    @keyframes scroll-down {
-      0% {
-        transform: translateY(0);
-        opacity: 0;
+    @keyframes dotPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
       }
-      30% {
+      50% {
+        transform: scale(1.5);
         opacity: 1;
       }
-      60% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(14px);
-        opacity: 0;
-      }
+    }
+    
+    .dark-mode .scroll-indicator-line {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .dark-mode .scroll-indicator-text {
+      color: rgba(255, 255, 255, 0.5);
     }
     
     .header {
@@ -685,7 +711,7 @@
       background: #fff;
     }
     
-    /* Dot Grid Pattern Background */
+    /* Enhanced Dot Grid Pattern with Pulse Animation */
     .hero::before {
       content: '';
       position: absolute;
@@ -693,15 +719,31 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 2px, transparent 2px);
-      background-size: 48px 48px;
+      background-image: 
+        radial-gradient(circle, rgba(0, 0, 0, 0.08) 2px, transparent 2px),
+        radial-gradient(circle, rgba(37, 99, 235, 0.15) 2px, transparent 2px);
+      background-size: 48px 48px, 96px 96px;
+      background-position: 0 0, 24px 24px;
       pointer-events: none;
       z-index: 3;
+      animation: dotPulsePattern 8s ease-in-out infinite;
+    }
+    
+    @keyframes dotPulsePattern {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
     }
     
     .dark-mode .hero::before {
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
-      background-size: 48px 48px;
+      background-image: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        radial-gradient(circle, rgba(96, 165, 250, 0.2) 2px, transparent 2px);
+      background-size: 48px 48px, 96px 96px;
+      background-position: 0 0, 24px 24px;
     }
     
     .hero-wave-container {
@@ -1074,6 +1116,7 @@
       object-fit: contain;
       object-position: bottom right;
       margin-bottom: -2px;
+      z-index: 5;
     }
 
     .desk-theme-toggle {
@@ -1093,7 +1136,7 @@
       transform: scale(1.3);
     }
     
-    /* Services Section - 8 Cards in 2 columns (4 rows) */
+    /* Services Section */
     .services {
       padding: var(--section-padding) 3rem;
       background: #fff;
@@ -1473,7 +1516,7 @@
       color: var(--primary-blue);
     }
     
-    /* Experience Section with Korea Map Background */
+    /* Experience Section */
     .experience {
       padding: var(--section-padding) 3rem;
       background: #f5f5f5;
@@ -1607,7 +1650,7 @@
       margin-right: 1rem;
     }
     
-    /* Trust & Security Section */
+    /* Trust Section */
     .trust-section {
       padding: var(--section-padding) 3rem;
       background: #fafafa;
@@ -1844,7 +1887,7 @@
       font-size: 1.2rem;
     }
     
-    /* Why Us Section (formerly CENTERS) */
+    /* Why Us Section */
     .why-us {
       padding: var(--section-padding) 3rem;
       background: #fafafa;
@@ -2135,6 +2178,10 @@
         background-image: radial-gradient(circle, rgba(0, 0, 0, 0.07) 1.8px, transparent 1.8px);
       }
       
+      .scroll-indicator {
+        bottom: 8%;
+      }
+      
       .dark-mode .hero::before {
         background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.8px, transparent 1.8px);
         background-size: 52px 52px;
@@ -2158,11 +2205,6 @@
       
       .progress-indicator {
         display: none;
-      }
-      
-      .scroll-indicator {
-        right: 1.5rem;
-        bottom: 1.5rem;
       }
       
       .desk-theme-toggle {
@@ -2196,6 +2238,10 @@
         background-size: 56px 56px;
       }
       
+      .scroll-indicator {
+        bottom: 6%;
+      }
+      
       .dark-mode .hero::before {
         background-size: 56px 56px;
       }
@@ -2222,8 +2268,9 @@
   </div>
   
   <div class="scroll-indicator">
+    <div class="scroll-indicator-line"></div>
     <span class="scroll-indicator-text">Scroll</span>
-    <div class="scroll-indicator-icon"></div>
+    <div class="scroll-indicator-dot"></div>
   </div>
 
   <div class="header">
@@ -2524,7 +2571,6 @@
     </div>
   </div>
 
-  <!-- Trust & Security Section -->
   <div class="trust-section">
     <div class="trust-container">
       <div class="trust-header">
@@ -2574,7 +2620,6 @@
     </div>
   </div>
 
-  <!-- FAQ Section -->
   <div class="faq-section">
     <div class="faq-section-container">
       <div class="faq-section-header">
@@ -2649,7 +2694,6 @@
     </div>
   </div>
 
-  <!-- Why Us Section (formerly CENTERS) -->
   <div id="contact" class="why-us">
     <div class="why-us-container">
       <div class="why-us-header">
@@ -3141,22 +3185,6 @@
         x: 0,
         opacity: 1,
         duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.experience',
-          start: 'top 80%',
-          once: true
-        }
-      }
-    );
-    
-    gsap.fromTo('.experience-title',
-      { x: -40, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.7,
-        delay: 0.1,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.experience',
