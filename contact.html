@@ -7,6 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // EmailJS 초기화
+    emailjs.init('Ixtx2NqLA38rubSFT');
+  </script>
+  
   <style>
     :root {
       --primary-color: #2563EB;
@@ -634,10 +642,15 @@
       gap: 0.5rem;
     }
     
-    .form-submit:hover {
+    .form-submit:hover:not(:disabled) {
       background: var(--primary-color);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
     
     .form-submit::after {
@@ -646,7 +659,7 @@
       transition: transform 0.3s;
     }
     
-    .form-submit:hover::after {
+    .form-submit:hover:not(:disabled)::after {
       transform: translateX(4px);
     }
     
@@ -718,6 +731,179 @@
       font-size: 0.9rem;
       color: #666;
       line-height: 1.6;
+    }
+    
+    /* Privacy Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .modal-container {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .modal-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
+    .modal-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #666;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .modal-close:hover {
+      background: #e5e5e5;
+      color: #000;
+    }
+    
+    .modal-content {
+      padding: 2.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .modal-content h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem 0;
+      color: #000;
+    }
+    
+    .modal-content h3:first-child {
+      margin-top: 0;
+    }
+    
+    .modal-content p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+    
+    .modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    
+    .modal-content th,
+    .modal-content td {
+      padding: 0.8rem;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    
+    .modal-content th {
+      background: #f8f8f8;
+      font-weight: 600;
+      color: #000;
+    }
+    
+    .modal-content td {
+      color: #333;
+    }
+    
+    .modal-content ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .modal-content li {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .modal-footer {
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    
+    .modal-btn {
+      padding: 0.8rem 2rem;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .modal-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
     }
     
     .footer {
@@ -887,6 +1073,35 @@
         width: 100%;
         justify-content: center;
       }
+      
+      .modal-overlay {
+        padding: 1rem;
+      }
+      
+      .modal-header {
+        padding: 1.5rem;
+      }
+      
+      .modal-title {
+        font-size: 1.4rem;
+      }
+      
+      .modal-content {
+        padding: 1.5rem;
+      }
+      
+      .modal-footer {
+        padding: 1rem 1.5rem;
+      }
+      
+      .modal-content table {
+        font-size: 0.85rem;
+      }
+      
+      .modal-content th,
+      .modal-content td {
+        padding: 0.6rem;
+      }
     }
   </style>
 </head>
@@ -934,7 +1149,6 @@
 
   <div class="contact-content">
     <div class="contact-grid">
-      <!-- Contact Info -->
       <div class="contact-info">
         <div class="contact-info-title">Contact Us</div>
         <h2 class="contact-info-heading">언제든지<br>문의해주세요</h2>
@@ -986,7 +1200,6 @@
         </div>
       </div>
 
-      <!-- Contact Form -->
       <div class="contact-form-section">
         <form id="contactForm">
           <div class="form-group">
@@ -1000,12 +1213,12 @@
             <span class="form-title">서비스 유형</span>
             <select class="form-select" name="service_type">
               <option value="">선택해주세요</option>
-              <option value="transcription">녹취록 작성</option>
-              <option value="minutes">회의록 작성</option>
-              <option value="onsite">현장 출장 속기</option>
-              <option value="subtitle">영상 자막</option>
-              <option value="foreign">외국어 녹취</option>
-              <option value="other">기타</option>
+              <option value="녹취록 작성">녹취록 작성</option>
+              <option value="회의록 작성">회의록 작성</option>
+              <option value="현장 출장 속기">현장 출장 속기</option>
+              <option value="영상 자막">영상 자막</option>
+              <option value="외국어 녹취">외국어 녹취</option>
+              <option value="기타">기타</option>
             </select>
           </div>
 
@@ -1037,7 +1250,7 @@
             <input type="checkbox" class="form-checkbox" name="privacy" required>
             <span class="checkbox-icon"></span>
             <span class="checkbox-label">
-              <a href="#" onclick="alert('개인정보처리방침 전문'); return false;">개인정보 수집 및 이용</a>에 동의합니다
+              <a href="#" id="privacyLink">개인정보 수집 및 이용</a>에 동의합니다
             </span>
           </label>
 
@@ -1046,7 +1259,6 @@
       </div>
     </div>
 
-    <!-- Quick Contact Methods -->
     <div class="quick-methods">
       <h3 class="quick-methods-title">빠른 상담 방법</h3>
       <p class="quick-methods-subtitle">급하신가요? 실시간 상담을 이용해보세요</p>
@@ -1069,6 +1281,101 @@
           <h4 class="quick-method-title">이메일</h4>
           <p class="quick-method-desc">nuasteno@gmail.com<br>24시간 내 답변</p>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Modal -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title">개인정보 처리방침</h2>
+        <button class="modal-close" id="modalClose">×</button>
+      </div>
+      <div class="modal-content">
+        <h3>1. 개인정보의 수집 및 이용목적</h3>
+        <p>누아속기사무소(이하 '회사')는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
+        <ul>
+          <li>서비스 제공 및 계약의 이행</li>
+          <li>고객 상담 및 문의 응대</li>
+          <li>서비스 개선 및 신규 서비스 개발</li>
+          <li>견적 제공 및 계약 체결</li>
+        </ul>
+
+        <h3>2. 수집하는 개인정보의 항목</h3>
+        <p>회사는 문의 접수를 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>수집 항목</th>
+              <th>수집 방법</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>필수: 성명, 연락처(전화번호), 이메일, 문의내용</td>
+              <td>홈페이지 문의 양식</td>
+            </tr>
+            <tr>
+              <td>선택: 회사/기관명, 서비스 유형</td>
+              <td>홈페이지 문의 양식</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3. 개인정보의 보유 및 이용기간</h3>
+        <p>회사는 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은 개인정보 보유·이용기간 내에서 개인정보를 처리·보유합니다.</p>
+        <ul>
+          <li>문의 접수 및 처리: 문의 처리 완료 후 3년</li>
+          <li>계약 체결 및 이행: 계약 종료 후 5년 (전자상거래법)</li>
+          <li>대금결제 및 재화의 공급: 5년 (전자상거래법)</li>
+          <li>소비자 불만 또는 분쟁처리: 3년 (전자상거래법)</li>
+        </ul>
+
+        <h3>4. 개인정보의 제3자 제공</h3>
+        <p>회사는 원칙적으로 정보주체의 개인정보를 제1조(개인정보의 처리 목적)에서 명시한 범위 내에서만 처리하며, 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.</p>
+
+        <h3>5. 개인정보의 파기절차 및 방법</h3>
+        <p>회사는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다.</p>
+        <ul>
+          <li><strong>파기절차:</strong> 불필요한 개인정보는 내부 방침 및 관련 법령에 따라 파기합니다.</li>
+          <li><strong>파기방법:</strong> 전자적 파일 형태는 복구 불가능한 방법으로 영구 삭제하며, 종이 문서는 분쇄하거나 소각합니다.</li>
+        </ul>
+
+        <h3>6. 정보주체의 권리·의무 및 행사방법</h3>
+        <p>정보주체는 회사에 대해 언제든지 다음 각 호의 개인정보 보호 관련 권리를 행사할 수 있습니다.</p>
+        <ul>
+          <li>개인정보 열람 요구</li>
+          <li>오류 등이 있을 경우 정정 요구</li>
+          <li>삭제 요구</li>
+          <li>처리정지 요구</li>
+        </ul>
+        <p>권리 행사는 회사에 대해 서면, 전화, 전자우편 등을 통하여 하실 수 있으며 회사는 이에 대해 지체없이 조치하겠습니다.</p>
+
+        <h3>7. 개인정보 보호책임자</h3>
+        <p>회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+        <table>
+          <tbody>
+            <tr>
+              <th>개인정보 보호책임자</th>
+              <td>누아속기사무소 대표</td>
+            </tr>
+            <tr>
+              <th>연락처</th>
+              <td>T. 02-3489-4433 / M. 010-3489-4433</td>
+            </tr>
+            <tr>
+              <th>이메일</th>
+              <td>nuasteno@gmail.com</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>8. 개인정보 처리방침 변경</h3>
+        <p>이 개인정보 처리방침은 2025년 1월 1일부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn" id="modalConfirm">확인</button>
       </div>
     </div>
   </div>
@@ -1171,8 +1478,45 @@
       });
     }
 
-    // Form Submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Privacy Modal
+    const privacyModal = document.getElementById('privacyModal');
+    const privacyLink = document.getElementById('privacyLink');
+    const modalClose = document.getElementById('modalClose');
+    const modalConfirm = document.getElementById('modalConfirm');
+
+    function openModal(e) {
+      e.preventDefault();
+      privacyModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      privacyModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    privacyLink.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+    modalConfirm.addEventListener('click', closeModal);
+    
+    privacyModal.addEventListener('click', function(e) {
+      if (e.target === privacyModal) {
+        closeModal();
+      }
+    });
+
+    // Checkbox wrapper click
+    document.querySelectorAll('.form-checkbox-wrapper').forEach(wrapper => {
+      wrapper.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A') {
+          const checkbox = this.querySelector('.form-checkbox');
+          checkbox.checked = !checkbox.checked;
+        }
+      });
+    });
+
+    // Form Submission with EmailJS
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const formData = new FormData(this);
@@ -1209,20 +1553,41 @@
         alert('개인정보 수집 및 이용에 동의해주세요');
         return;
       }
-      
-      // Success
-      alert('문의가 접수되었습니다.\n24시간 내에 연락드리겠습니다.');
-      this.reset();
-    });
 
-    // Checkbox wrapper click
-    document.querySelectorAll('.form-checkbox-wrapper').forEach(wrapper => {
-      wrapper.addEventListener('click', function(e) {
-        if (e.target.tagName !== 'A') {
-          const checkbox = this.querySelector('.form-checkbox');
-          checkbox.checked = !checkbox.checked;
-        }
-      });
+      // 제출 버튼 비활성화
+      const submitButton = this.querySelector('.form-submit');
+      submitButton.disabled = true;
+      submitButton.textContent = '전송 중...';
+
+      try {
+        // EmailJS로 이메일 전송
+        const result = await emailjs.send(
+          'service_7w4fmq7',      // Service ID
+          'template_q6yciix',     // Template ID
+          {
+            from_name: data.name,
+            from_email: data.email,
+            phone: data.phone,
+            company: data.company || '미입력',
+            service_type: data.service_type || '미선택',
+            message: data.message
+          }
+        );
+
+        console.log('전송 성공:', result);
+        
+        // 성공 메시지
+        alert('문의가 성공적으로 접수되었습니다!\n24시간 내에 연락드리겠습니다.');
+        this.reset();
+        
+      } catch (error) {
+        console.error('전송 실패:', error);
+        alert('전송 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.\n\n오류 내용: ' + error.text);
+      } finally {
+        // 버튼 다시 활성화
+        submitButton.disabled = false;
+        submitButton.textContent = '문의 보내기';
+      }
     });
   </script>
 </body>
