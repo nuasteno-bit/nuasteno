@@ -27,6 +27,7 @@
       overflow-x: hidden;
     }
     
+    /* Header - contact.html과 동일 */
     .header {
       position: fixed;
       top: 0;
@@ -35,7 +36,8 @@
       backdrop-filter: blur(20px);
       z-index: 1000;
       border-bottom: 1px solid rgba(0,0,0,0.05);
-      padding: 1.5rem 3rem;
+      padding: 0.8rem 3rem;
+      height: 90px;
     }
     
     .header-container {
@@ -48,47 +50,29 @@
     }
     
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      margin-left: 8rem;
+      transition: transform 0.3s;
+    }
+    
+    .logo:hover {
+      transform: translateY(-2px);
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .logo-text {
       font-size: 1.8rem;
       font-weight: 800;
       font-family: 'Noto Serif KR', serif;
       color: #000;
-      text-decoration: none;
       letter-spacing: -1px;
-      position: relative;
-      margin-left: 2rem;
-      display: inline-block;
-    }
-    
-    .logo-text,
-    .logo-hover {
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .logo-text {
-      display: inline-block;
-    }
-    
-    .logo-hover {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.5);
-      opacity: 0;
-      font-weight: 900;
-      letter-spacing: 4px;
-      filter: blur(10px);
-    }
-    
-    .logo:hover .logo-text {
-      opacity: 0;
-      transform: scale(1.2);
-      filter: blur(10px);
-    }
-    
-    .logo:hover .logo-hover {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      filter: blur(0);
     }
     
     .nav-menu {
@@ -130,172 +114,7 @@
       width: 100%;
     }
     
-    .special-menu {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      text-decoration: none;
-      padding: 0.7rem 1.3rem;
-      border-radius: 8px;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      background: #fff;
-      min-height: 60px;
-      isolation: isolate;
-      border: 1px solid rgba(37, 99, 235, 0.2);
-    }
-    
-    .special-menu::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 8px;
-      padding: 2px;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        transparent 40%,
-        rgba(37, 99, 235, 0.25) 50%,
-        rgba(96, 165, 250, 0.35) 53%,
-        rgba(37, 99, 235, 0.25) 56%,
-        transparent 60%,
-        transparent 100%
-      );
-      background-size: 200% 100%;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: borderShine 4s linear infinite;
-    }
-    
-    @keyframes borderShine {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-    
-    .special-menu::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px;
-      background: radial-gradient(
-        circle at center,
-        transparent 0%,
-        rgba(37, 99, 235, 0.03) 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .special-menu:hover {
-      transform: translateY(-2px);
-      background: rgba(37, 99, 235, 0.04);
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
-      border-color: rgba(37, 99, 235, 0.3);
-    }
-    
-    .special-menu:hover::before {
-      animation: borderShine 2s linear infinite;
-    }
-    
-    .special-menu:hover::after {
-      opacity: 1;
-    }
-    
-    .special-menu:focus-visible {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 4px;
-    }
-    
-    .special-menu-content {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .live-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    
-    .live-dot {
-      width: 6px;
-      height: 6px;
-      background: #ef4444;
-      border-radius: 50%;
-      position: relative;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    
-    .live-dot::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      background: #ef4444;
-      border-radius: 50%;
-      animation: pulse-ring 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulse-dot {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.6;
-      }
-    }
-    
-    @keyframes pulse-ring {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(2.5);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-    }
-    
-    .special-menu-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    
-    .special-menu-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #000;
-      font-family: 'Noto Serif KR', serif;
-      letter-spacing: -0.3px;
-      line-height: 1.3;
-    }
-    
-    .special-menu-subtitle {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--primary-color);
-      letter-spacing: 0.3px;
-      line-height: 1.3;
-    }
-    
+    /* Fixed Navigation Buttons - contact.html과 동일 */
     .fixed-nav-black {
       position: fixed;
       right: 0;
@@ -313,7 +132,7 @@
       font-weight: 800;
       font-size: 0.9rem;
       letter-spacing: 0.3em;
-      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s;
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.5s, top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       text-decoration: none;
     }
@@ -321,6 +140,7 @@
     .fixed-nav-black.is-collapsed {
       height: 60px;
       font-size: 0;
+      top: 90px;
     }
     
     .fixed-nav-black.is-collapsed::before {
@@ -355,6 +175,79 @@
       top: 150px;
     }
     
+    .fixed-nav-white {
+      position: fixed;
+      right: 0;
+      top: 370px;
+      z-index: 1001;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-left: 1px solid rgba(0,0,0,0.1);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      overflow: hidden;
+    }
+    
+    .fixed-nav-white:hover {
+      background: #f8f8f8;
+    }
+    
+    .fixed-nav-white.is-collapsed {
+      top: 210px;
+    }
+    
+    .nua-studio-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0;
+      line-height: 1.3;
+      color: #000;
+      text-align: center;
+      position: absolute;
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fixed-nav-white:hover .nua-studio-text {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    
+    .nua-studio-text-hover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+      color: #000;
+      text-align: center;
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fixed-nav-white:hover .nua-studio-text-hover {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
     .page-header {
       padding: 120px 3rem 40px;
       background: #fafafa;
@@ -384,7 +277,7 @@
       top: 90px;
       background: #fff;
       border-bottom: 1px solid rgba(0,0,0,0.08);
-      z-index: 1000;
+      z-index: 999;
       overflow-x: auto;
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
@@ -807,38 +700,25 @@
     
     @media (max-width: 768px) {
       .header {
-        padding: 1rem 1.5rem;
+        padding: 0.8rem 1.5rem;
+        height: 70px;
       }
       
       .logo {
-        font-size: 1.4rem;
         margin-left: 0;
+        gap: 1rem;
+      }
+      
+      .logo-image {
+        height: 40px;
+      }
+      
+      .logo-text {
+        font-size: 1.4rem;
       }
       
       .nav-menu {
         display: none;
-      }
-      
-      .special-menu {
-        padding: 0.5rem 0.9rem;
-        min-height: 50px;
-      }
-      
-      .special-menu-content {
-        gap: 0.4rem;
-      }
-      
-      .live-dot {
-        width: 5px;
-        height: 5px;
-      }
-      
-      .special-menu-title {
-        font-size: 0.9rem;
-      }
-      
-      .special-menu-subtitle {
-        font-size: 0.6rem;
       }
       
       .page-header {
@@ -884,7 +764,8 @@
       }
       
       .fixed-nav-black,
-      .fixed-nav-yellow {
+      .fixed-nav-yellow,
+      .fixed-nav-white {
         display: none;
       }
       
@@ -904,8 +785,8 @@
   <div class="header">
     <div class="header-container">
       <a href="index.html" class="logo">
+        <img src="nuasteno_logo.png" alt="누아속기사무소" class="logo-image">
         <span class="logo-text">누아속기사무소</span>
-        <span class="logo-hover">NUA</span>
       </a>
       <nav class="nav-menu">
         <a href="about.html" class="nav-link">소개</a>
@@ -914,17 +795,6 @@
         <a href="faq.html" class="nav-link">FAQ</a>
         <a href="contact.html" class="nav-link">문의</a>
       </nav>
-      <a href="http://live.nuastudio.co.kr" target="_blank" rel="noopener noreferrer" class="special-menu">
-        <div class="special-menu-content">
-          <div class="live-indicator">
-            <span class="live-dot"></span>
-          </div>
-          <div class="special-menu-text">
-            <span class="special-menu-title">누아스튜디오</span>
-            <span class="special-menu-subtitle">실시간 속기 솔루션</span>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 
@@ -933,6 +803,16 @@
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 3C6.48 3 2 6.58 2 11C2 13.5 3.5 15.75 5.88 17.13L5 21L8.87 19.13C9.87 19.38 10.92 19.5 12 19.5C17.52 19.5 22 15.92 22 11.5C22 7.08 17.52 3 12 3Z" fill="currentColor"/>
     </svg>
+  </a>
+  <a href="http://live.nuastudio.co.kr" target="_blank" class="fixed-nav-white" aria-label="누아스튜디오">
+    <div class="nua-studio-text">
+      <span>실시간</span>
+      <span>속기</span>
+    </div>
+    <div class="nua-studio-text-hover">
+      <span>NUA</span>
+      <span>STUDIO</span>
+    </div>
   </a>
 
   <div class="page-header">
@@ -1919,18 +1799,21 @@
     // Fixed Nav Scroll Behavior
     const fixedNavBlack = document.querySelector('.fixed-nav-black');
     const fixedNavYellow = document.querySelector('.fixed-nav-yellow');
+    const fixedNavWhite = document.querySelector('.fixed-nav-white');
     
-    if (fixedNavBlack && fixedNavYellow) {
+    if (fixedNavBlack && fixedNavYellow && fixedNavWhite) {
       ScrollTrigger.create({
-        start: 'top+=150 top',
+        start: 'top+=200 top',
         end: 'max',
         onUpdate: (self) => {
           if (self.direction === 1) {
             fixedNavBlack.classList.add('is-collapsed');
             fixedNavYellow.classList.add('is-collapsed');
+            fixedNavWhite.classList.add('is-collapsed');
           } else {
             fixedNavBlack.classList.remove('is-collapsed');
             fixedNavYellow.classList.remove('is-collapsed');
+            fixedNavWhite.classList.remove('is-collapsed');
           }
         }
       });
