@@ -959,6 +959,93 @@
       }
     }
     
+    /* Korea Map Styles */
+    .korea-map-container {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-15%);
+      width: 280px;
+      height: 400px;
+      z-index: 4;
+      opacity: 0;
+      animation: mapFadeIn 1.2s ease-out 0.8s forwards;
+    }
+    
+    @keyframes mapFadeIn {
+      0% { 
+        opacity: 0; 
+        transform: translateX(-15%) scale(0.9); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateX(-15%) scale(1); 
+      }
+    }
+    
+    .korea-map-svg { 
+      width: 100%; 
+      height: 100%; 
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); 
+    }
+    
+    .korea-map-svg path { 
+      fill: rgba(255, 255, 255, 0.85); 
+      stroke: rgba(0, 0, 0, 0.15); 
+      stroke-width: 0.5; 
+      transition: all 0.3s ease; 
+    }
+    
+    .map-location-point { 
+      position: absolute; 
+      width: 8px; 
+      height: 8px; 
+      background: #FEE500; 
+      border-radius: 50%; 
+      transform: translate(-50%, -50%); 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+      animation: pointPulse 2s ease-in-out infinite; 
+    }
+    
+    @keyframes pointPulse {
+      0%, 100% { 
+        transform: translate(-50%, -50%) scale(1); 
+        box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.7); 
+      }
+      50% { 
+        transform: translate(-50%, -50%) scale(1.1); 
+        box-shadow: 0 0 0 8px rgba(254, 229, 0, 0); 
+      }
+    }
+    
+    .map-location-point:hover { 
+      transform: translate(-50%, -50%) scale(1.4); 
+      background: #2563EB; 
+      animation: none; 
+    }
+    
+    .map-location-label { 
+      position: absolute; 
+      bottom: 100%; 
+      left: 50%; 
+      transform: translateX(-50%) translateY(-8px); 
+      background: rgba(0, 0, 0, 0.85); 
+      color: #fff; 
+      padding: 4px 10px; 
+      border-radius: 4px; 
+      font-size: 0.7rem; 
+      font-weight: 600; 
+      white-space: nowrap; 
+      opacity: 0; 
+      transition: all 0.3s ease; 
+    }
+    
+    .map-location-point:hover .map-location-label { 
+      opacity: 1; 
+      transform: translateX(-50%) translateY(-12px); 
+    }
+    
     .hero-container {
       max-width: 1800px;
       margin: 0 auto;
@@ -2137,6 +2224,11 @@
       .hero-container {
         gap: 2rem;
       }
+      
+      .korea-map-container {
+        width: 240px;
+        height: 360px;
+      }
     }
     
     @media (max-width: 1280px) {
@@ -2151,6 +2243,12 @@
       
       .hero-container {
         gap: 2rem;
+      }
+      
+      .korea-map-container {
+        width: 220px;
+        height: 320px;
+        transform: translateX(-10%);
       }
       
       .services-grid {
@@ -2181,6 +2279,16 @@
       
       .hero-content {
         padding-bottom: 40px;
+      }
+      
+      .korea-map-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 200px;
+        height: 280px;
+        margin: 0 auto 2rem;
       }
       
       .hero-visual {
@@ -2244,6 +2352,11 @@
       
       .hero {
         align-items: center;
+      }
+      
+      .korea-map-container {
+        width: 160px;
+        height: 240px;
       }
       
       .hero-visual {
@@ -2424,6 +2537,25 @@
         </h1>
         <p class="hero-subtitle">법원 제출용 녹취록부터 현장 속기까지,<br>10년 이상의 경험으로 최상의 결과를 보장합니다.</p>
         <a href="contact.html" class="hero-cta">상담 신청하기</a>
+      </div>
+      
+      <!-- Korea Map with Location Points -->
+      <div class="korea-map-container">
+        <object data="/image/kr_map.svg" type="image/svg+xml" class="korea-map-svg"></object>
+        
+        <!-- 12개 지역 포인트 -->
+        <div class="map-location-point" style="top: 12%; left: 45%;"><span class="map-location-label">서울</span></div>
+        <div class="map-location-point" style="top: 18%; left: 55%;"><span class="map-location-label">경기</span></div>
+        <div class="map-location-point" style="top: 20%; left: 72%;"><span class="map-location-label">강원</span></div>
+        <div class="map-location-point" style="top: 35%; left: 38%;"><span class="map-location-label">충남</span></div>
+        <div class="map-location-point" style="top: 38%; left: 58%;"><span class="map-location-label">충북</span></div>
+        <div class="map-location-point" style="top: 52%; left: 48%;"><span class="map-location-label">전북</span></div>
+        <div class="map-location-point" style="top: 55%; left: 68%;"><span class="map-location-label">경북</span></div>
+        <div class="map-location-point" style="top: 62%; left: 35%;"><span class="map-location-label">광주</span></div>
+        <div class="map-location-point" style="top: 65%; left: 42%;"><span class="map-location-label">전남</span></div>
+        <div class="map-location-point" style="top: 72%; left: 75%;"><span class="map-location-label">부산</span></div>
+        <div class="map-location-point" style="top: 70%; left: 62%;"><span class="map-location-label">경남</span></div>
+        <div class="map-location-point" style="top: 85%; left: 28%;"><span class="map-location-label">제주</span></div>
       </div>
       
       <div class="hero-visual">
