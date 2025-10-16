@@ -1094,33 +1094,32 @@
       position: absolute; 
       width: 8px; 
       height: 8px; 
-      background: var(--primary-color); 
+      background: #FEE500; 
       border-radius: 50%; 
       transform: translate(-50%, -50%); 
       cursor: pointer; 
       transition: all 0.3s ease; 
-      animation: pointPulse 2s ease-in-out infinite; 
-      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      animation: pointPulseSubtle 3s ease-in-out infinite; 
+      box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.4);
       pointer-events: all;
       z-index: 10;
     }
     
-    @keyframes pointPulse {
+    @keyframes pointPulseSubtle {
       0%, 100% { 
-        transform: translate(-50%, -50%) scale(1); 
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); 
+        opacity: 0.7;
       }
       50% { 
-        transform: translate(-50%, -50%) scale(1.15); 
-        box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); 
+        opacity: 1;
       }
     }
     
     .map-location-point:hover { 
-      transform: translate(-50%, -50%) scale(1.6); 
-      background: #1e40af; 
+      transform: translate(-50%, -50%) scale(1.3); 
+      background: #FDD835; 
       animation: none; 
-      box-shadow: 0 0 16px rgba(37, 99, 235, 0.6);
+      box-shadow: 0 0 8px rgba(254, 229, 0, 0.5);
+      opacity: 1;
     }
     
     .map-location-label { 
@@ -1128,8 +1127,8 @@
       bottom: 100%; 
       left: 50%; 
       transform: translateX(-50%) translateY(-10px); 
-      background: rgba(30, 64, 175, 0.95); 
-      color: #fff; 
+      background: rgba(0, 0, 0, 0.85); 
+      color: #FEE500; 
       padding: 5px 12px; 
       border-radius: 6px; 
       font-size: 0.75rem; 
@@ -1137,7 +1136,7 @@
       white-space: nowrap; 
       opacity: 0; 
       transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     
     .map-location-point:hover .map-location-label { 
