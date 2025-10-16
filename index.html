@@ -1062,9 +1062,10 @@
       transform: translateX(-5%);
       width: 420px;
       height: 550px;
-      z-index: 4;
+      z-index: 6;
       opacity: 0;
       animation: mapFadeIn 1.2s ease-out 0.8s forwards;
+      pointer-events: none;
     }
     
     @keyframes mapFadeIn {
@@ -1100,6 +1101,8 @@
       transition: all 0.3s ease; 
       animation: pointPulse 2s ease-in-out infinite; 
       box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      pointer-events: all;
+      z-index: 10;
     }
     
     @keyframes pointPulse {
