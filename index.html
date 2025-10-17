@@ -1253,30 +1253,33 @@
       transform: translateX(-50%) translateY(-14px); 
     }
     
-    /* Map Overlay Service Info - Modern Rectangular Design */
+    /* Map Overlay Service Info - Vertical Modern Design */
     .map-service-overlay {
       position: absolute;
-      bottom: 10%;
+      bottom: 3%;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 1rem;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 250, 0.92) 100%);
-      backdrop-filter: blur(12px);
-      padding: 0.875rem 1.25rem;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
       animation: fadeIn 1s ease-out 1.2s both;
       z-index: 7;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
     }
     
     .service-stat {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0 0.5rem;
-      border-right: 1px solid rgba(0, 0, 0, 0.06);
+      justify-content: center;
+      gap: 0.625rem;
+      padding: 0 1rem;
+      border-right: 1px solid rgba(0, 0, 0, 0.03);
+      min-width: 60px;
     }
     
     .service-stat:last-child {
@@ -1284,17 +1287,21 @@
     }
     
     .stat-number {
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 0.9rem;
       color: var(--primary-blue);
-      letter-spacing: -0.3px;
+      letter-spacing: 0.1em;
+      line-height: 1.3;
+      text-align: center;
     }
     
     .stat-label {
-      font-size: 0.8rem;
-      color: #555;
-      white-space: nowrap;
-      font-weight: 500;
+      font-size: 0.65rem;
+      color: #444;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      text-align: center;
     }
     
     .dark-mode .korea-map-svg path {
@@ -1312,16 +1319,21 @@
     }
     
     .dark-mode .map-service-overlay {
-      background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(25, 25, 25, 0.92) 100%);
-      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(20, 20, 20, 0.65);
+      border-color: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08);
     }
     
     .dark-mode .stat-label {
-      color: #aaa;
+      color: #ccc;
+    }
+    
+    .dark-mode .stat-number {
+      color: var(--primary-blue-light);
     }
     
     .dark-mode .service-stat {
-      border-right-color: rgba(255, 255, 255, 0.08);
+      border-right-color: rgba(255, 255, 255, 0.04);
     }
     
     .hero-container {
@@ -2572,14 +2584,28 @@
       .map-service-overlay {
         position: static;
         transform: none;
-        margin-top: 1rem;
-        border-radius: 4px;
-        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-radius: 6px;
         justify-content: center;
+        padding: 0.75rem 1rem;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.8);
       }
       
       .service-stat {
-        padding: 0 0.75rem;
+        padding: 0 0.5rem;
+        flex-direction: row;
+        min-width: auto;
+        gap: 0.4rem;
+      }
+      
+      .stat-number {
+        font-size: 0.85rem;
+      }
+      
+      .stat-label {
+        font-size: 0.75rem;
       }
       
       .hero-visual {
@@ -2686,6 +2712,28 @@
       .service-badge-item {
         width: 100%;
         justify-content: center;
+      }
+      
+      .map-service-overlay {
+        gap: 0.375rem;
+        padding: 0.5rem 0.625rem;
+        background: rgba(255, 255, 255, 0.85);
+        flex-direction: row;
+      }
+      
+      .service-stat {
+        padding: 0 0.25rem;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      
+      .stat-number {
+        font-size: 0.7rem;
+      }
+      
+      .stat-label {
+        font-size: 0.6rem;
       }
     }
   </style>
@@ -2883,22 +2931,22 @@
         
         <div class="map-service-overlay">
           <div class="service-stat">
-            <span class="stat-number">24시간</span>
-            <span class="stat-label">온라인 접수</span>
+            <span class="stat-number">24<br>시<br>간</span>
+            <span class="stat-label">온<br>라<br>인<br>접<br>수</span>
           </div>
           <div class="service-stat">
-            <span class="stat-number">전국</span>
-            <span class="stat-label">등기 우편</span>
+            <span class="stat-number">전<br>국</span>
+            <span class="stat-label">등<br>기<br>우<br>편</span>
           </div>
           <div class="service-stat">
-            <span class="stat-number">익일</span>
-            <span class="stat-label">특급 배송</span>
+            <span class="stat-number">익<br>일</span>
+            <span class="stat-label">특<br>급<br>배<br>송</span>
           </div>
         </div>
       </div>
       
       <div class="hero-visual">
-        <img src="hero_woman.png" alt="전문 속기사" class="hero-image">
+        <img src="hero_tg_woman.png" alt="전문 속기사" class="hero-image">
       </div>
     </div>
   </div>
@@ -3912,6 +3960,36 @@
     window.addEventListener('load', () => {
       renderSolutions();
       renderCredentials();
+      
+      // 모바일에서 세로 텍스트를 가로로 변환
+      function handleMapOverlay() {
+        const isMobile = window.innerWidth <= 1024;
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statLabels = document.querySelectorAll('.stat-label');
+        
+        if (statNumbers.length < 3 || statLabels.length < 3) return;
+        
+        if (isMobile) {
+          statNumbers[0].innerHTML = '24시간';
+          statNumbers[1].innerHTML = '전국';
+          statNumbers[2].innerHTML = '익일';
+          
+          statLabels[0].innerHTML = '온라인접수';
+          statLabels[1].innerHTML = '등기우편';
+          statLabels[2].innerHTML = '특급배송';
+        } else {
+          statNumbers[0].innerHTML = '24<br>시<br>간';
+          statNumbers[1].innerHTML = '전<br>국';
+          statNumbers[2].innerHTML = '익<br>일';
+          
+          statLabels[0].innerHTML = '온<br>라<br>인<br>접<br>수';
+          statLabels[1].innerHTML = '등<br>기<br>우<br>편';
+          statLabels[2].innerHTML = '특<br>급<br>배<br>송';
+        }
+      }
+      
+      handleMapOverlay();
+      window.addEventListener('resize', handleMapOverlay);
     });
   </script>
 </body>
