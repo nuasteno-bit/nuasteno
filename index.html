@@ -1253,55 +1253,80 @@
       transform: translateX(-50%) translateY(-14px); 
     }
     
-    /* Map Overlay Service Info - Vertical Modern Design */
-    .map-service-overlay {
+    /* Map Stats - Distributed around map */
+    .map-stat-left,
+    .map-stat-right,
+    .map-stat-bottom {
       position: absolute;
-      bottom: 3%;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 0.875rem 0.625rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      animation: fadeIn 1s ease-out 1.4s both;
+      z-index: 8;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    
+    .map-stat-left {
+      top: 40%;
+      left: 15%;
+      transform: translateY(-50%);
+    }
+    
+    .map-stat-right {
+      top: 35%;
+      right: 18%;
+      transform: translateY(-50%);
+    }
+    
+    .map-stat-bottom {
+      bottom: 15%;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      gap: 2rem;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(10px);
-      padding: 1.25rem 2rem;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      animation: fadeIn 1s ease-out 1.2s both;
-      z-index: 7;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
     }
     
-    .service-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.625rem;
-      padding: 0 1rem;
-      border-right: 1px solid rgba(0, 0, 0, 0.03);
-      min-width: 60px;
+    .map-stat-left .stat-number,
+    .map-stat-left .stat-label,
+    .map-stat-right .stat-number,
+    .map-stat-right .stat-label,
+    .map-stat-bottom .stat-number,
+    .map-stat-bottom .stat-label {
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
     }
     
-    .service-stat:last-child {
-      border-right: none;
-    }
-    
-    .stat-number {
-      font-weight: 800;
-      font-size: 0.9rem;
+    .map-stat-left .stat-number,
+    .map-stat-right .stat-number,
+    .map-stat-bottom .stat-number {
+      font-size: 0.85rem;
       color: var(--primary-blue);
       letter-spacing: 0.1em;
-      line-height: 1.3;
-      text-align: center;
     }
     
-    .stat-label {
-      font-size: 0.65rem;
+    .map-stat-left .stat-label,
+    .map-stat-right .stat-label,
+    .map-stat-bottom .stat-label {
+      font-size: 0.6rem;
       color: #444;
-      font-weight: 600;
       letter-spacing: 0.05em;
-      line-height: 1.2;
-      text-align: center;
+    }
+    
+    .dark-mode .map-stat-left,
+    .dark-mode .map-stat-right,
+    .dark-mode .map-stat-bottom {
+      background: rgba(20, 20, 20, 0.7);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+    
+    .dark-mode .map-stat-left .stat-label,
+    .dark-mode .map-stat-right .stat-label,
+    .dark-mode .map-stat-bottom .stat-label {
+      color: #ccc;
     }
     
     .dark-mode .korea-map-svg path {
@@ -1318,23 +1343,7 @@
       background: rgba(96, 165, 250, 0.95);
     }
     
-    .dark-mode .map-service-overlay {
-      background: rgba(20, 20, 20, 0.65);
-      border-color: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08);
-    }
-    
-    .dark-mode .stat-label {
-      color: #ccc;
-    }
-    
-    .dark-mode .stat-number {
-      color: var(--primary-blue-light);
-    }
-    
-    .dark-mode .service-stat {
-      border-right-color: rgba(255, 255, 255, 0.04);
-    }
+
     
     .hero-container {
       max-width: 1800px;
@@ -2581,31 +2590,39 @@
         margin: 0 auto 2rem;
       }
       
-      .map-service-overlay {
+      .map-stat-left,
+      .map-stat-right,
+      .map-stat-bottom {
         position: static;
         transform: none;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        border-radius: 6px;
-        justify-content: center;
-        padding: 0.75rem 1rem;
-        gap: 1rem;
-        background: rgba(255, 255, 255, 0.8);
-      }
-      
-      .service-stat {
-        padding: 0 0.5rem;
+        display: inline-flex;
         flex-direction: row;
-        min-width: auto;
-        gap: 0.4rem;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        margin: 0.25rem;
       }
       
-      .stat-number {
-        font-size: 0.85rem;
+      .map-stats-container {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
       }
       
-      .stat-label {
+      .map-stat-left .stat-number,
+      .map-stat-right .stat-number,
+      .map-stat-bottom .stat-number,
+      .map-stat-left .stat-label,
+      .map-stat-right .stat-label,
+      .map-stat-bottom .stat-label {
         font-size: 0.75rem;
+      }
+      
+      .map-stat-left .stat-label,
+      .map-stat-right .stat-label,
+      .map-stat-bottom .stat-label {
+        font-size: 0.65rem;
       }
       
       .hero-visual {
@@ -2929,19 +2946,20 @@
         <div class="map-location-point" style="top: 63.3%; left: 67.5%;"><span class="map-location-label">부산 익일</span></div>
         <div class="map-location-point" style="top: 92.4%; left: 34.9%;"><span class="map-location-label">제주 2일</span></div>
         
-        <div class="map-service-overlay">
-          <div class="service-stat">
-            <span class="stat-number">24<br>시<br>간</span>
-            <span class="stat-label">온<br>라<br>인<br>접<br>수</span>
-          </div>
-          <div class="service-stat">
-            <span class="stat-number">전<br>국</span>
-            <span class="stat-label">등<br>기<br>우<br>편</span>
-          </div>
-          <div class="service-stat">
-            <span class="stat-number">익<br>일</span>
-            <span class="stat-label">특<br>급<br>배<br>송</span>
-          </div>
+        <!-- 지도 주변 3개 위치에 분산 배치 -->
+        <div class="map-stat-left">
+          <span class="stat-number">24<br>시<br>간</span>
+          <span class="stat-label">온<br>라<br>인<br>접<br>수</span>
+        </div>
+        
+        <div class="map-stat-right">
+          <span class="stat-number">전<br>국</span>
+          <span class="stat-label">등<br>기<br>우<br>편</span>
+        </div>
+        
+        <div class="map-stat-bottom">
+          <span class="stat-number">익<br>일</span>
+          <span class="stat-label">특<br>급<br>배<br>송</span>
         </div>
       </div>
       
