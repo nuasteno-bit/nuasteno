@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+/* Map Stats Container for mobile */
+    .map-stats-wrapper {
+      display: none;
+    }
+    
+    @media (max-width: 1024px) {
+      .map-stats-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+    }<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -1164,11 +1177,11 @@
     /* Korea Map Styles */
     .korea-map-container {
       position: absolute;
-      top: 5%;
+      top: 10%;
       left: 50%;
       transform: translateX(0%);
-      width: 500px;
-      height: 500px;
+      width: 460px;
+      height: 460px;
       z-index: 6;
       opacity: 0;
       animation: mapFadeIn 1.2s ease-out 0.8s forwards;
@@ -1210,6 +1223,32 @@
       box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.4), 0 0 12px 2px rgba(254, 229, 0, 0.25);
       pointer-events: all;
       z-index: 10;
+    }
+    
+    .map-location-highlight {
+      width: 12px;
+      height: 12px;
+      background: #333;
+      box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.2), 0 0 20px 4px rgba(51, 51, 51, 0.15);
+      animation: highlightPulse 2s ease-in-out infinite;
+      z-index: 11;
+    }
+    
+    @keyframes highlightPulse {
+      0%, 100% { 
+        opacity: 0.9;
+        box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.2), 0 0 20px 4px rgba(51, 51, 51, 0.15);
+      }
+      50% { 
+        opacity: 1;
+        box-shadow: 0 0 0 6px rgba(51, 51, 51, 0.1), 0 0 25px 6px rgba(51, 51, 51, 0.2);
+      }
+    }
+    
+    .map-location-highlight .map-location-label {
+      background: #333;
+      color: #fff;
+      font-weight: 700;
     }
     
     @keyframes pointPulseSubtle {
@@ -1272,21 +1311,51 @@
     }
     
     .map-stat-left {
-      top: 40%;
-      left: 15%;
+      top: 50%;
+      left: -8%;
       transform: translateY(-50%);
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.75rem 0.5rem;
     }
     
     .map-stat-right {
-      top: 35%;
-      right: 18%;
+      top: 50%;
+      right: -8%;
       transform: translateY(-50%);
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.75rem 0.5rem;
     }
     
     .map-stat-bottom {
-      bottom: 15%;
+      bottom: -5%;
       left: 50%;
       transform: translateX(-50%);
+      flex-direction: row;
+      gap: 0.75rem;
+      padding: 0.5rem 0.875rem;
+    }
+    
+    .map-stat-bottom .stat-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .map-stat-bottom .stat-number {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--primary-blue);
+      letter-spacing: 0.05em;
+    }
+    
+    .map-stat-bottom .stat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #444;
+      letter-spacing: 0.02em;
     }
     
     .map-stat-left .stat-number,
@@ -2593,36 +2662,42 @@
       .map-stat-left,
       .map-stat-right,
       .map-stat-bottom {
-        position: static;
+        position: relative;
         transform: none;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
         display: inline-flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        padding: 0.5rem 0.75rem;
         margin: 0.25rem;
+        padding: 0.4rem 0.6rem;
       }
       
-      .map-stats-container {
+      .korea-map-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .map-stats-wrapper {
         display: flex;
         justify-content: center;
         gap: 0.5rem;
-        margin-top: 1rem;
+        width: 100%;
         flex-wrap: wrap;
       }
       
       .map-stat-left .stat-number,
       .map-stat-right .stat-number,
-      .map-stat-bottom .stat-number,
-      .map-stat-left .stat-label,
-      .map-stat-right .stat-label,
-      .map-stat-bottom .stat-label {
-        font-size: 0.75rem;
+      .map-stat-bottom .stat-number {
+        font-size: 0.8rem;
       }
       
       .map-stat-left .stat-label,
       .map-stat-right .stat-label,
       .map-stat-bottom .stat-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
       }
       
       .hero-visual {
@@ -2731,25 +2806,22 @@
         justify-content: center;
       }
       
-      .map-service-overlay {
-        gap: 0.375rem;
-        padding: 0.5rem 0.625rem;
-        background: rgba(255, 255, 255, 0.85);
-        flex-direction: row;
+      .map-stat-left,
+      .map-stat-right,
+      .map-stat-bottom {
+        padding: 0.4rem 0.6rem;
+        margin: 0.2rem;
       }
       
-      .service-stat {
-        padding: 0 0.25rem;
-        flex: 1;
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-      
-      .stat-number {
+      .map-stat-left .stat-number,
+      .map-stat-right .stat-number,
+      .map-stat-bottom .stat-number {
         font-size: 0.7rem;
       }
       
-      .stat-label {
+      .map-stat-left .stat-label,
+      .map-stat-right .stat-label,
+      .map-stat-bottom .stat-label {
         font-size: 0.6rem;
       }
     }
@@ -2932,9 +3004,9 @@
       <div class="korea-map-container">
         <img src="public/image/kr_map.svg" alt="한국 지도" class="korea-map-svg">
         
-        <!-- 12개 지역 포인트 - 올바른 좌표 -->
+        <!-- 12개 지역 포인트 -->
         <div class="map-location-point" style="top: 23.1%; left: 39.5%;"><span class="map-location-label">서울 당일</span></div>
-        <div class="map-location-point" style="top: 28.7%; left: 44.9%;"><span class="map-location-label">경기 당일</span></div>
+        <div class="map-location-point map-location-highlight" style="top: 28.7%; left: 44.9%;"><span class="map-location-label">경기 당일</span></div>
         <div class="map-location-point" style="top: 20.1%; left: 57.9%;"><span class="map-location-label">강원 익일</span></div>
         <div class="map-location-point" style="top: 33.9%; left: 51.1%;"><span class="map-location-label">충북 익일</span></div>
         <div class="map-location-point" style="top: 41.3%; left: 37.7%;"><span class="map-location-label">충남 익일</span></div>
@@ -2948,19 +3020,28 @@
         
         <!-- 지도 주변 3개 위치에 분산 배치 -->
         <div class="map-stat-left">
-          <span class="stat-number">24<br>시<br>간</span>
-          <span class="stat-label">온<br>라<br>인<br>접<br>수</span>
+          <div class="stat-group">
+            <span class="stat-number">24시간</span>
+            <span class="stat-label">온라인접수</span>
+          </div>
         </div>
         
         <div class="map-stat-right">
-          <span class="stat-number">전<br>국</span>
-          <span class="stat-label">등<br>기<br>우<br>편</span>
+          <div class="stat-group">
+            <span class="stat-number">전국</span>
+            <span class="stat-label">등기우편</span>
+          </div>
         </div>
         
         <div class="map-stat-bottom">
-          <span class="stat-number">익<br>일</span>
-          <span class="stat-label">특<br>급<br>배<br>송</span>
+          <div class="stat-group">
+            <span class="stat-number">익일</span>
+            <span class="stat-label">특급배송</span>
+          </div>
         </div>
+        
+        <!-- 모바일용 컨테이너 -->
+        <div class="map-stats-wrapper"></div>
       </div>
       
       <div class="hero-visual">
@@ -3979,35 +4060,34 @@
       renderSolutions();
       renderCredentials();
       
-      // 모바일에서 세로 텍스트를 가로로 변환
-      function handleMapOverlay() {
+      // 모바일에서 stat 위치 조정
+      function handleMobileStats() {
         const isMobile = window.innerWidth <= 1024;
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const statLabels = document.querySelectorAll('.stat-label');
+        const leftStat = document.querySelector('.map-stat-left');
+        const rightStat = document.querySelector('.map-stat-right');
+        const bottomStat = document.querySelector('.map-stat-bottom');
+        const wrapper = document.querySelector('.map-stats-wrapper');
         
-        if (statNumbers.length < 3 || statLabels.length < 3) return;
+        if (!leftStat || !rightStat || !bottomStat || !wrapper) return;
         
         if (isMobile) {
-          statNumbers[0].innerHTML = '24시간';
-          statNumbers[1].innerHTML = '전국';
-          statNumbers[2].innerHTML = '익일';
-          
-          statLabels[0].innerHTML = '온라인접수';
-          statLabels[1].innerHTML = '등기우편';
-          statLabels[2].innerHTML = '특급배송';
+          // 모바일: wrapper에 모든 stat 이동
+          wrapper.appendChild(leftStat);
+          wrapper.appendChild(rightStat);
+          wrapper.appendChild(bottomStat);
         } else {
-          statNumbers[0].innerHTML = '24<br>시<br>간';
-          statNumbers[1].innerHTML = '전<br>국';
-          statNumbers[2].innerHTML = '익<br>일';
-          
-          statLabels[0].innerHTML = '온<br>라<br>인<br>접<br>수';
-          statLabels[1].innerHTML = '등<br>기<br>우<br>편';
-          statLabels[2].innerHTML = '특<br>급<br>배<br>송';
+          // 데스크톱: 원래 위치로 복원
+          const mapContainer = document.querySelector('.korea-map-container');
+          if (mapContainer) {
+            mapContainer.appendChild(leftStat);
+            mapContainer.appendChild(rightStat);
+            mapContainer.appendChild(bottomStat);
+          }
         }
       }
       
-      handleMapOverlay();
-      window.addEventListener('resize', handleMapOverlay);
+      handleMobileStats();
+      window.addEventListener('resize', handleMobileStats);
     });
   </script>
 </body>
