@@ -1,5 +1,4 @@
-
-    :root {
+:root {
       --maxw: 1200px;
       --gap: 48px;
       --offsetY: 120px;
@@ -339,6 +338,7 @@
     .hero-title .line-2,
     .hero-title .line-3,
     .hero-subtitle,
+    .hero-phone-number,
     .hero-cta {
       will-change: transform, opacity;
       backface-visibility: hidden;
@@ -348,6 +348,21 @@
     
     .hero-wave {
       will-change: transform, opacity;
+    }
+
+    .hero-phone-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--primary-blue);
+      letter-spacing: 0.05em;
+      position: absolute;
+      bottom: 200px;
+      left: 0;
+      z-index: 5;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.7s forwards;
+      text-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
     }
     
     .hero-service-badges {
@@ -2556,6 +2571,11 @@
         width: 300px;
         height: 450px;
       }
+
+      .hero-phone-number {
+        font-size: 2.4rem;
+        bottom: 180px;
+      }
     }
     
     @media (max-width: 1280px) {
@@ -2580,6 +2600,11 @@
       
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-phone-number {
+        font-size: 2.2rem;
+        bottom: 180px;
       }
     }
     
@@ -2706,6 +2731,11 @@
       .faq-cards {
         grid-template-columns: 1fr;
       }
+
+      .hero-phone-number {
+        font-size: 2rem;
+        bottom: 150px;
+      }
     }
     
     @media (max-width: 768px) {
@@ -2783,5 +2813,9 @@
       .map-stat-bottom .stat-label {
         font-size: 0.6rem;
       }
+
+      .hero-phone-number {
+        font-size: 1.8rem;
+        bottom: 130px;
+      }
     }
-  
