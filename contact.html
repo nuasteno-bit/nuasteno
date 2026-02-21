@@ -8,12 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    // EmailJS 초기화
-    emailjs.init('Ixtx2NqLA38rubSFT');
-  </script>
+  <!-- 문의 폼: live.nuastudio.co.kr 서버 API 사용 -->
   
   <style>
     :root {
@@ -1396,41 +1391,41 @@
       });
     });
 
-    // Form Submission with EmailJS
+    // Form Submission → NUA Studio 서버 API
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      
+
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
-      
+
       // Validation
       if (!data.name.trim()) {
         alert('성함을 입력해주세요');
         return;
       }
-      
+
       if (!data.phone.trim()) {
         alert('연락처를 입력해주세요');
         return;
       }
-      
+
       if (!data.email.trim()) {
         alert('이메일을 입력해주세요');
         return;
       }
-      
+
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(data.email)) {
         alert('올바른 이메일 형식을 입력해주세요');
         return;
       }
-      
+
       if (!data.message.trim()) {
         alert('문의 내용을 입력해주세요');
         return;
       }
-      
-      // 개인정보 동의 체크 확인 (강화)
+
+      // 개인정보 동의 체크 확인
       const privacyCheckbox = this.querySelector('input[name="privacy"]');
       if (!privacyCheckbox.checked) {
         alert('개인정보 수집 및 이용에 동의해주세요');
@@ -1444,31 +1439,32 @@
       submitButton.textContent = '전송 중...';
 
       try {
-        // EmailJS로 이메일 전송
-        const result = await emailjs.send(
-          'service_7w4fmq7',      // Service ID
-          'template_q6yciix',     // Template ID
-          {
-            from_name: data.name,
-            from_email: data.email,
-            phone: data.phone,
-            company: data.company || '미입력',
-            service_type: data.service_type || '미선택',
-            message: data.message
-          }
-        );
+        const res = await fetch('https://live.nuastudio.co.kr/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.name.trim(),
+            phone: data.phone.trim(),
+            email: data.email.trim(),
+            company: data.company?.trim() || '',
+            service_type: data.service_type || '',
+            message: data.message.trim(),
+            source: '누아속기사무소 홈페이지'
+          })
+        });
 
-        console.log('전송 성공:', result);
-        
-        // 성공 메시지
-        alert('문의가 성공적으로 접수되었습니다!\n담당자 확인 후 신속하게 연락드리겠습니다.');
-        this.reset();
-        
+        const result = await res.json();
+
+        if (res.ok && (result.ok || result.success)) {
+          alert('문의가 성공적으로 접수되었습니다!\n담당자 확인 후 신속하게 연락드리겠습니다.');
+          this.reset();
+        } else {
+          alert(result.error || '전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        }
       } catch (error) {
         console.error('전송 실패:', error);
-        alert('전송 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.\n\n오류 내용: ' + error.text);
+        alert('전송 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.\n\n직접 이메일: nuasteno@gmail.com');
       } finally {
-        // 버튼 다시 활성화
         submitButton.disabled = false;
         submitButton.textContent = '문의 보내기';
       }
